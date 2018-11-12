@@ -8,9 +8,9 @@ This module is offered at fourth year and as a part of of [MSc in Data Science a
 
 ## R Scripts for the notes
 * [Load libraries](/scripts/index.R)
-* [CH1](/scripts/01-intro.R)
-* [CH2](/scripts/02-SLR.R)
-* [CH3](/scripts/03-MultipleRegression.R)
-* [CH4](/scripts/04-ModelComparisons.R)
-* [CH5](/scripts/05-DiagnosticMethods.R)
-* [CH6](/scripts/06-SpecialCases.R)
+* [CH1: Intro](/scripts/01-intro.R)
+* [CH2: Simple Linear Regression](/scripts/02-SLR.R)
+* [CH3: Multiple Regression](/scripts/03-MultipleRegression.R)
+* [CH4: Model Comparison](/scripts/04-ModelComparisons.R)
+* [CH5: Diagnostic Methods](/scripts/05-DiagnosticMethods.R)
+* [CH6: Special Cases](/scripts/06-SpecialCases.R)
