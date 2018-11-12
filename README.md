@@ -1,4 +1,4 @@
-# ST463LinearModels1
+# ST463/ST683 Linear Models 1
 
 
 Notes for ST463/ST683 Linear Models 1 module offered by the [Mathematics and Statistics](https://www.maynoothuniversity.ie/mathematics-and-statistics) Department at [Maynooth University](https://www.maynoothuniversity.ie/).
