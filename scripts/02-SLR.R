@@ -281,9 +281,6 @@ summary(lm(Y1 ~X1))[8]
 cor(X2,Y2)^2
 summary(lm(Y2 ~X2))[8]
 
-## ----echo = FALSE--------------------------------------------------------
-knitr::include_graphics("Graphic1-9.jpg")
-
 ## ----fig.width=4,fig.height=4, results='hide',echo=FALSE, fig.align='center'----
 cigarette <- read.csv("data/Cigarette.csv")
 attach(cigarette)
@@ -369,13 +366,7 @@ abline(h = 0, col = 2, lty = 1)
 par(op)
 detach(cigarette)
 
-## ----echo = FALSE--------------------------------------------------------
-knitr::include_graphics("deMoivre.jpg")
-knitr::include_graphics("Legendre.jpg")
-knitr::include_graphics("Gauss.jpg")
-knitr::include_graphics("Laplace.jpg")
-knitr::include_graphics("Adrain.jpg")
-knitr::include_graphics("Galton.jpg")
+
 
 ## ----fig.width=3,fig.height=3, results='hide',echo=FALSE, fig.align='center'----
 boxplot(father.son)
