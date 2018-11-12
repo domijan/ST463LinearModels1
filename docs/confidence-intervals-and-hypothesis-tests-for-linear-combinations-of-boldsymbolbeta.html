@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Notes for ST463/ST683 Linear Models 1</title>
+  <meta name="description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Notes for ST463/ST683 Linear Models 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="domijank/ST463" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Notes for ST463/ST683 Linear Models 1" />
+  
+  <meta name="twitter:description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Katarina Domijan">
+
+
+<meta name="date" content="2018-09-19">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="multiple-regression.html">
+<link rel="next" href="model-comparisons-and-testing-for-lack-of-fit.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Module Outline</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#tutorials"><i class="fa fa-check"></i><b>1.1</b> Tutorials</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#continuous-assessment"><i class="fa fa-check"></i><b>1.2</b> Continuous assessment</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#topics"><i class="fa fa-check"></i><b>1.3</b> Topics</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#pre-requisites"><i class="fa fa-check"></i><b>1.4</b> Pre-requisites</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#stats-refresher-course-for-msc-students"><i class="fa fa-check"></i><b>1.5</b> Stats Refresher Course for MSc students</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#recommended-texts"><i class="fa fa-check"></i><b>1.6</b> Recommended texts</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#introductory-examples"><i class="fa fa-check"></i><b>2.1</b> Introductory Examples</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#mother-and-daughter-heights"><i class="fa fa-check"></i><b>2.1.1</b> Mother and daughter heights</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#bacterial-count-and-storage-temperature"><i class="fa fa-check"></i><b>2.1.2</b> Bacterial count and storage temperature</a></li>
+<li class="chapter" data-level="2.1.3" data-path="intro.html"><a href="intro.html#yield-and-rainfall"><i class="fa fa-check"></i><b>2.1.3</b> Yield and Rainfall</a></li>
+<li class="chapter" data-level="2.1.4" data-path="intro.html"><a href="intro.html#driving"><i class="fa fa-check"></i><b>2.1.4</b> Driving</a></li>
+<li class="chapter" data-level="2.1.5" data-path="intro.html"><a href="intro.html#fuel-consumption"><i class="fa fa-check"></i><b>2.1.5</b> Fuel Consumption</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="SLR.html"><a href="SLR.html"><i class="fa fa-check"></i><b>3</b> Simple Linear regression</a><ul>
+<li class="chapter" data-level="3.0.1" data-path="SLR.html"><a href="SLR.html#some-algebraic-implications-of-the-ols-fit"><i class="fa fa-check"></i><b>3.0.1</b> Some algebraic implications of the OLS fit</a></li>
+<li class="chapter" data-level="3.0.2" data-path="SLR.html"><a href="SLR.html#ols-estimates-for-the-fuel-consumption-example"><i class="fa fa-check"></i><b>3.0.2</b> OLS Estimates for the Fuel Consumption Example</a></li>
+<li class="chapter" data-level="3.1" data-path="SLR.html"><a href="SLR.html#interpretation-of-the-fitted-simple-linear-regression-line"><i class="fa fa-check"></i><b>3.1</b> Interpretation of the fitted simple linear regression line</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="SLR.html"><a href="SLR.html#parameter-estimates"><i class="fa fa-check"></i><b>3.1.1</b> Parameter estimates</a></li>
+<li class="chapter" data-level="3.1.2" data-path="SLR.html"><a href="SLR.html#predicting"><i class="fa fa-check"></i><b>3.1.2</b> Predicting</a></li>
+<li class="chapter" data-level="3.1.3" data-path="SLR.html"><a href="SLR.html#residuals"><i class="fa fa-check"></i><b>3.1.3</b> Residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="SLR.html"><a href="SLR.html#the-formal-simple-linear-regression-model"><i class="fa fa-check"></i><b>3.2</b> The formal simple linear regression model</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="SLR.html"><a href="SLR.html#model"><i class="fa fa-check"></i><b>3.2.1</b> Model</a></li>
+<li class="chapter" data-level="3.2.2" data-path="SLR.html"><a href="SLR.html#assumptions"><i class="fa fa-check"></i><b>3.2.2</b> Assumptions</a></li>
+<li class="chapter" data-level="3.2.3" data-path="SLR.html"><a href="SLR.html#estimation-of-sigma2"><i class="fa fa-check"></i><b>3.2.3</b> Estimation of <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="SLR.html"><a href="SLR.html#review-of-some-probability-results"><i class="fa fa-check"></i><b>3.2.4</b> Review of some probability results</a></li>
+<li class="chapter" data-level="3.2.5" data-path="SLR.html"><a href="SLR.html#prop"><i class="fa fa-check"></i><b>3.2.5</b> Properties of the estimates</a></li>
+<li class="chapter" data-level="3.2.6" data-path="SLR.html"><a href="SLR.html#special-cases"><i class="fa fa-check"></i><b>3.2.6</b> Special cases</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="SLR.html"><a href="SLR.html#simple-linear-regression-models-in-r-and-minitab"><i class="fa fa-check"></i><b>3.3</b> Simple linear regression models in R and Minitab</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="SLR.html"><a href="SLR.html#minitab"><i class="fa fa-check"></i><b>3.3.1</b> Minitab</a></li>
+<li class="chapter" data-level="3.3.2" data-path="SLR.html"><a href="SLR.html#r"><i class="fa fa-check"></i><b>3.3.2</b> R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="SLR.html"><a href="SLR.html#statistical-inference"><i class="fa fa-check"></i><b>3.4</b> Statistical inference</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="SLR.html"><a href="SLR.html#r-simulation-paraminference.r"><i class="fa fa-check"></i><b>3.4.1</b> R simulation: ParamInference.R</a></li>
+<li class="chapter" data-level="3.4.2" data-path="SLR.html"><a href="SLR.html#inference-for-beta_1"><i class="fa fa-check"></i><b>3.4.2</b> Inference for <span class="math inline">\(\beta_1\)</span></a></li>
+<li class="chapter" data-level="3.4.3" data-path="SLR.html"><a href="SLR.html#inference-for-beta_0"><i class="fa fa-check"></i><b>3.4.3</b> Inference for <span class="math inline">\(\beta_0\)</span></a></li>
+<li class="chapter" data-level="3.4.4" data-path="SLR.html"><a href="SLR.html#inference-for-mean-response"><i class="fa fa-check"></i><b>3.4.4</b> Inference for mean response</a></li>
+<li class="chapter" data-level="3.4.5" data-path="SLR.html"><a href="SLR.html#inference-for-prediction"><i class="fa fa-check"></i><b>3.4.5</b> Inference for prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="SLR.html"><a href="SLR.html#analysis-of-variance-for-s.l.r."><i class="fa fa-check"></i><b>3.5</b> Analysis of variance (for s.l.r.)</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="SLR.html"><a href="SLR.html#anova-decomposition"><i class="fa fa-check"></i><b>3.5.1</b> ANOVA decomposition</a></li>
+<li class="chapter" data-level="3.5.2" data-path="SLR.html"><a href="SLR.html#anova-table"><i class="fa fa-check"></i><b>3.5.2</b> ANOVA table</a></li>
+<li class="chapter" data-level="3.5.3" data-path="SLR.html"><a href="SLR.html#special-cases-1"><i class="fa fa-check"></i><b>3.5.3</b> Special cases</a></li>
+<li class="chapter" data-level="3.5.4" data-path="SLR.html"><a href="SLR.html#does-regression-on-x-explain-y"><i class="fa fa-check"></i><b>3.5.4</b> Does regression on x explain y?</a></li>
+<li class="chapter" data-level="3.5.5" data-path="SLR.html"><a href="SLR.html#notes-on-the-anova-table"><i class="fa fa-check"></i><b>3.5.5</b> Notes on the ANOVA table</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="SLR.html"><a href="SLR.html#sample-correlation"><i class="fa fa-check"></i><b>3.6</b> Sample correlation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="SLR.html"><a href="SLR.html#examples-of-correlation"><i class="fa fa-check"></i><b>3.6.1</b> Examples of correlation</a></li>
+<li class="chapter" data-level="3.6.2" data-path="SLR.html"><a href="SLR.html#comparison-of-the-correlation-and-coefficient-of-determination-for-two-data-sets."><i class="fa fa-check"></i><b>3.6.2</b> Comparison of the correlation and coefficient of determination for two data sets.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="SLR.html"><a href="SLR.html#assessing-the-simple-linear-regression-model-assumptions"><i class="fa fa-check"></i><b>3.7</b> Assessing the simple linear regression model assumptions</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="SLR.html"><a href="SLR.html#assumptions-1"><i class="fa fa-check"></i><b>3.7.1</b> Assumptions</a></li>
+<li class="chapter" data-level="3.7.2" data-path="SLR.html"><a href="SLR.html#violations-and-consequences"><i class="fa fa-check"></i><b>3.7.2</b> Violations and consequences</a></li>
+<li class="chapter" data-level="3.7.3" data-path="SLR.html"><a href="SLR.html#hypothetical-graphs-for-s.l.r-assumption-violations"><i class="fa fa-check"></i><b>3.7.3</b> Hypothetical graphs for s.l.r assumption violations</a></li>
+<li class="chapter" data-level="3.7.4" data-path="SLR.html"><a href="SLR.html#graphical-tools-for-assessment"><i class="fa fa-check"></i><b>3.7.4</b> Graphical tools for assessment</a></li>
+<li class="chapter" data-level="3.7.5" data-path="SLR.html"><a href="SLR.html#cigarette-data"><i class="fa fa-check"></i><b>3.7.5</b> Cigarette Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="SLR.html"><a href="SLR.html#a-note-on-the-galton-paradox"><i class="fa fa-check"></i><b>3.8</b> A note on the Galton paradox</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="SLR.html"><a href="SLR.html#history-of-regression"><i class="fa fa-check"></i><b>3.8.1</b> History of regression</a></li>
+<li class="chapter" data-level="3.8.2" data-path="SLR.html"><a href="SLR.html#the-galton-paradox"><i class="fa fa-check"></i><b>3.8.2</b> The Galton paradox</a></li>
+<li class="chapter" data-level="3.8.3" data-path="SLR.html"><a href="SLR.html#two-regressions"><i class="fa fa-check"></i><b>3.8.3</b> Two regressions</a></li>
+<li class="chapter" data-level="3.8.4" data-path="SLR.html"><a href="SLR.html#regression-vs-orthogonal-regression"><i class="fa fa-check"></i><b>3.8.4</b> Regression vs orthogonal regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>4</b> Multiple regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#introductory-examples-1"><i class="fa fa-check"></i><b>4.1</b> Introductory examples</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example-1"><i class="fa fa-check"></i><b>4.1.1</b> Example 1:</a></li>
+<li class="chapter" data-level="4.1.2" data-path="multiple-regression.html"><a href="multiple-regression.html#example-2"><i class="fa fa-check"></i><b>4.1.2</b> Example 2:</a></li>
+<li class="chapter" data-level="4.1.3" data-path="multiple-regression.html"><a href="multiple-regression.html#example-3"><i class="fa fa-check"></i><b>4.1.3</b> Example 3:</a></li>
+<li class="chapter" data-level="4.1.4" data-path="multiple-regression.html"><a href="multiple-regression.html#example-4-nonlinear-relationships"><i class="fa fa-check"></i><b>4.1.4</b> Example 4: Nonlinear relationships</a></li>
+<li class="chapter" data-level="4.1.5" data-path="multiple-regression.html"><a href="multiple-regression.html#cigarette-data-continued"><i class="fa fa-check"></i><b>4.1.5</b> Cigarette Data continued</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#least-squares-estimation-for-multiple-regression"><i class="fa fa-check"></i><b>4.2</b> Least squares estimation for multiple regression</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="multiple-regression.html"><a href="multiple-regression.html#estimation-of-sigma2-varepsilon"><i class="fa fa-check"></i><b>4.2.1</b> Estimation of <span class="math inline">\(\sigma^2\)</span> = Var<span class="math inline">\((\epsilon)\)</span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="multiple-regression.html"><a href="multiple-regression.html#estimation-of-varhatbeta"><i class="fa fa-check"></i><b>4.2.2</b> Estimation of Var<span class="math inline">\((\hat{\beta})\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="multiple-regression.html"><a href="multiple-regression.html#prediction-from-multiple-linear-regression-model"><i class="fa fa-check"></i><b>4.3</b> Prediction from multiple linear regression model</a></li>
+<li class="chapter" data-level="4.4" data-path="multiple-regression.html"><a href="multiple-regression.html#regression-models-in-matrix-notation-examples"><i class="fa fa-check"></i><b>4.4</b> Regression models in matrix notation: examples</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example-1-slr"><i class="fa fa-check"></i><b>4.4.1</b> Example 1: SLR</a></li>
+<li class="chapter" data-level="4.4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#example-2-1"><i class="fa fa-check"></i><b>4.4.2</b> Example 2</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="multiple-regression.html"><a href="multiple-regression.html#the-formal-multiple-regression-model-and-properties"><i class="fa fa-check"></i><b>4.5</b> The formal multiple regression model and properties</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="multiple-regression.html"><a href="multiple-regression.html#multiple-regression-model"><i class="fa fa-check"></i><b>4.5.1</b> Multiple regression model</a></li>
+<li class="chapter" data-level="4.5.2" data-path="multiple-regression.html"><a href="multiple-regression.html#the-hat-matrix"><i class="fa fa-check"></i><b>4.5.2</b> The hat matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="multiple-regression.html"><a href="multiple-regression.html#anova-for-multiple-regression"><i class="fa fa-check"></i><b>4.6</b> ANOVA for multiple regression</a></li>
+<li class="chapter" data-level="4.7" data-path="multiple-regression.html"><a href="multiple-regression.html#way-anova-model"><i class="fa fa-check"></i><b>4.7</b> 1-way ANOVA model</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example"><i class="fa fa-check"></i><b>4.7.1</b> Example:</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="multiple-regression.html"><a href="multiple-regression.html#one-way-anova-in-regression-notation"><i class="fa fa-check"></i><b>4.8</b> One way ANOVA in regression notation</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="multiple-regression.html"><a href="multiple-regression.html#fitting-the-model-in-mtb-and-r"><i class="fa fa-check"></i><b>4.8.1</b> Fitting the model in MTB and R</a></li>
+<li class="chapter" data-level="4.8.2" data-path="multiple-regression.html"><a href="multiple-regression.html#example-caffeine-in-mtb"><i class="fa fa-check"></i><b>4.8.2</b> Example: Caffeine in MTB</a></li>
+<li class="chapter" data-level="4.8.3" data-path="multiple-regression.html"><a href="multiple-regression.html#example-caffeine-in-r"><i class="fa fa-check"></i><b>4.8.3</b> Example: Caffeine in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="confidence-intervals-and-hypothesis-tests-for-linear-combinations-of-boldsymbolbeta.html"><a href="confidence-intervals-and-hypothesis-tests-for-linear-combinations-of-boldsymbolbeta.html"><i class="fa fa-check"></i><b>5</b> Confidence intervals and hypothesis tests for linear combinations of <span class="math inline">\(\boldsymbol{\beta}\)</span></a></li>
+<li class="chapter" data-level="6" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html"><i class="fa fa-check"></i><b>6</b> Model comparisons and testing for lack of fit</a><ul>
+<li class="chapter" data-level="6.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#f-tests-for-comparing-two-models"><i class="fa fa-check"></i><b>6.1</b> F-tests for comparing two models</a></li>
+<li class="chapter" data-level="6.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#sequential-sums-of-squares"><i class="fa fa-check"></i><b>6.2</b> Sequential sums of squares</a></li>
+<li class="chapter" data-level="6.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#testing-for-lack-of-fit"><i class="fa fa-check"></i><b>6.3</b> Testing for lack of fit</a></li>
+<li class="chapter" data-level="6.4" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#added-variable-plots"><i class="fa fa-check"></i><b>6.4</b> Added variable plots</a></li>
+<li class="chapter" data-level="6.5" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#visualising-models"><i class="fa fa-check"></i><b>6.5</b> Visualising Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html"><i class="fa fa-check"></i><b>7</b> Diagnostic methods (in more details)</a><ul>
+<li class="chapter" data-level="7.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#model-assumptions"><i class="fa fa-check"></i><b>7.1</b> Model assumptions</a></li>
+<li class="chapter" data-level="7.2" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#residuals-1"><i class="fa fa-check"></i><b>7.2</b> Residuals</a></li>
+<li class="chapter" data-level="7.3" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#leverage-values"><i class="fa fa-check"></i><b>7.3</b> Leverage values</a></li>
+<li class="chapter" data-level="7.4" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#standardised-residuals"><i class="fa fa-check"></i><b>7.4</b> Standardised residuals</a></li>
+<li class="chapter" data-level="7.5" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#leave-one-out-methods"><i class="fa fa-check"></i><b>7.5</b> Leave-one-out methods</a></li>
+<li class="chapter" data-level="7.6" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#other-influence-measures"><i class="fa fa-check"></i><b>7.6</b> Other influence measures</a></li>
+<li class="chapter" data-level="7.7" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#testing-outliers"><i class="fa fa-check"></i><b>7.7</b> Testing outliers</a></li>
+<li class="chapter" data-level="7.8" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#diagnostics-examples-two-case-studies"><i class="fa fa-check"></i><b>7.8</b> Diagnostics examples (two case studies)</a><ul>
+<li class="chapter" data-level="7.8.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#example-1-brain-size-versus-body-gestation-period-and-litter"><i class="fa fa-check"></i><b>7.8.1</b> Example 1: Brain size versus body gestation period and litter</a></li>
+<li class="chapter" data-level="7.8.2" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#example-2-rat-data"><i class="fa fa-check"></i><b>7.8.2</b> Example 2: Rat data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Special cases of multiple regression</a><ul>
+<li class="chapter" data-level="8.1" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#categorical-and-continuous-predictors-binary-categories"><i class="fa fa-check"></i><b>8.1</b> Categorical and continuous predictors (binary categories)</a></li>
+<li class="chapter" data-level="8.2" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#categorical-and-continuous-predictors-more-than-two-categories"><i class="fa fa-check"></i><b>8.2</b> Categorical and continuous predictors (more than two categories)</a></li>
+<li class="chapter" data-level="8.3" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#quadratic-terms-and-interactions"><i class="fa fa-check"></i><b>8.3</b> Quadratic terms and interactions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notes for ST463/ST683 Linear Models 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="confidence-intervals-and-hypothesis-tests-for-linear-combinations-of-boldsymbolbeta" class="section level1">
+<h1><span class="header-section-number">5</span> Confidence intervals and hypothesis tests for linear combinations of <span class="math inline">\(\boldsymbol{\beta}\)</span></h1>
+<p>From the theory of OLS:</p>
+<p><span class="math display">\[\hat{\boldsymbol{\beta}} \sim N(\boldsymbol{\beta},(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2)\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\mathbf{c}^T\hat{\boldsymbol{\beta}} \sim N(\mathbf{c}^T\boldsymbol{\beta},\mathbf{c}^T(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{c}\sigma^2)\]</span></p>
+<p>For the caffeine example (1 way ANOVA model): suppose we want to compare the treatment means with the control mean, that is, we want a CI for:</p>
+<p><span class="math display">\[\frac{\mu_2+\mu_3}{2}-\mu_1\]</span></p>
+<p>Let <span class="math inline">\(\mathbf{c}^T= (-1, 1/2, 1/2)\)</span>, <span class="math inline">\(\boldsymbol{\beta}^T = (\mu_1, \mu_2, \mu_3)\)</span>.</p>
+<p><span class="math display">\[\mathbf{c}^T\boldsymbol{\beta} = -\mu_1+\mu_2/2+ \mu_3/2\]</span></p>
+<p>is estimated by:</p>
+<p><span class="math display">\[\mathbf{c}^T\hat{\boldsymbol{\beta}} = -\bar{y}_{1.}+\bar{y}_{2.}/2+ \bar{y}_{3.}/2\]</span></p>
+<p>and the variance is:</p>
+<p><span class="math display">\[\begin{bmatrix}
+-1 &amp; 1/2 &amp; 1/2
+\end{bmatrix} \frac{1}{10}\mathbf{I}_3 \begin{bmatrix}
+-1 \\
+1/2 \\
+1/2\end{bmatrix}\sigma^2 = \frac{3}{20}\sigma^2\]</span></p>
+<p>So, the <span class="math inline">\(100 \times (1- \alpha) \%\)</span>CI is:</p>
+<p><span class="math display">\[\mathbf{c}^T\hat{\boldsymbol{\beta}} \pm t_{27}(\alpha/2) \sqrt{\frac{3}{20}\hat{\sigma}^2}\]</span></p>
+<p>The df is: <span class="math inline">\(n-g = 30-3 = 27\)</span>.</p>
+<p>We could also test hypotheses e.g. <span class="math inline">\(H_o: \mathbf{c}^T\boldsymbol{\beta} = 0\)</span>. The test statistic:</p>
+<p><span class="math display">\[\frac{\mathbf{c}^T\hat{\boldsymbol{\beta}}}{\sqrt{\frac{3}{20}\hat{\sigma}^2}} \sim t_{27}.\]</span></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="multiple-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="model-comparisons-and-testing-for-lack-of-fit.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

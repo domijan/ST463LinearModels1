@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Notes for ST463/ST683 Linear Models 1</title>
+  <meta name="description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Notes for ST463/ST683 Linear Models 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="domijank/ST463" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Notes for ST463/ST683 Linear Models 1" />
+  
+  <meta name="twitter:description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Katarina Domijan">
+
+
+<meta name="date" content="2018-11-12">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="model-comparisons-and-testing-for-lack-of-fit.html">
+<link rel="next" href="special-cases-of-multiple-regression.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Module Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#recommended-texts"><i class="fa fa-check"></i><b>1.1</b> Recommended texts</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#software"><i class="fa fa-check"></i><b>1.2</b> Software</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-scripts"><i class="fa fa-check"></i><b>1.3</b> R Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#introductory-examples"><i class="fa fa-check"></i><b>2.1</b> Introductory Examples</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#mother-and-daughter-heights"><i class="fa fa-check"></i><b>2.1.1</b> Mother and daughter heights</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#bacterial-count-and-storage-temperature"><i class="fa fa-check"></i><b>2.1.2</b> Bacterial count and storage temperature</a></li>
+<li class="chapter" data-level="2.1.3" data-path="intro.html"><a href="intro.html#yield-and-rainfall"><i class="fa fa-check"></i><b>2.1.3</b> Yield and Rainfall</a></li>
+<li class="chapter" data-level="2.1.4" data-path="intro.html"><a href="intro.html#driving"><i class="fa fa-check"></i><b>2.1.4</b> Driving</a></li>
+<li class="chapter" data-level="2.1.5" data-path="intro.html"><a href="intro.html#fuel"><i class="fa fa-check"></i><b>2.1.5</b> Fuel Consumption</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="SLR.html"><a href="SLR.html"><i class="fa fa-check"></i><b>3</b> Simple Linear regression</a><ul>
+<li class="chapter" data-level="3.1" data-path="SLR.html"><a href="SLR.html#OLS"><i class="fa fa-check"></i><b>3.1</b> Ordinary least squares</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="SLR.html"><a href="SLR.html#residuals"><i class="fa fa-check"></i><b>3.1.1</b> Residuals</a></li>
+<li class="chapter" data-level="3.1.2" data-path="SLR.html"><a href="SLR.html#some-algebraic-implications-of-the-ols-fit"><i class="fa fa-check"></i><b>3.1.2</b> Some algebraic implications of the OLS fit</a></li>
+<li class="chapter" data-level="3.1.3" data-path="SLR.html"><a href="SLR.html#ols-estimates-for-the-fuel-consumption-example"><i class="fa fa-check"></i><b>3.1.3</b> OLS Estimates for the Fuel Consumption Example</a></li>
+<li class="chapter" data-level="3.1.4" data-path="SLR.html"><a href="SLR.html#interpretation-of-the-fitted-simple-linear-regression-line-parameter-estimates"><i class="fa fa-check"></i><b>3.1.4</b> Interpretation of the fitted simple linear regression line: Parameter estimates</a></li>
+<li class="chapter" data-level="3.1.5" data-path="SLR.html"><a href="SLR.html#predicting"><i class="fa fa-check"></i><b>3.1.5</b> Predicting</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="SLR.html"><a href="SLR.html#the-formal-simple-linear-regression-model"><i class="fa fa-check"></i><b>3.2</b> The formal simple linear regression model</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="SLR.html"><a href="SLR.html#model"><i class="fa fa-check"></i><b>3.2.1</b> Model</a></li>
+<li class="chapter" data-level="3.2.2" data-path="SLR.html"><a href="SLR.html#assumptions"><i class="fa fa-check"></i><b>3.2.2</b> Assumptions</a></li>
+<li class="chapter" data-level="3.2.3" data-path="SLR.html"><a href="SLR.html#estimation-of-sigma2"><i class="fa fa-check"></i><b>3.2.3</b> Estimation of <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="SLR.html"><a href="SLR.html#review-of-some-probability-results"><i class="fa fa-check"></i><b>3.2.4</b> Review of some probability results</a></li>
+<li class="chapter" data-level="3.2.5" data-path="SLR.html"><a href="SLR.html#prop"><i class="fa fa-check"></i><b>3.2.5</b> Properties of the estimates</a></li>
+<li class="chapter" data-level="3.2.6" data-path="SLR.html"><a href="SLR.html#special-cases"><i class="fa fa-check"></i><b>3.2.6</b> Special cases</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="SLR.html"><a href="SLR.html#simple-linear-regression-models-in-r-and-minitab"><i class="fa fa-check"></i><b>3.3</b> Simple linear regression models in R and Minitab</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="SLR.html"><a href="SLR.html#minitab"><i class="fa fa-check"></i><b>3.3.1</b> Minitab</a></li>
+<li class="chapter" data-level="3.3.2" data-path="SLR.html"><a href="SLR.html#r"><i class="fa fa-check"></i><b>3.3.2</b> R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="SLR.html"><a href="SLR.html#statistical-inference"><i class="fa fa-check"></i><b>3.4</b> Statistical inference</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="SLR.html"><a href="SLR.html#r-simulation-paraminference.r"><i class="fa fa-check"></i><b>3.4.1</b> R simulation: ParamInference.R</a></li>
+<li class="chapter" data-level="3.4.2" data-path="SLR.html"><a href="SLR.html#inference-for-beta_1"><i class="fa fa-check"></i><b>3.4.2</b> Inference for <span class="math inline">\(\beta_1\)</span></a></li>
+<li class="chapter" data-level="3.4.3" data-path="SLR.html"><a href="SLR.html#inference-for-beta_0"><i class="fa fa-check"></i><b>3.4.3</b> Inference for <span class="math inline">\(\beta_0\)</span></a></li>
+<li class="chapter" data-level="3.4.4" data-path="SLR.html"><a href="SLR.html#inference-for-mean-response"><i class="fa fa-check"></i><b>3.4.4</b> Inference for mean response</a></li>
+<li class="chapter" data-level="3.4.5" data-path="SLR.html"><a href="SLR.html#inference-for-prediction"><i class="fa fa-check"></i><b>3.4.5</b> Inference for prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="SLR.html"><a href="SLR.html#analysis-of-variance-for-s.l.r."><i class="fa fa-check"></i><b>3.5</b> Analysis of variance (for s.l.r.)</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="SLR.html"><a href="SLR.html#anova-decomposition"><i class="fa fa-check"></i><b>3.5.1</b> ANOVA decomposition</a></li>
+<li class="chapter" data-level="3.5.2" data-path="SLR.html"><a href="SLR.html#anova-table"><i class="fa fa-check"></i><b>3.5.2</b> ANOVA table</a></li>
+<li class="chapter" data-level="3.5.3" data-path="SLR.html"><a href="SLR.html#special-cases-1"><i class="fa fa-check"></i><b>3.5.3</b> Special cases</a></li>
+<li class="chapter" data-level="3.5.4" data-path="SLR.html"><a href="SLR.html#does-regression-on-x-explain-y"><i class="fa fa-check"></i><b>3.5.4</b> Does regression on x explain y?</a></li>
+<li class="chapter" data-level="3.5.5" data-path="SLR.html"><a href="SLR.html#notes-on-the-anova-table"><i class="fa fa-check"></i><b>3.5.5</b> Notes on the ANOVA table</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="SLR.html"><a href="SLR.html#sample-correlation"><i class="fa fa-check"></i><b>3.6</b> Sample correlation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="SLR.html"><a href="SLR.html#examples-of-correlation"><i class="fa fa-check"></i><b>3.6.1</b> Examples of correlation</a></li>
+<li class="chapter" data-level="3.6.2" data-path="SLR.html"><a href="SLR.html#comparison-of-the-correlation-and-coefficient-of-determination-for-two-data-sets."><i class="fa fa-check"></i><b>3.6.2</b> Comparison of the correlation and coefficient of determination for two data sets.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="SLR.html"><a href="SLR.html#assessing-the-simple-linear-regression-model-assumptions"><i class="fa fa-check"></i><b>3.7</b> Assessing the simple linear regression model assumptions</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="SLR.html"><a href="SLR.html#assumptions-1"><i class="fa fa-check"></i><b>3.7.1</b> Assumptions</a></li>
+<li class="chapter" data-level="3.7.2" data-path="SLR.html"><a href="SLR.html#violations-and-consequences"><i class="fa fa-check"></i><b>3.7.2</b> Violations and consequences</a></li>
+<li class="chapter" data-level="3.7.3" data-path="SLR.html"><a href="SLR.html#graphical-tools-for-assessment"><i class="fa fa-check"></i><b>3.7.3</b> Graphical tools for assessment</a></li>
+<li class="chapter" data-level="3.7.4" data-path="SLR.html"><a href="SLR.html#cigarette"><i class="fa fa-check"></i><b>3.7.4</b> Cigarette Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="SLR.html"><a href="SLR.html#a-note-on-the-galton-paradox"><i class="fa fa-check"></i><b>3.8</b> A note on the Galton paradox</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="SLR.html"><a href="SLR.html#the-galton-paradox"><i class="fa fa-check"></i><b>3.8.1</b> The Galton paradox</a></li>
+<li class="chapter" data-level="3.8.2" data-path="SLR.html"><a href="SLR.html#two-regressions"><i class="fa fa-check"></i><b>3.8.2</b> Two regressions</a></li>
+<li class="chapter" data-level="3.8.3" data-path="SLR.html"><a href="SLR.html#regression-vs-orthogonal-regression"><i class="fa fa-check"></i><b>3.8.3</b> Regression vs orthogonal regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>4</b> Multiple regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#introductory-examples-1"><i class="fa fa-check"></i><b>4.1</b> Introductory examples</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example-1-fuel-use"><i class="fa fa-check"></i><b>4.1.1</b> Example 1: Fuel Use</a></li>
+<li class="chapter" data-level="4.1.2" data-path="multiple-regression.html"><a href="multiple-regression.html#example-2-categorical-predictors"><i class="fa fa-check"></i><b>4.1.2</b> Example 2: Categorical predictors</a></li>
+<li class="chapter" data-level="4.1.3" data-path="multiple-regression.html"><a href="multiple-regression.html#example-3-polynomials"><i class="fa fa-check"></i><b>4.1.3</b> Example 3: Polynomials</a></li>
+<li class="chapter" data-level="4.1.4" data-path="multiple-regression.html"><a href="multiple-regression.html#example-4-nonlinear-relationships"><i class="fa fa-check"></i><b>4.1.4</b> Example 4: Nonlinear relationships</a></li>
+<li class="chapter" data-level="4.1.5" data-path="multiple-regression.html"><a href="multiple-regression.html#cigarette-data-continued"><i class="fa fa-check"></i><b>4.1.5</b> Cigarette Data continued</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#least-squares-estimation-for-multiple-regression"><i class="fa fa-check"></i><b>4.2</b> Least squares estimation for multiple regression</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="multiple-regression.html"><a href="multiple-regression.html#estimation-of-sigma2-varepsilon"><i class="fa fa-check"></i><b>4.2.1</b> Estimation of <span class="math inline">\(\sigma^2\)</span> = Var<span class="math inline">\((\epsilon)\)</span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="multiple-regression.html"><a href="multiple-regression.html#estimation-of-varhatbeta"><i class="fa fa-check"></i><b>4.2.2</b> Estimation of Var<span class="math inline">\((\hat{\beta})\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="multiple-regression.html"><a href="multiple-regression.html#prediction-from-multiple-linear-regression-model"><i class="fa fa-check"></i><b>4.3</b> Prediction from multiple linear regression model</a></li>
+<li class="chapter" data-level="4.4" data-path="multiple-regression.html"><a href="multiple-regression.html#regression-models-in-matrix-notation-examples"><i class="fa fa-check"></i><b>4.4</b> Regression models in matrix notation: examples</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example-1-slr"><i class="fa fa-check"></i><b>4.4.1</b> Example 1: SLR</a></li>
+<li class="chapter" data-level="4.4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#example-2"><i class="fa fa-check"></i><b>4.4.2</b> Example 2</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="multiple-regression.html"><a href="multiple-regression.html#the-formal-multiple-regression-model-and-properties"><i class="fa fa-check"></i><b>4.5</b> The formal multiple regression model and properties</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="multiple-regression.html"><a href="multiple-regression.html#concepts-random-vectors-covariance-matrix-multivariate-normal-distribution-mvn."><i class="fa fa-check"></i><b>4.5.1</b> Concepts: random vectors, covariance matrix, multivariate normal distribution (MVN).</a></li>
+<li class="chapter" data-level="4.5.2" data-path="multiple-regression.html"><a href="multiple-regression.html#multiple-regression-model"><i class="fa fa-check"></i><b>4.5.2</b> Multiple regression model</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="multiple-regression.html"><a href="multiple-regression.html#the-hat-matrix"><i class="fa fa-check"></i><b>4.6</b> The hat matrix</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="multiple-regression.html"><a href="multiple-regression.html#the-qr-decomposition-of-a-matrix"><i class="fa fa-check"></i><b>4.6.1</b> The QR Decomposition of a matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="multiple-regression.html"><a href="multiple-regression.html#anova-for-multiple-regression"><i class="fa fa-check"></i><b>4.7</b> ANOVA for multiple regression</a></li>
+<li class="chapter" data-level="4.8" data-path="multiple-regression.html"><a href="multiple-regression.html#way-anova-model"><i class="fa fa-check"></i><b>4.8</b> 1-way ANOVA model</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example"><i class="fa fa-check"></i><b>4.8.1</b> Example:</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="multiple-regression.html"><a href="multiple-regression.html#one-way-anova-in-regression-notation"><i class="fa fa-check"></i><b>4.9</b> One way ANOVA in regression notation</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="multiple-regression.html"><a href="multiple-regression.html#fitting-the-model-in-mtb-and-r"><i class="fa fa-check"></i><b>4.9.1</b> Fitting the model in MTB and R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="multiple-regression.html"><a href="multiple-regression.html#confidence-intervals-and-hypothesis-tests-for-linear-combinations-of-boldsymbolbeta"><i class="fa fa-check"></i><b>4.10</b> Confidence intervals and hypothesis tests for linear combinations of <span class="math inline">\(\boldsymbol{\beta}\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html"><i class="fa fa-check"></i><b>5</b> Model comparisons and testing for lack of fit</a><ul>
+<li class="chapter" data-level="5.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#f-tests-for-comparing-two-models"><i class="fa fa-check"></i><b>5.1</b> F-tests for comparing two models</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-1"><i class="fa fa-check"></i><b>5.1.1</b> Example:</a></li>
+<li class="chapter" data-level="5.1.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#f-test-to-compare-models"><i class="fa fa-check"></i><b>5.1.2</b> F-test to compare models:</a></li>
+<li class="chapter" data-level="5.1.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data"><i class="fa fa-check"></i><b>5.1.3</b> Example: Steam data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#sequential-sums-of-squares"><i class="fa fa-check"></i><b>5.2</b> Sequential sums of squares</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-3"><i class="fa fa-check"></i><b>5.2.1</b> Example:</a></li>
+<li class="chapter" data-level="5.2.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data-1"><i class="fa fa-check"></i><b>5.2.2</b> Example: Steam data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-contd-in-mtb"><i class="fa fa-check"></i><b>5.2.3</b> Example: Steam cont’d in MTB</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#testing-for-lack-of-fit"><i class="fa fa-check"></i><b>5.3</b> Testing for lack of fit</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-voltage"><i class="fa fa-check"></i><b>5.3.1</b> Example: Voltage</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#added-variable-plots"><i class="fa fa-check"></i><b>5.4</b> Added variable plots</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-vs.temp-inv-prod"><i class="fa fa-check"></i><b>5.4.1</b> Example: STEAM vs. TEMP, INV, PROD</a></li>
+<li class="chapter" data-level="5.4.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-added-variable-plot-for-prod."><i class="fa fa-check"></i><b>5.4.2</b> Example: Added variable plot for PROD.</a></li>
+<li class="chapter" data-level="5.4.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data-contd"><i class="fa fa-check"></i><b>5.4.3</b> Example: Steam data cont’d</a></li>
+<li class="chapter" data-level="5.4.4" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#properties-of-avps"><i class="fa fa-check"></i><b>5.4.4</b> Properties of AVPs:</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#visualising-models-in-hdim-added-variable-plots-for-the-bodyfat-data."><i class="fa fa-check"></i><b>5.5</b> Visualising Models in Hdim: added variable plots for the bodyfat data.</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html"><i class="fa fa-check"></i><b>6</b> Diagnostic methods (in more details)</a><ul>
+<li class="chapter" data-level="6.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#model-assumptions"><i class="fa fa-check"></i><b>6.1</b> Model assumptions</a></li>
+<li class="chapter" data-level="6.2" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#residuals-1"><i class="fa fa-check"></i><b>6.2</b> Residuals</a></li>
+<li class="chapter" data-level="6.3" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#leverage-values"><i class="fa fa-check"></i><b>6.3</b> Leverage values</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#properties-of-h_ii"><i class="fa fa-check"></i><b>6.3.1</b> Properties of <span class="math inline">\(h_{ii}\)</span>:</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#standardised-residuals"><i class="fa fa-check"></i><b>6.4</b> Standardised residuals</a></li>
+<li class="chapter" data-level="6.5" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#leave-one-out-methods"><i class="fa fa-check"></i><b>6.5</b> Leave-one-out methods</a></li>
+<li class="chapter" data-level="6.6" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#other-influence-measures"><i class="fa fa-check"></i><b>6.6</b> Other influence measures</a></li>
+<li class="chapter" data-level="6.7" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#testing-outliers"><i class="fa fa-check"></i><b>6.7</b> Testing outliers</a></li>
+<li class="chapter" data-level="6.8" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#diagnostics-examples-two-case-studies"><i class="fa fa-check"></i><b>6.8</b> Diagnostics examples (two case studies)</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#example-1-brain-size-versus-body-gestation-period-and-litter"><i class="fa fa-check"></i><b>6.8.1</b> Example 1: Brain size versus body gestation period and litter</a></li>
+<li class="chapter" data-level="6.8.2" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#example-2-rat-data"><i class="fa fa-check"></i><b>6.8.2</b> Example 2: Rat data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html"><i class="fa fa-check"></i><b>7</b> Special cases of multiple regression</a><ul>
+<li class="chapter" data-level="7.1" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#categorical-and-continuous-predictors-binary-categories"><i class="fa fa-check"></i><b>7.1</b> Categorical and continuous predictors (binary categories)</a></li>
+<li class="chapter" data-level="7.2" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#categorical-and-continuous-predictors-more-than-two-categories"><i class="fa fa-check"></i><b>7.2</b> Categorical and continuous predictors (more than two categories)</a></li>
+<li class="chapter" data-level="7.3" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#quadratic-terms-and-interactions"><i class="fa fa-check"></i><b>7.3</b> Quadratic terms and interactions</a></li>
+<li class="chapter" data-level="7.4" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#an-example-with-two-continuous-and-two-categorical-predictors"><i class="fa fa-check"></i><b>7.4</b> An example with two continuous and two categorical predictors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notes for ST463/ST683 Linear Models 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="diagnostic-methods-in-more-details" class="section level1">
+<h1><span class="header-section-number">6</span> Diagnostic methods (in more details)</h1>
+<div id="model-assumptions" class="section level2">
+<h2><span class="header-section-number">6.1</span> Model assumptions</h2>
+<p>The assumptions can be stated in terms of the error vector:</p>
+<ul>
+<li><span class="math inline">\(\mathbb{E}(\boldsymbol{\epsilon}) = \mathbf{0}\)</span></li>
+<li><span class="math inline">\(\mbox{Var}(\boldsymbol{\epsilon}) = \sigma^2\mathbf{I}_n\)</span></li>
+<li><span class="math inline">\(\boldsymbol{\epsilon} \sim N(\mathbf{0}, \sigma^2\mathbf{I}_n)\)</span></li>
+</ul>
+<p>Since we do not observe <span class="math inline">\(\boldsymbol{\epsilon}\)</span> we cannot check assumptions directly. Instead we observe residuals <span class="math inline">\(\mathbf{e}\)</span>.</p>
+</div>
+<div id="residuals-1" class="section level2">
+<h2><span class="header-section-number">6.2</span> Residuals</h2>
+<p>Residuals are the key to assessing model problems.</p>
+<p><span class="math display">\[\mathbf{e} = \mathbf{Y} - \mathbf{\hat{Y}} = \mathbf{Y} - \mathbf{H}\mathbf{Y} = (\mathbf{I} - \mathbf{H})\mathbf{Y} \]</span></p>
+<p>How do <span class="math inline">\(\boldsymbol{\epsilon}\)</span> and <span class="math inline">\(\mathbf{e}\)</span> differ?</p>
+<p>If the model is correct,</p>
+<p><span class="math inline">\(\mathbb{E}(\mathbf{e}) = \mathbb{E}(\mathbf{Y}) - \mathbb{E}(\mathbf{\hat{Y}})= \mathbf{0}\)</span> (the same)</p>
+<p><span class="math inline">\(\mbox{Var}(\mathbf{e}) = (\mathbf{I} - \mathbf{H})\sigma^2\)</span> (different).</p>
+<p>Like errors, residuals have mean 0, but Var(<span class="math inline">\(e_i) = (1-h_{ii})\sigma^2\)</span> so their variance is not quite constant (variance is smaller for <span class="math inline">\(h_{ii}\)</span> close to 1).</p>
+<p>Note: this results shows that the residuals may have different variances even when <span class="math inline">\(y_i\)</span>s have the same variance (<span class="math inline">\(\sigma^2\)</span>) because the precision of the fitted values depends on the pattern of <span class="math inline">\(X_i\)</span>s.</p>
+<p>Cov(<span class="math inline">\(e_i, e_j) = -h_{ii}\sigma^2\)</span>, for <span class="math inline">\(i \neq j\)</span>. So the residuals are correlated, but in practice this correlation is generally not important or visible in residual plots.</p>
+<p>We plot:</p>
+<ul>
+<li><span class="math inline">\(e_i\)</span> vs <span class="math inline">\(\hat{y}_i\)</span> (residual vs fit),</li>
+<li><span class="math inline">\(e_i\)</span> vs <span class="math inline">\(X_{ij}\)</span> (residual vs predictor <span class="math inline">\(j\)</span>).</li>
+</ul>
+<p>The SLR conclusions are clear cut. In multiple regression deviations from the ideal pattern indicate model problems but precise diagnosis is more difficult.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Figures above:</p>
+<ul>
+<li>ideal pattern: random scatter of points around 0 line</li>
+<li>non-constant variance, variability of residuals is changing</li>
+<li><p>curvature suggests that: <span class="math inline">\(\mathbb{E}(e_i) \neq 0\)</span>, thus, <span class="math inline">\(\mathbb{E}(\epsilon_i)\neq 0\)</span></p></li>
+<li><p>curvature and non-constant variance</p></li>
+</ul>
+</div>
+<div id="leverage-values" class="section level2">
+<h2><span class="header-section-number">6.3</span> Leverage values</h2>
+<span class="math display">\[\begin{align*}
+\mathbf{\hat{Y}}  &amp; = \mathbf{H}\mathbf{Y}\\
+\mathbf{H}  &amp; = \mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\\
+h_{ii}  &amp; = \mathbf{X}_i^T(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}_i\\
+\end{align*}\]</span>
+<p><span class="math inline">\(h_{ii}\)</span> is known as the <strong>leverage</strong> of case <span class="math inline">\(i\)</span>.</p>
+<p>where <span class="math inline">\(\mathbf{X}_i\)</span> is row <span class="math inline">\(i\)</span> of <span class="math inline">\(\mathbf{X}\)</span> matrix in a column vector.</p>
+<p>In SLR,</p>
+<span class="math display">\[\begin{align*}
+h_{ii}  &amp; = \frac{1}{n} + \frac{(x_i - \bar{x})^2}{S_{xx}}.
+\end{align*}\]</span>
+<p>A similar formula can be derived for multiple regression:</p>
+<p><span class="math display">\[h_{ii}   = \frac{1}{n} + (\mathbf{X}_i^* -\mathbf{M})(\mathbf{\tilde{X}}^T\mathbf{\tilde{X}})^{-1}(\mathbf{X}_i^* - \mathbf{M}),\]</span></p>
+<p>where</p>
+<p><span class="math inline">\(\mathbf{X}_i^*\)</span> is row <span class="math inline">\(i\)</span> of <span class="math inline">\(\mathbf{X}\)</span> matrix without the column of <span class="math inline">\(\mathbf{1}\)</span>s.</p>
+<p>i.e.</p>
+<p><span class="math inline">\(\mathbf{X}_i =\begin{bmatrix} 1 &amp; \mathbf{X}_i^* \end{bmatrix}\)</span></p>
+<p><span class="math inline">\(\mathbf{M}\)</span> is the mean vector</p>
+<p><span class="math display">\[\mathbf{M} =\begin{bmatrix} \bar{X}_{.1}\\ \vdots  \\ \bar{X}_{.k} \end{bmatrix}\]</span></p>
+<p><span class="math inline">\(\tilde{\mathbf{X}}\)</span> is the matrix of centered <span class="math inline">\(x\)</span> - data values, i.e.</p>
+<p><span class="math display">\[\tilde{\mathbf{X}}  =\begin{bmatrix} (X_{11} - \bar{X}_{.1}) &amp; \dots &amp; (X_{1k} - \bar{X}_{.k}) \\ (X_{21} - \bar{X}_{.1})  &amp; \dots &amp; (X_{2k} - \bar{X}_{.k})  \\ \vdots &amp; \vdots &amp;\vdots \\ (X_{n1} - \bar{X}_{.1})  &amp; \dots &amp; (X_{nk} - \bar{X}_{.k})  \end{bmatrix} \]</span></p>
+<p><span class="math inline">\(\bar{X}_{.1}, \dots, \bar{X}_{.k}\)</span> are the means of the <span class="math inline">\(k\)</span> predictors.</p>
+<p>Therefore <span class="math inline">\(h_{ii}\)</span> measures the `distance’ of case <span class="math inline">\(i\)</span> from the average case <span class="math inline">\(\mathbf{M}\)</span>.</p>
+<p>Example <span class="math inline">\(k=2\)</span>: contours of constant <span class="math inline">\(h_{ii}\)</span></p>
+<p>All points on an ellipse have the same <span class="math inline">\(h_{ii}\)</span> value.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="384" style="display: block; margin: auto;" /></p>
+<div id="properties-of-h_ii" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Properties of <span class="math inline">\(h_{ii}\)</span>:</h3>
+<ul>
+<li><p><span class="math inline">\(0 \leq h_{ii} \leq 1\)</span> or if the model has an intercept <span class="math inline">\(\frac{1}{n} \leq h_{ii} \leq 1\)</span></p></li>
+<li><p><span class="math inline">\(\sum_{i=1}^n h_{ii} =p\)</span> where <span class="math inline">\(p\)</span> is the number of parameters</p></li>
+<li><p><span class="math inline">\(\sum_{i=1}^n h_{ij} =\sum_{j=1}^n h_{ij} = 1\)</span>, i.e. row sum = col sum = 1.</p></li>
+</ul>
+<p>If <span class="math inline">\(h_{ii}\)</span> is large (rule of thumb: large if <span class="math inline">\(\geq 2 \times \mbox{average } h_{ii} = 2p/n\)</span>), then the case may be:</p>
+<ul>
+<li>a mistake</li>
+<li>a high influence case (i.e. has a big impact on results).</li>
+</ul>
+<p>If <span class="math inline">\(h_{ii}\)</span> is extremely large (i.e. close to 1):</p>
+<ul>
+<li><span class="math inline">\(\hat{y}_i \approx y_i\)</span> so <span class="math inline">\(e_i \approx 0\)</span> and</li>
+<li>Var(<span class="math inline">\(\hat{y}_i)= h_{ii}\sigma^2 \approx \sigma^2 \approx\)</span> Var(<span class="math inline">\(y_i\)</span>).</li>
+</ul>
+<p>In this case <span class="math inline">\(\mathbb{E}(y_i)\)</span> is imprecisely estimated. In practice, this rarely happens.</p>
+</div>
+</div>
+<div id="standardised-residuals" class="section level2">
+<h2><span class="header-section-number">6.4</span> Standardised residuals</h2>
+<p>When we compare residuals (<span class="math inline">\(e_i\)</span>) for different observations we should take into account that their variances may differ:</p>
+<p><span class="math display">\[\mbox{Var}(e_i) = (1-h_{ii})\sigma^2.\]</span></p>
+<p>We can standardise them by dividing by <span class="math inline">\(\sqrt{(1-h_{ii})}\hat{\sigma}\)</span>, where <span class="math inline">\(\hat{\sigma}\)</span> is the estimate based on the SSE. We get <strong>standardised residuals</strong>:</p>
+<p><span class="math display">\[r_i=\frac{e_i}{\sqrt{(1-h_{ii})}\hat{\sigma}}.\]</span></p>
+<p>Then we have: <span class="math inline">\(\mathbb{E}(r_i) = 0\)</span> and <span class="math inline">\(\mbox{Var}(r_i)\approx 1\)</span> (constant).</p>
+<p>Since <span class="math inline">\(r_i\)</span>, unlike <span class="math inline">\(e_i\)</span>, are on a common scale it is easier/fairer to compare them.</p>
+<p>Standardised residuals are useful in detecting anomalous observations or outliers.</p>
+<p>Note:</p>
+<ul>
+<li>Cases with <span class="math inline">\(|r_i| \geq 2\)</span> are not well fit.</li>
+<li><span class="math inline">\(r_i\)</span> are often used in place of <span class="math inline">\(e_i\)</span> in residual plots and normal probability plots.</li>
+<li><span class="math inline">\(r_i\)</span> (and <span class="math inline">\(e_i\)</span>) are not independent.</li>
+</ul>
+</div>
+<div id="leave-one-out-methods" class="section level2">
+<h2><span class="header-section-number">6.5</span> Leave-one-out methods</h2>
+<p>Remember that as <span class="math inline">\(h_{ii}\)</span> approaches 1, the variance of the residual approaches 0, indicating that the fitted value <span class="math inline">\(\hat{y}_i\)</span> is pulled close to the observed value <span class="math inline">\(y_i\)</span>.</p>
+<p>So <strong>leverage</strong> <span class="math inline">\(h_{ii}\)</span> is the <strong>potential influence</strong> of the <span class="math inline">\(i^{th}\)</span> observation.</p>
+<p>Observations with high leverage need to be inspected carefully as they might have a large influence on the fit.</p>
+<p>Note that <strong>potential influence</strong> is not necessarily the same thing as <strong>actual influence</strong>, since it is might be the case that the observation is in line with rest of the data, and fitting the model without this observation would give a prediction close to the observed <span class="math inline">\(y_i\)</span> anyhow.</p>
+<p>One way to examine actual influence of case <span class="math inline">\(i\)</span> is to compare the regression results with case <span class="math inline">\(i\)</span> to those without case <span class="math inline">\(i\)</span>.</p>
+<p>Denote the fitted values with all cases included as <span class="math inline">\(\hat{y}_1, \hat{y}_2, ..., \hat{y}_n\)</span> as usual.</p>
+<p>Denote the fitted values with case <span class="math inline">\(i\)</span> removed as <span class="math inline">\(\hat{y}_{1(i)}, \hat{y}_{2(i)}, ..., \hat{y}_{n(i)}\)</span>, <span class="math inline">\(i = 1,...,n\)</span>.</p>
+<p><strong>Cook’s distance</strong> measures the influence of the <span class="math inline">\(i^{th}\)</span> case by:</p>
+<p><span class="math display">\[D_i = \sum_{j=1}^n \frac{(\hat{y}_{j}-\hat{y}_{j(i)})^2}{p \hat{\sigma}^2}.\]</span></p>
+<p>Note this is the Euclidean distance (SS) between fitted values obtained by omitting the <span class="math inline">\(i^{th}\)</span> observation <span class="math inline">\(\hat{y}_{j(i)}\)</span> and fitted values based on all the data <span class="math inline">\(\hat{y}_{j}\)</span>.</p>
+<p>Typically we examine the case with the largest <span class="math inline">\(D_i\)</span> further or, in the case of large datasets, the few cases with the largest <span class="math inline">\(D_i\)</span> values, as these have the largest influence.</p>
+<p>So does the computation of Cook’s distance <span class="math inline">\(D_i\)</span> for all observations require refitting the model <span class="math inline">\(n\)</span> times? This would be computationally expensive!</p>
+<p>It turns out that we can rewrite the above formula for <span class="math inline">\(D_i\)</span> as a function of the standardised residual <span class="math inline">\(r_i\)</span> and the leverage <span class="math inline">\(h_{ii}\)</span>. So in the end we only need tro fit the mopdel once and then we can compute <span class="math inline">\(D_i\)</span> from the complete data regression results.</p>
+<p>Shortcut formula:</p>
+<p><span class="math display">\[\hat{y}_{j(i)}=\hat{y}_{j}- \frac{h_{ij}}{1-h_{ii}}e_i.\]</span></p>
+<p>Thus:</p>
+<p><span class="math display">\[\hat{y}_{j}-\hat{y}_{j(i)}= \frac{h_{ij}}{1-h_{ii}}e_i\]</span></p>
+<p>and</p>
+<span class="math display">\[\begin{align*}
+\sum_j(\hat{y}_{j}-\hat{y}_{j(i)})^2 &amp; = \frac{e_i^2}{(1-h_{ii})^2}\sum_j h_{ij}^2\\
+&amp; = \frac{e_i^2 h_{ii}}{(1-h_{ii})^2},\\
+\end{align*}\]</span>
+<p>from the properties of the H matrix (symmetric and idempotent).</p>
+<p>Hence:</p>
+<span class="math display">\[\begin{align*}
+D_i&amp; = \frac{e_i^2 h_{ii}}{p \hat{\sigma}^2(1-h_{ii})^2}\\
+&amp; =  \frac{r_i^2h_{ii}}{p(1-h_{ii})}.\\
+\end{align*}\]</span>
+<p>In general, high influence or outlier cases have either:</p>
+<ul>
+<li>Big <span class="math inline">\(|r_i|\)</span> and big <span class="math inline">\(h_{ii}\)</span>. (RX)</li>
+<li>Big <span class="math inline">\(|r_i|\)</span> and moderate <span class="math inline">\(h_{ii}\)</span>. (R)</li>
+<li>Moderate <span class="math inline">\(|r_i|\)</span> and big <span class="math inline">\(h_{ii}\)</span>. (X)</li>
+</ul>
+</div>
+<div id="other-influence-measures" class="section level2">
+<h2><span class="header-section-number">6.6</span> Other influence measures</h2>
+<ul>
+<li><span class="math inline">\(\hat{\beta_j}-\hat{\beta}_{j(i)}\)</span>  (the effect of leaving case <span class="math inline">\(i\)</span> out)</li>
+<li><span class="math inline">\(\hat{\sigma}_{(i)}\)</span> (estimate of <span class="math inline">\(\sigma\)</span> with case <span class="math inline">\(i\)</span> omitted). Used in: “studentised residual” = <span class="math inline">\(\frac{\hat{\epsilon_i}}{\sqrt{1-h_{ii}}\hat{\sigma}_{(i)}}\)</span></li>
+</ul>
+</div>
+<div id="testing-outliers" class="section level2">
+<h2><span class="header-section-number">6.7</span> Testing outliers</h2>
+<p>If an individual case is suspected of being an outlier a formal hypothesis test can be performed to verify. Details of the test are in Chapter 9 of <span class="citation">Weisberg (<a href="#ref-weisberg2005applied">2005</a>)</span>.</p>
+<p>For more on leverages and influence see Chapter 2 of <span class="citation">Rodríguez (<a href="#ref-Rodriguez2007">2007</a>)</span>. For a very detailed exposition on linear model diagnostics see Chapter 11 and 12 of <span class="citation">Fox (<a href="#ref-fox2016applied">2016</a>)</span>.</p>
+</div>
+<div id="diagnostics-examples-two-case-studies" class="section level2">
+<h2><span class="header-section-number">6.8</span> Diagnostics examples (two case studies)</h2>
+<div id="example-1-brain-size-versus-body-gestation-period-and-litter" class="section level3">
+<h3><span class="header-section-number">6.8.1</span> Example 1: Brain size versus body gestation period and litter</h3>
+<p>Example from <span class="citation">Ramsey and Schafer (<a href="#ref-ramsey2002statistical">2002</a>)</span> (case0902 in library(Sleuth3)).</p>
+<p>It is known that body size of mammals is a good predictor of brain size but it was of interest to know if gestation period and litter size were also good predictors. This data contains average values of brain weight, body weight, gestation length and litter size in 96 species of mammals.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Does the model fit well? Outliers, nonlinearity? NOTE: in MTB you can use brushing (set species as ID variables) and link the graphs to explore the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(car)</span>
+<span class="co">#library(MASS)</span>
+fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(BRAIN <span class="op">~</span><span class="st"> </span>BODY <span class="op">+</span><span class="st"> </span>GESTATION <span class="op">+</span><span class="st"> </span>LITTER)
+<span class="kw">summary</span>(fit1)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = BRAIN ~ BODY + GESTATION + LITTER)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1026.68   -62.08    17.29    51.73   988.76 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -225.29213   83.05875  -2.712  0.00797 ** 
+## BODY           0.98588    0.09428  10.457  &lt; 2e-16 ***
+## GESTATION      1.80874    0.35445   5.103 1.79e-06 ***
+## LITTER        27.64864   17.41429   1.588  0.11579    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 224.6 on 92 degrees of freedom
+## Multiple R-squared:   0.81,  Adjusted R-squared:  0.8038 
+## F-statistic: 130.7 on 3 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># anova(fit1)</span></code></pre></div>
+<p>Clearly the model is defective.</p>
+<ul>
+<li><p>The normal probability plot shows that the residuals come from a heavy tailed distribution.</p></li>
+<li><p>The residual vs fit plot shows a linear pattern for the majority of data and a few outliers. Most of the pattern is hidden because the data is clumped together. We also observe unequal variance.</p></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>African elephant, Hippopotamus, Dolphin, Human have large standardised residuals.</p>
+<p>African elephant, Hippopotamus and Dolphin, have large influence.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">####################
+<span class="co"># influence measures</span>
+####################
+
+
+inflm.SR &lt;-<span class="st"> </span><span class="kw">influence.measures</span>(fit1)
+int &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">apply</span>(inflm.SR<span class="op">$</span>is.inf, <span class="dv">1</span>, any))
+<span class="kw">cbind</span>(brain.data[int ,],
+      <span class="kw">influence</span>(fit1)<span class="op">$</span>hat[int],<span class="co"># large leverage</span>
+      <span class="kw">stdres</span>(fit1)[int],<span class="co"># large std residual</span>
+      <span class="kw">abs</span>(D)[int]) <span class="co"># large Cook&#39;s D</span></code></pre></div>
+<pre><code>##             SPECIES   BRAIN    BODY GESTATION LITTER
+## 24      Human being 1300.00   65.00       270    1.0
+## 39            Rat I    0.72    0.05        23    7.3
+## 40           Rat II    2.38    0.34        21    8.0
+## 52          Dolphin 1600.00  160.00       360    1.0
+## 72 African elephant 4480.00 2800.00       655    1.0
+## 75            Tapir  250.00  230.00       390    1.0
+## 77     Domestic pig  180.00  190.00       115    8.0
+## 78     Hippopotamus  590.00 1400.00       240    1.0
+##    influence(fit1)$hat[int] stdres(fit1)[int]  abs(D)[int]
+## 24               0.03522907        4.28526198 1.676377e-01
+## 39               0.10218313       -0.08211966 1.918783e-04
+## 40               0.13397456       -0.15234064 8.975596e-04
+## 52               0.07906017        4.58816129 4.517975e-01
+## 72               0.71937767        6.15725313 2.429678e+01
+## 75               0.09448789       -2.26740230 1.341155e-01
+## 77               0.17045813       -1.03271364 5.478722e-02
+## 78               0.25103327       -5.28288412 2.338573e+00</code></pre>
+<!-- % #################### -->
+<!-- % # large leverage -->
+<!-- % #################### -->
+<!-- %  -->
+<p><!-- % head(brain.data[sort(influence(fit1)$hat, decreasing = TRUE, index.return = TRUE)$ix, 1]) --> <!-- %  --> <!-- % #################### --> <!-- % # large std residual --> <!-- % #################### --> <!-- %  --> <!-- % head(brain.data[sort(abs(stdres(fit1)), decreasing = TRUE, index.return = TRUE)$ix, ]) --> <!-- %  --> <!-- %  --> <!-- % ################ --> <!-- % # large Cook's D --> <!-- % ################ --> <!-- %  --> <!-- % head(brain.data[sort(abs(D), decreasing = TRUE, index.return = TRUE)$ix, 1]) --></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Added-variable plots can be used for detecting influential data.</p>
+<p>For example, AVP for <strong>body</strong>:</p>
+<ul>
+<li><p>Hippo and African elephant have a large body given the other variables (litter and gestation).</p></li>
+<li><p>Humans, dolphins and African elephant have a large brain for their litter and gestation.</p></li>
+<li><p>Together Humans, dolphins and hippos reduce the body slope, African elephant, while a high-leverage point, is more in line with the rest of the data.</p></li>
+</ul>
+<!-- % nonlinearity -->
+<p><!-- %```{r fig.width=6,fig.height=6.5, results='hide',echo=FALSE, fig.align='center'} --> <!-- % # component + residual plot --> <!-- % crPlots(fit1) --> <!-- %  ej <- coefficients(fit1)[2] * BODY + resid(fit1) --> <!-- % plot(BODY, ej) --> <!-- %``` --> <!-- %  --> <!-- %  --></p>
+<p>The raw data have a lot of skeweness. This naturally generates a lot of outliers and obscures patterns in the data.</p>
+<p>Transform the data by taking the logs to improve the model and fit.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>The skeweness is gone. The plot of log(brain) vs log(body) shows a strong linear pattern - not apparent with the untransformed variables. Therefore the log transformation of these two variables seems appropriate. The other variables are also less skewed than before.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(BRAIN) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(BODY) <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(GESTATION) <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(LITTER))
+<span class="kw">summary</span>(fit2)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = log(BRAIN) ~ log(BODY) + log(GESTATION) + log(LITTER))
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.95415 -0.29639 -0.03105  0.28111  1.57491 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     0.85482    0.66167   1.292  0.19962    
+## log(BODY)       0.57507    0.03259  17.647  &lt; 2e-16 ***
+## log(GESTATION)  0.41794    0.14078   2.969  0.00381 ** 
+## log(LITTER)    -0.31007    0.11593  -2.675  0.00885 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.4748 on 92 degrees of freedom
+## Multiple R-squared:  0.9537, Adjusted R-squared:  0.9522 
+## F-statistic: 631.6 on 3 and 92 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#anova(fit2)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-100-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>The biggest standardised residual is now case 24 (Human) who have a larger brain than predicted by the model.</p>
+<p>Highest leverage is case 1 (quokka), but it doesn’t have high influence (this also goes for all cases with <span class="math inline">\(h_{ii} &gt; 0.083 = 2p/n\)</span>, where average <span class="math inline">\(h_{ii} = p/n\)</span>, except for case 73 which has longer gestation).</p>
+<p>The residual distribution shows some skeweness, but is closer to normal than before.</p>
+<p>The residual vs fit plot shows some evidence of non-constant variance. Perhaps some other transformation would be better?</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-101-1.png" width="576" style="display: block; margin: auto;" /></p>
+<!-- %plot(log(GESTATION), log(LITTER)) -->
+<!-- %text(log(GESTATION), log(LITTER),labels = SPECIES, cex= 0.7, offset = 10) -->
+<!-- % -->
+<!-- % # large leverage -->
+<!-- % head(brain.data[sort(influence(fit2)$hat, decreasing = TRUE, index.return = TRUE)$ix, 1]) -->
+<!-- % -->
+<!-- % # large std residual -->
+<!-- % head(brain.data[sort(abs(stdres(fit2)), decreasing = TRUE, index.return = TRUE)$ix, 1]) -->
+<!-- %``` -->
+<p>To make these plots in minitab use the storage option for standardised residuals, Cook’s dist and leverages.</p>
+<p>To answer the original question, clearly gestation time and litter size are important predictors of brain size in the presence of body size.</p>
+</div>
+<div id="example-2-rat-data" class="section level3">
+<h3><span class="header-section-number">6.8.2</span> Example 2: Rat data</h3>
+<p>Example from <span class="citation">Weisberg (<a href="#ref-weisberg2005applied">2005</a>)</span>.</p>
+<p>Experiment to investigate amount of drug present in liver of rat.</p>
+<ul>
+<li><p>BodyWt = body weight of the rat</p></li>
+<li><p>LiverWt = measured after sacrifice</p></li>
+<li><p>Dose = dose given, proportional to body weight</p></li>
+<li><p>EndDose = dose of drug recovered after sacrifice of the animal</p></li>
+</ul>
+<p>Experimantal hypothesis: no relationship between EndDose and 3 predictors.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-102-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(car)</span>
+<span class="co">#library(MASS)</span>
+fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(EndDose <span class="op">~</span><span class="st"> </span>BodyWt <span class="op">+</span><span class="st">  </span>LiverWt <span class="op">+</span><span class="st"> </span>Dose, <span class="dt">data =</span> rats.data)
+<span class="kw">summary</span>(fit1)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = EndDose ~ BodyWt + LiverWt + Dose, data = rats.data)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.100557 -0.063233  0.007131  0.045971  0.134691 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)  0.265922   0.194585   1.367   0.1919  
+## BodyWt      -0.021246   0.007974  -2.664   0.0177 *
+## LiverWt      0.014298   0.017217   0.830   0.4193  
+## Dose         4.178111   1.522625   2.744   0.0151 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.07729 on 15 degrees of freedom
+## Multiple R-squared:  0.3639, Adjusted R-squared:  0.2367 
+## F-statistic:  2.86 on 3 and 15 DF,  p-value: 0.07197</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#anova(fit1)</span></code></pre></div>
+<p>It appears as if a combination of bodyweight and dose are relevant to EndDose. However, they are not individually related to EndDose even though <span class="math inline">\(X_1 \propto X_3\)</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-104-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Case 3 has large influence (see Cook’s distance plot).</p>
+<p>Case 3 is an unusual combination of dose and bodyweight.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(rats.data[<span class="kw">sort</span>(<span class="kw">influence</span>(fit1)<span class="op">$</span>hat, 
+<span class="dt">decreasing =</span> <span class="ot">TRUE</span>, <span class="dt">index.return =</span> <span class="ot">TRUE</span>)<span class="op">$</span>ix,])</code></pre></div>
+<pre><code>##    BodyWt LiverWt Dose EndDose
+## 3     190     9.0 1.00    0.56
+## 5     200     7.2 1.00    0.23
+## 13    149     5.2 0.75    0.21
+## 8     195    10.0 0.98    0.41
+## 16    186     6.8 0.94    0.28
+## 17    146     7.3 0.73    0.30</code></pre>
+<p>A rat was given a dose that was too high for his bodyweight.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">avPlots</span>(fit1)</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-106-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Redo the analysis with case 3 removed:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(EndDose <span class="op">~</span><span class="st"> </span>BodyWt <span class="op">+</span><span class="st">  </span>LiverWt <span class="op">+</span><span class="st"> </span>Dose, <span class="dt">data =</span> rats.data[<span class="op">-</span><span class="dv">3</span>,])
+<span class="kw">summary</span>(fit1)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = EndDose ~ BodyWt + LiverWt + Dose, data = rats.data[-3, 
+##     ])
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.102154 -0.056486  0.002838  0.046519  0.137059 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  0.311427   0.205094   1.518    0.151
+## BodyWt      -0.007783   0.018717  -0.416    0.684
+## LiverWt      0.008989   0.018659   0.482    0.637
+## Dose         1.484877   3.713064   0.400    0.695
+## 
+## Residual standard error: 0.07825 on 14 degrees of freedom
+## Multiple R-squared:  0.02106,    Adjusted R-squared:  -0.1887 
+## F-statistic: 0.1004 on 3 and 14 DF,  p-value: 0.9585</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#anova(fit1)</span></code></pre></div>
+<p>Experimental hypothesis is validated as all coefficients have large P-values.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div id="should-unusual-data-be-discarded" class="section level4">
+<h4><span class="header-section-number">6.8.2.1</span> Should Unusual Data Be Discarded?</h4>
+<p>Although problematic data should not be ignored, they also should not be deleted automatically. It is important to investigate why an observation is unusual.</p>
+<p>Truly bad data (e.g.rats) can be corrected or thrown away. When a discrepant data-point is correct, we may be able to understand why the observation is unusual.</p>
+<p>For Species Brain data, it makes sense that humans enjoy brain size not accounted for by the other variables. In a case like this, we may choose to deal separately with an outlying observation.</p>
+<p>Outliers or influential data may motivate model respecification e.g. the introduction of additional explanatory variables.</p>
+<p>However, we must be careful to avoid overfitting the data i.e. permitting a small portion of the data to determine the form of the model.</p>
+<p>A more extensive discussion can be found in <span class="citation">Fox (<a href="#ref-fox2016applied">2016</a>)</span> Chapter 11.7, pg 288-289.</p>
+</div>
+<div id="demonstrate-effect-of-omiting-cases-on-regression-line" class="section level4">
+<h4><span class="header-section-number">6.8.2.2</span> Demonstrate effect of omiting cases on regression line</h4>
+<p>Cigarette data from <a href="SLR.html#cigarette">3.7.4</a>. Select a point to remove and refit the model.</p>
+<p><a href="https://rstudioserver.maths.nuim.ie:3838/churley/cig.Rmd" class="uri">https://rstudioserver.maths.nuim.ie:3838/churley/cig.Rmd</a></p>
+
+</div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-weisberg2005applied">
+<p>Weisberg, Sanford. 2005. <em>Applied linear regression</em>. Wiley-Blackwell.</p>
+</div>
+<div id="ref-Rodriguez2007">
+<p>Rodríguez, G. 2007. “Lecture Notes on Generalized Linear Models.” http://data.princeton.edu/wws509/notes/.</p>
+</div>
+<div id="ref-fox2016applied">
+<p>Fox, John. 2016. <em>Applied Regression Analysis and Generalized Linear Models</em>. 3rd ed. SAGE Publications.</p>
+</div>
+<div id="ref-ramsey2002statistical">
+<p>Ramsey, Fred, and Daniel Schafer. 2002. <em>The Statistical Sleuth: A Course in Methods of Data Analysis</em>. 2nd ed. Duxbury Press.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="model-comparisons-and-testing-for-lack-of-fit.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="special-cases-of-multiple-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
