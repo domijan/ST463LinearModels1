@@ -8,6 +8,32 @@ This module is offered as a part of of [MSc in Data Science and Data Analytics](
 
 ## [Course notes](https://domijan.github.io/ST463LinearModels1/)
 
+
+## License
+
+This book is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License https://creativecommons.org/licenses/by-nc-sa/4.0/.
+
+
+## Citation
+
+To cite the course notes, please use:
+
+Katarina Domijan, Catherine Hurley (2018). Notes for ST463/ST683 Linear Models 1. Department of Mathematics and Statistics, Maynooth University, Maynooth Ireland. Online textbook (version 1.0, November 12, 2018). Retrieved from 
+https://bookdown.org/domijank/ST463/
+
+A BibTeX entry for LaTeX users is:
+
+```
+@Manual{,
+  title = {Notes for ST463/ST683 Linear Models 1},
+  author = {Katarina Domijan, Catherine Hurley},
+  year = {2018},
+  organization = {Department of Mathematics and Statistics, Maynooth University},
+  address = {Maynooth, Ireland},
+  url = {https://bookdown.org/domijank/ST463/},
+}
+```
+
 ## R Scripts for the notes
 * [Load libraries](/scripts/index.R)
 * [CH1: Intro](/scripts/01-intro.R)
