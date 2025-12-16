@@ -1,268 +1,95 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="en">
 <head>
-
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Notes for ST463/ST683 Linear Models 1</title>
-  <meta name="description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
-
-  <meta property="og:title" content="Notes for ST463/ST683 Linear Models 1" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook." />
-  <meta name="github-repo" content="domijank/ST463" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Notes for ST463/ST683 Linear Models 1" />
-  
-  <meta name="twitter:description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook." />
-  
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 7 Special cases of multiple regression | Linear Models Lecture Notes</title>
 <meta name="author" content="Katarina Domijan">
-
-
-<meta name="date" content="2018-11-12">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  
-  
-<link rel="prev" href="diagnostic-methods-in-more-details.html">
-<link rel="next" href="references.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
+<meta name="description" content="7.1 Categorical and continuous predictors (binary categories) Example (from Ramsey and Schafer (2002) pg 236, 245): \(Y\): average number of flowers per plant (meadowfoam). Light intensity: 150,...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Chapter 7 Special cases of multiple regression | Linear Models Lecture Notes">
+<meta property="og:type" content="book">
+<meta property="og:description" content="7.1 Categorical and continuous predictors (binary categories) Example (from Ramsey and Schafer (2002) pg 236, 245): \(Y\): average number of flowers per plant (meadowfoam). Light intensity: 150,...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 7 Special cases of multiple regression | Linear Models Lecture Notes">
+<meta name="twitter:description" content="7.1 Categorical and continuous predictors (binary categories) Example (from Ramsey and Schafer (2002) pg 236, 245): \(Y\): average number of flowers per plant (meadowfoam). Light intensity: 150,...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
-
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 0em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Module Preliminaries</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#recommended-texts"><i class="fa fa-check"></i><b>1.1</b> Recommended texts</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#software"><i class="fa fa-check"></i><b>1.2</b> Software</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-scripts"><i class="fa fa-check"></i><b>1.3</b> R Scripts</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#introductory-examples"><i class="fa fa-check"></i><b>2.1</b> Introductory Examples</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#mother-and-daughter-heights"><i class="fa fa-check"></i><b>2.1.1</b> Mother and daughter heights</a></li>
-<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#bacterial-count-and-storage-temperature"><i class="fa fa-check"></i><b>2.1.2</b> Bacterial count and storage temperature</a></li>
-<li class="chapter" data-level="2.1.3" data-path="intro.html"><a href="intro.html#yield-and-rainfall"><i class="fa fa-check"></i><b>2.1.3</b> Yield and Rainfall</a></li>
-<li class="chapter" data-level="2.1.4" data-path="intro.html"><a href="intro.html#driving"><i class="fa fa-check"></i><b>2.1.4</b> Driving</a></li>
-<li class="chapter" data-level="2.1.5" data-path="intro.html"><a href="intro.html#fuel"><i class="fa fa-check"></i><b>2.1.5</b> Fuel Consumption</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="SLR.html"><a href="SLR.html"><i class="fa fa-check"></i><b>3</b> Simple Linear regression</a><ul>
-<li class="chapter" data-level="3.1" data-path="SLR.html"><a href="SLR.html#OLS"><i class="fa fa-check"></i><b>3.1</b> Ordinary least squares</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="SLR.html"><a href="SLR.html#residuals"><i class="fa fa-check"></i><b>3.1.1</b> Residuals</a></li>
-<li class="chapter" data-level="3.1.2" data-path="SLR.html"><a href="SLR.html#some-algebraic-implications-of-the-ols-fit"><i class="fa fa-check"></i><b>3.1.2</b> Some algebraic implications of the OLS fit</a></li>
-<li class="chapter" data-level="3.1.3" data-path="SLR.html"><a href="SLR.html#ols-estimates-for-the-fuel-consumption-example"><i class="fa fa-check"></i><b>3.1.3</b> OLS Estimates for the Fuel Consumption Example</a></li>
-<li class="chapter" data-level="3.1.4" data-path="SLR.html"><a href="SLR.html#interpretation-of-the-fitted-simple-linear-regression-line-parameter-estimates"><i class="fa fa-check"></i><b>3.1.4</b> Interpretation of the fitted simple linear regression line: Parameter estimates</a></li>
-<li class="chapter" data-level="3.1.5" data-path="SLR.html"><a href="SLR.html#predicting"><i class="fa fa-check"></i><b>3.1.5</b> Predicting</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="SLR.html"><a href="SLR.html#the-formal-simple-linear-regression-model"><i class="fa fa-check"></i><b>3.2</b> The formal simple linear regression model</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="SLR.html"><a href="SLR.html#model"><i class="fa fa-check"></i><b>3.2.1</b> Model</a></li>
-<li class="chapter" data-level="3.2.2" data-path="SLR.html"><a href="SLR.html#assumptions"><i class="fa fa-check"></i><b>3.2.2</b> Assumptions</a></li>
-<li class="chapter" data-level="3.2.3" data-path="SLR.html"><a href="SLR.html#estimation-of-sigma2"><i class="fa fa-check"></i><b>3.2.3</b> Estimation of <span class="math inline">\(\sigma^2\)</span></a></li>
-<li class="chapter" data-level="3.2.4" data-path="SLR.html"><a href="SLR.html#review-of-some-probability-results"><i class="fa fa-check"></i><b>3.2.4</b> Review of some probability results</a></li>
-<li class="chapter" data-level="3.2.5" data-path="SLR.html"><a href="SLR.html#prop"><i class="fa fa-check"></i><b>3.2.5</b> Properties of the estimates</a></li>
-<li class="chapter" data-level="3.2.6" data-path="SLR.html"><a href="SLR.html#special-cases"><i class="fa fa-check"></i><b>3.2.6</b> Special cases</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="SLR.html"><a href="SLR.html#simple-linear-regression-models-in-r-and-minitab"><i class="fa fa-check"></i><b>3.3</b> Simple linear regression models in R and Minitab</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="SLR.html"><a href="SLR.html#minitab"><i class="fa fa-check"></i><b>3.3.1</b> Minitab</a></li>
-<li class="chapter" data-level="3.3.2" data-path="SLR.html"><a href="SLR.html#r"><i class="fa fa-check"></i><b>3.3.2</b> R</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="SLR.html"><a href="SLR.html#statistical-inference"><i class="fa fa-check"></i><b>3.4</b> Statistical inference</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="SLR.html"><a href="SLR.html#r-simulation-paraminference.r"><i class="fa fa-check"></i><b>3.4.1</b> R simulation: ParamInference.R</a></li>
-<li class="chapter" data-level="3.4.2" data-path="SLR.html"><a href="SLR.html#inference-for-beta_1"><i class="fa fa-check"></i><b>3.4.2</b> Inference for <span class="math inline">\(\beta_1\)</span></a></li>
-<li class="chapter" data-level="3.4.3" data-path="SLR.html"><a href="SLR.html#inference-for-beta_0"><i class="fa fa-check"></i><b>3.4.3</b> Inference for <span class="math inline">\(\beta_0\)</span></a></li>
-<li class="chapter" data-level="3.4.4" data-path="SLR.html"><a href="SLR.html#inference-for-mean-response"><i class="fa fa-check"></i><b>3.4.4</b> Inference for mean response</a></li>
-<li class="chapter" data-level="3.4.5" data-path="SLR.html"><a href="SLR.html#inference-for-prediction"><i class="fa fa-check"></i><b>3.4.5</b> Inference for prediction</a></li>
-</ul></li>
-<li class="chapter" data-level="3.5" data-path="SLR.html"><a href="SLR.html#analysis-of-variance-for-s.l.r."><i class="fa fa-check"></i><b>3.5</b> Analysis of variance (for s.l.r.)</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="SLR.html"><a href="SLR.html#anova-decomposition"><i class="fa fa-check"></i><b>3.5.1</b> ANOVA decomposition</a></li>
-<li class="chapter" data-level="3.5.2" data-path="SLR.html"><a href="SLR.html#anova-table"><i class="fa fa-check"></i><b>3.5.2</b> ANOVA table</a></li>
-<li class="chapter" data-level="3.5.3" data-path="SLR.html"><a href="SLR.html#special-cases-1"><i class="fa fa-check"></i><b>3.5.3</b> Special cases</a></li>
-<li class="chapter" data-level="3.5.4" data-path="SLR.html"><a href="SLR.html#does-regression-on-x-explain-y"><i class="fa fa-check"></i><b>3.5.4</b> Does regression on x explain y?</a></li>
-<li class="chapter" data-level="3.5.5" data-path="SLR.html"><a href="SLR.html#notes-on-the-anova-table"><i class="fa fa-check"></i><b>3.5.5</b> Notes on the ANOVA table</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="SLR.html"><a href="SLR.html#sample-correlation"><i class="fa fa-check"></i><b>3.6</b> Sample correlation</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="SLR.html"><a href="SLR.html#examples-of-correlation"><i class="fa fa-check"></i><b>3.6.1</b> Examples of correlation</a></li>
-<li class="chapter" data-level="3.6.2" data-path="SLR.html"><a href="SLR.html#comparison-of-the-correlation-and-coefficient-of-determination-for-two-data-sets."><i class="fa fa-check"></i><b>3.6.2</b> Comparison of the correlation and coefficient of determination for two data sets.</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="SLR.html"><a href="SLR.html#assessing-the-simple-linear-regression-model-assumptions"><i class="fa fa-check"></i><b>3.7</b> Assessing the simple linear regression model assumptions</a><ul>
-<li class="chapter" data-level="3.7.1" data-path="SLR.html"><a href="SLR.html#assumptions-1"><i class="fa fa-check"></i><b>3.7.1</b> Assumptions</a></li>
-<li class="chapter" data-level="3.7.2" data-path="SLR.html"><a href="SLR.html#violations-and-consequences"><i class="fa fa-check"></i><b>3.7.2</b> Violations and consequences</a></li>
-<li class="chapter" data-level="3.7.3" data-path="SLR.html"><a href="SLR.html#graphical-tools-for-assessment"><i class="fa fa-check"></i><b>3.7.3</b> Graphical tools for assessment</a></li>
-<li class="chapter" data-level="3.7.4" data-path="SLR.html"><a href="SLR.html#cigarette"><i class="fa fa-check"></i><b>3.7.4</b> Cigarette Data</a></li>
-</ul></li>
-<li class="chapter" data-level="3.8" data-path="SLR.html"><a href="SLR.html#a-note-on-the-galton-paradox"><i class="fa fa-check"></i><b>3.8</b> A note on the Galton paradox</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="SLR.html"><a href="SLR.html#the-galton-paradox"><i class="fa fa-check"></i><b>3.8.1</b> The Galton paradox</a></li>
-<li class="chapter" data-level="3.8.2" data-path="SLR.html"><a href="SLR.html#two-regressions"><i class="fa fa-check"></i><b>3.8.2</b> Two regressions</a></li>
-<li class="chapter" data-level="3.8.3" data-path="SLR.html"><a href="SLR.html#regression-vs-orthogonal-regression"><i class="fa fa-check"></i><b>3.8.3</b> Regression vs orthogonal regression</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>4</b> Multiple regression</a><ul>
-<li class="chapter" data-level="4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#introductory-examples-1"><i class="fa fa-check"></i><b>4.1</b> Introductory examples</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example-1-fuel-use"><i class="fa fa-check"></i><b>4.1.1</b> Example 1: Fuel Use</a></li>
-<li class="chapter" data-level="4.1.2" data-path="multiple-regression.html"><a href="multiple-regression.html#example-2-categorical-predictors"><i class="fa fa-check"></i><b>4.1.2</b> Example 2: Categorical predictors</a></li>
-<li class="chapter" data-level="4.1.3" data-path="multiple-regression.html"><a href="multiple-regression.html#example-3-polynomials"><i class="fa fa-check"></i><b>4.1.3</b> Example 3: Polynomials</a></li>
-<li class="chapter" data-level="4.1.4" data-path="multiple-regression.html"><a href="multiple-regression.html#example-4-nonlinear-relationships"><i class="fa fa-check"></i><b>4.1.4</b> Example 4: Nonlinear relationships</a></li>
-<li class="chapter" data-level="4.1.5" data-path="multiple-regression.html"><a href="multiple-regression.html#cigarette-data-continued"><i class="fa fa-check"></i><b>4.1.5</b> Cigarette Data continued</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#least-squares-estimation-for-multiple-regression"><i class="fa fa-check"></i><b>4.2</b> Least squares estimation for multiple regression</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="multiple-regression.html"><a href="multiple-regression.html#estimation-of-sigma2-varepsilon"><i class="fa fa-check"></i><b>4.2.1</b> Estimation of <span class="math inline">\(\sigma^2\)</span> = Var<span class="math inline">\((\epsilon)\)</span></a></li>
-<li class="chapter" data-level="4.2.2" data-path="multiple-regression.html"><a href="multiple-regression.html#estimation-of-varhatbeta"><i class="fa fa-check"></i><b>4.2.2</b> Estimation of Var<span class="math inline">\((\hat{\beta})\)</span></a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="multiple-regression.html"><a href="multiple-regression.html#prediction-from-multiple-linear-regression-model"><i class="fa fa-check"></i><b>4.3</b> Prediction from multiple linear regression model</a></li>
-<li class="chapter" data-level="4.4" data-path="multiple-regression.html"><a href="multiple-regression.html#regression-models-in-matrix-notation-examples"><i class="fa fa-check"></i><b>4.4</b> Regression models in matrix notation: examples</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example-1-slr"><i class="fa fa-check"></i><b>4.4.1</b> Example 1: SLR</a></li>
-<li class="chapter" data-level="4.4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#example-2"><i class="fa fa-check"></i><b>4.4.2</b> Example 2</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="multiple-regression.html"><a href="multiple-regression.html#the-formal-multiple-regression-model-and-properties"><i class="fa fa-check"></i><b>4.5</b> The formal multiple regression model and properties</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="multiple-regression.html"><a href="multiple-regression.html#concepts-random-vectors-covariance-matrix-multivariate-normal-distribution-mvn."><i class="fa fa-check"></i><b>4.5.1</b> Concepts: random vectors, covariance matrix, multivariate normal distribution (MVN).</a></li>
-<li class="chapter" data-level="4.5.2" data-path="multiple-regression.html"><a href="multiple-regression.html#multiple-regression-model"><i class="fa fa-check"></i><b>4.5.2</b> Multiple regression model</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="multiple-regression.html"><a href="multiple-regression.html#the-hat-matrix"><i class="fa fa-check"></i><b>4.6</b> The hat matrix</a><ul>
-<li class="chapter" data-level="4.6.1" data-path="multiple-regression.html"><a href="multiple-regression.html#the-qr-decomposition-of-a-matrix"><i class="fa fa-check"></i><b>4.6.1</b> The QR Decomposition of a matrix</a></li>
-</ul></li>
-<li class="chapter" data-level="4.7" data-path="multiple-regression.html"><a href="multiple-regression.html#anova-for-multiple-regression"><i class="fa fa-check"></i><b>4.7</b> ANOVA for multiple regression</a></li>
-<li class="chapter" data-level="4.8" data-path="multiple-regression.html"><a href="multiple-regression.html#way-anova-model"><i class="fa fa-check"></i><b>4.8</b> 1-way ANOVA model</a><ul>
-<li class="chapter" data-level="4.8.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example"><i class="fa fa-check"></i><b>4.8.1</b> Example:</a></li>
-</ul></li>
-<li class="chapter" data-level="4.9" data-path="multiple-regression.html"><a href="multiple-regression.html#one-way-anova-in-regression-notation"><i class="fa fa-check"></i><b>4.9</b> One way ANOVA in regression notation</a><ul>
-<li class="chapter" data-level="4.9.1" data-path="multiple-regression.html"><a href="multiple-regression.html#fitting-the-model-in-mtb-and-r"><i class="fa fa-check"></i><b>4.9.1</b> Fitting the model in MTB and R</a></li>
-</ul></li>
-<li class="chapter" data-level="4.10" data-path="multiple-regression.html"><a href="multiple-regression.html#confidence-intervals-and-hypothesis-tests-for-linear-combinations-of-boldsymbolbeta"><i class="fa fa-check"></i><b>4.10</b> Confidence intervals and hypothesis tests for linear combinations of <span class="math inline">\(\boldsymbol{\beta}\)</span></a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html"><i class="fa fa-check"></i><b>5</b> Model comparisons and testing for lack of fit</a><ul>
-<li class="chapter" data-level="5.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#f-tests-for-comparing-two-models"><i class="fa fa-check"></i><b>5.1</b> F-tests for comparing two models</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-1"><i class="fa fa-check"></i><b>5.1.1</b> Example:</a></li>
-<li class="chapter" data-level="5.1.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#f-test-to-compare-models"><i class="fa fa-check"></i><b>5.1.2</b> F-test to compare models:</a></li>
-<li class="chapter" data-level="5.1.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data"><i class="fa fa-check"></i><b>5.1.3</b> Example: Steam data</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#sequential-sums-of-squares"><i class="fa fa-check"></i><b>5.2</b> Sequential sums of squares</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-3"><i class="fa fa-check"></i><b>5.2.1</b> Example:</a></li>
-<li class="chapter" data-level="5.2.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data-1"><i class="fa fa-check"></i><b>5.2.2</b> Example: Steam data</a></li>
-<li class="chapter" data-level="5.2.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-contd-in-mtb"><i class="fa fa-check"></i><b>5.2.3</b> Example: Steam cont’d in MTB</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#testing-for-lack-of-fit"><i class="fa fa-check"></i><b>5.3</b> Testing for lack of fit</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-voltage"><i class="fa fa-check"></i><b>5.3.1</b> Example: Voltage</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#added-variable-plots"><i class="fa fa-check"></i><b>5.4</b> Added variable plots</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-vs.temp-inv-prod"><i class="fa fa-check"></i><b>5.4.1</b> Example: STEAM vs. TEMP, INV, PROD</a></li>
-<li class="chapter" data-level="5.4.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-added-variable-plot-for-prod."><i class="fa fa-check"></i><b>5.4.2</b> Example: Added variable plot for PROD.</a></li>
-<li class="chapter" data-level="5.4.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data-contd"><i class="fa fa-check"></i><b>5.4.3</b> Example: Steam data cont’d</a></li>
-<li class="chapter" data-level="5.4.4" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#properties-of-avps"><i class="fa fa-check"></i><b>5.4.4</b> Properties of AVPs:</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#visualising-models-in-hdim-added-variable-plots-for-the-bodyfat-data."><i class="fa fa-check"></i><b>5.5</b> Visualising Models in Hdim: added variable plots for the bodyfat data.</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html"><i class="fa fa-check"></i><b>6</b> Diagnostic methods (in more details)</a><ul>
-<li class="chapter" data-level="6.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#model-assumptions"><i class="fa fa-check"></i><b>6.1</b> Model assumptions</a></li>
-<li class="chapter" data-level="6.2" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#residuals-1"><i class="fa fa-check"></i><b>6.2</b> Residuals</a></li>
-<li class="chapter" data-level="6.3" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#leverage-values"><i class="fa fa-check"></i><b>6.3</b> Leverage values</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#properties-of-h_ii"><i class="fa fa-check"></i><b>6.3.1</b> Properties of <span class="math inline">\(h_{ii}\)</span>:</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#standardised-residuals"><i class="fa fa-check"></i><b>6.4</b> Standardised residuals</a></li>
-<li class="chapter" data-level="6.5" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#leave-one-out-methods"><i class="fa fa-check"></i><b>6.5</b> Leave-one-out methods</a></li>
-<li class="chapter" data-level="6.6" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#other-influence-measures"><i class="fa fa-check"></i><b>6.6</b> Other influence measures</a></li>
-<li class="chapter" data-level="6.7" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#testing-outliers"><i class="fa fa-check"></i><b>6.7</b> Testing outliers</a></li>
-<li class="chapter" data-level="6.8" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#diagnostics-examples-two-case-studies"><i class="fa fa-check"></i><b>6.8</b> Diagnostics examples (two case studies)</a><ul>
-<li class="chapter" data-level="6.8.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#example-1-brain-size-versus-body-gestation-period-and-litter"><i class="fa fa-check"></i><b>6.8.1</b> Example 1: Brain size versus body gestation period and litter</a></li>
-<li class="chapter" data-level="6.8.2" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#example-2-rat-data"><i class="fa fa-check"></i><b>6.8.2</b> Example 2: Rat data</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html"><i class="fa fa-check"></i><b>7</b> Special cases of multiple regression</a><ul>
-<li class="chapter" data-level="7.1" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#categorical-and-continuous-predictors-binary-categories"><i class="fa fa-check"></i><b>7.1</b> Categorical and continuous predictors (binary categories)</a></li>
-<li class="chapter" data-level="7.2" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#categorical-and-continuous-predictors-more-than-two-categories"><i class="fa fa-check"></i><b>7.2</b> Categorical and continuous predictors (more than two categories)</a></li>
-<li class="chapter" data-level="7.3" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#quadratic-terms-and-interactions"><i class="fa fa-check"></i><b>7.3</b> Quadratic terms and interactions</a></li>
-<li class="chapter" data-level="7.4" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#an-example-with-two-continuous-and-two-categorical-predictors"><i class="fa fa-check"></i><b>7.4</b> An example with two continuous and two categorical predictors</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Linear Models Lecture Notes</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notes for ST463/ST683 Linear Models 1</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Module Preliminaries</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Introduction</a></li>
+<li><a class="" href="SLR.html"><span class="header-section-number">3</span> Simple Linear regression</a></li>
+<li><a class="" href="multiple-regression.html"><span class="header-section-number">4</span> Multiple regression</a></li>
+<li><a class="" href="model-comparisons-and-testing-for-lack-of-fit.html"><span class="header-section-number">5</span> Model comparisons and testing for lack of fit</a></li>
+<li><a class="" href="diagnostic-methods-in-more-details.html"><span class="header-section-number">6</span> Diagnostic methods (in more details)</a></li>
+<li><a class="active" href="special-cases-of-multiple-regression.html"><span class="header-section-number">7</span> Special cases of multiple regression</a></li>
+<li><a class="" href="about.html"><span class="header-section-number">8</span> About</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="special-cases-of-multiple-regression" class="section level1">
-<h1><span class="header-section-number">7</span> Special cases of multiple regression</h1>
-<div id="categorical-and-continuous-predictors-binary-categories" class="section level2">
-<h2><span class="header-section-number">7.1</span> Categorical and continuous predictors (binary categories)</h2>
-<div id="example-from-ramsey2002statistical-pg-236-245" class="section level4">
-<h4><span class="header-section-number">7.1.0.1</span> Example (from <span class="citation">Ramsey and Schafer (<a href="#ref-ramsey2002statistical">2002</a>)</span> pg 236, 245):</h4>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="special-cases-of-multiple-regression" class="section level1" number="7">
+<h1>
+<span class="header-section-number">7</span> Special cases of multiple regression<a class="anchor" aria-label="anchor" href="#special-cases-of-multiple-regression"><i class="fas fa-link"></i></a>
+</h1>
+<div id="categorical-and-continuous-predictors-binary-categories" class="section level2" number="7.1">
+<h2>
+<span class="header-section-number">7.1</span> Categorical and continuous predictors (binary categories)<a class="anchor" aria-label="anchor" href="#categorical-and-continuous-predictors-binary-categories"><i class="fas fa-link"></i></a>
+</h2>
+<p>Example (from <span class="citation">Ramsey and Schafer (<a href="references.html#ref-ramsey2002statistical">2002</a>)</span> pg 236, 245):</p>
 <ul>
 <li><p><span class="math inline">\(Y\)</span>: average number of flowers per plant (meadowfoam).</p></li>
 <li><p>Light intensity: 150, 300, 450, 600, 750, 900 (<span class="math inline">\(\mu\)</span> mol/<span class="math inline">\(m^2\)</span>/sec)</p></li>
@@ -277,55 +104,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Give the design matrix and the parameter vector for both models</li>
 <li>Test <span class="math inline">\(H_0: \beta_3 = 0\)</span>.</li>
 </ul>
-<table>
-<thead>
-<tr class="header">
-<th align="right">Flowers</th>
-<th align="left">Timing</th>
-<th align="right">Time</th>
-<th align="right">Intensity</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">62.3</td>
-<td align="left">Early</td>
-<td align="right">0</td>
-<td align="right">150</td>
-</tr>
-<tr class="even">
-<td align="right">77.4</td>
-<td align="left">Early</td>
-<td align="right">0</td>
-<td align="right">150</td>
-</tr>
-<tr class="odd">
-<td align="right">55.3</td>
-<td align="left">Early</td>
-<td align="right">0</td>
-<td align="right">300</td>
-</tr>
-<tr class="even">
-<td align="right">54.2</td>
-<td align="left">Early</td>
-<td align="right">0</td>
-<td align="right">300</td>
-</tr>
-<tr class="odd">
-<td align="right">49.6</td>
-<td align="left">Early</td>
-<td align="right">0</td>
-<td align="right">450</td>
-</tr>
-<tr class="even">
-<td align="right">61.9</td>
-<td align="left">Early</td>
-<td align="right">0</td>
-<td align="right">450</td>
-</tr>
-</tbody>
-</table>
-<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">flowers.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/flowers.csv"</span><span class="op">)</span></span>
+<span><span class="va">flowers.data</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Rows: 24
+## Columns: 4
+## $ Flowers   &lt;dbl&gt; 62.3, 77.4, 55.3, 54.2, 49.6, 61.9, 39.4, 45.7, 31.3, 44.9, …
+## $ Timing    &lt;chr&gt; "Early", "Early", "Early", "Early", "Early", "Early", "Early…
+## $ Time      &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ Intensity &lt;int&gt; 150, 150, 300, 300, 450, 450, 600, 600, 750, 750, 900, 900, …</code></pre>
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">flowers.data</span> <span class="op">&lt;-</span> <span class="va">flowers.data</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Timing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Timing</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-140-1.png" width="480" style="display: block; margin: auto;"></div>
 <p>Parallel lines model:</p>
 <p><span class="math display">\[\mathbb{E}(y)= \beta_0+\beta_1(timing)+ \beta_2 (light)\]</span></p>
 <p><span class="math display">\[\mathbf{X} = \begin{bmatrix}
@@ -342,7 +134,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 1 &amp; 1 &amp; 750\\
 1 &amp; 1 &amp; 900 \\
 \end{bmatrix}\]</span></p>
-<p><span class="math inline">\(\boldsymbol{\beta} = \begin{bmatrix} \beta_0 \\ \beta_1 \\ \beta_2\\ \end{bmatrix}\)</span></p>
+<p><span class="math inline">\(\boldsymbol{\beta} = \begin{bmatrix}
+\beta_0 \\
+\beta_1 \\
+\beta_2\\
+\end{bmatrix}\)</span></p>
 <p>Separate lines model:</p>
 <p><span class="math display">\[\mathbb{E}(y)= \beta_0+\beta_1(timing)+ \beta_2 (light) + \beta_3 (timing \times light)\]</span></p>
 <p><span class="math display">\[\mathbf{X} = \begin{bmatrix}
@@ -366,83 +162,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 \beta_3\\
 \end{bmatrix}\]</span></p>
 <p>To test <span class="math inline">\(H_0: \beta_3 = 0\)</span>, P-value = 0.910, so cannot reject <span class="math inline">\(H_0\)</span> (See table of coefficients, output below).</p>
-<p>Model A</p>
-<pre><code>
-  Regression Analysis: Flowers versus Time, Intensity
-  
-  Analysis of Variance
-  
-  Source         DF  Seq SS   Seq MS  F-Value  P-Value
-  Regression      2  3466.7  1733.35    41.78    0.000
-  Time            1   887.0   886.95    21.38    0.000
-  Intensity       1  2579.8  2579.75    62.18    0.000
-  Error          21   871.2    41.49
-  Lack-of-Fit     9   215.3    23.92     0.44    0.889
-  Pure Error     12   655.9    54.66
-  Total          23  4337.9
-  
-  
-  Model Summary
-  
-  S        R-sq       R-sq(adj)   R-sq(pred)
-  6.44107  79.92%     78.00%      73.84%
-  
-  
-  Coefficients
-  
-  Term           Coef  SE Coef  T-Value  P-Value   VIF
-  Constant      71.31     3.27    21.78    0.000
-  Time          12.16     2.63     4.62    0.000  1.00
-  Intensity  -0.04047  0.00513    -7.89    0.000  1.00
-  
-  
-  Regression Equation
-  
-  Flowers = 71.31 + 12.16 Time - 0.04047 Intensity
-  
-  </code></pre>
-<p>Model B</p>
-<pre><code>  Regression Analysis: Flowers versus Time, Intensity, TxI
-  
-  Analysis of Variance
-  
-  Source         DF   Seq SS   Seq MS  F-Value  P-Value
-  Regression      3  3467.28  1155.76    26.55    0.000
-  Time            1   886.95   886.95    20.37    0.000
-  Intensity       1  2579.75  2579.75    59.26    0.000
-  TxI             1     0.58     0.58     0.01    0.910
-  Error          20   870.66    43.53
-  Lack-of-Fit     8   214.73    26.84     0.49    0.841
-  Pure Error     12   655.93    54.66
-  Total          23  4337.94
-  
-  
-  Model Summary
-  
-  S        R-sq       R-sq(adj)   R-sq(pred)
-  6.59795  79.93%     76.92%      70.95%
-  
-  
-  Coefficients
-  
-  Term           Coef  SE Coef  T-Value  P-Value   VIF
-  Constant      71.62     4.34    16.49    0.000
-  Time          11.52     6.14     1.88    0.075  5.20
-  Intensity  -0.04108  0.00744    -5.52    0.000  2.00
-  TxI          0.0012   0.0105     0.12    0.910  6.20
-  
-  
-  Regression Equation
-  
-  Flowers = 71.62 + 11.52 Time - 0.04108 Intensity + 0.0012 TxI
-  
-  </code></pre>
 <p>Model A:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Flowers <span class="op">~</span><span class="st"> </span>Intensity <span class="op">+</span><span class="st"> </span>Time)
-<span class="kw">summary</span>(fit1)</code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Flowers</span> <span class="op">~</span> <span class="va">Intensity</span> <span class="op">+</span> <span class="va">Timing</span>, <span class="va">flowers.data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Flowers ~ Intensity + Time)
+## lm(formula = Flowers ~ Intensity + Timing, data = flowers.data)
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
@@ -452,95 +178,118 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##              Estimate Std. Error t value Pr(&gt;|t|)    
 ## (Intercept) 71.305833   3.273772  21.781 6.77e-16 ***
 ## Intensity   -0.040471   0.005132  -7.886 1.04e-07 ***
-## Time        12.158333   2.629557   4.624 0.000146 ***
+## TimingLate  12.158333   2.629557   4.624 0.000146 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 6.441 on 21 degrees of freedom
 ## Multiple R-squared:  0.7992, Adjusted R-squared:   0.78 
 ## F-statistic: 41.78 on 2 and 21 DF,  p-value: 4.786e-08</code></pre>
 <p>Model B:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Flowers <span class="op">~</span><span class="st"> </span>Intensity <span class="op">*</span><span class="st"> </span>Time)
-<span class="kw">summary</span>(fit2)</code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Flowers</span> <span class="op">~</span> <span class="va">Intensity</span> <span class="op">*</span> <span class="va">Timing</span>, <span class="va">flowers.data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Flowers ~ Intensity * Time)
+## lm(formula = Flowers ~ Intensity * Timing, data = flowers.data)
 ## 
 ## Residuals:
 ##    Min     1Q Median     3Q    Max 
 ## -9.516 -4.276 -1.422  5.473 11.938 
 ## 
 ## Coefficients:
-##                 Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)    71.623333   4.343305  16.491 4.14e-13 ***
-## Intensity      -0.041076   0.007435  -5.525 2.08e-05 ***
-## Time           11.523333   6.142360   1.876   0.0753 .  
-## Intensity:Time  0.001210   0.010515   0.115   0.9096    
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)          71.623333   4.343305  16.491 4.14e-13 ***
+## Intensity            -0.041076   0.007435  -5.525 2.08e-05 ***
+## TimingLate           11.523333   6.142360   1.876   0.0753 .  
+## Intensity:TimingLate  0.001210   0.010515   0.115   0.9096    
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 6.598 on 20 degrees of freedom
 ## Multiple R-squared:  0.7993, Adjusted R-squared:  0.7692 
 ## F-statistic: 26.55 on 3 and 20 DF,  p-value: 3.549e-07</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">model.matrix</span>(fit2)</code></pre></div>
-<pre><code>##    (Intercept) Intensity Time Intensity:Time
-## 1            1       150    0              0
-## 2            1       150    0              0
-## 3            1       300    0              0
-## 4            1       300    0              0
-## 5            1       450    0              0
-## 6            1       450    0              0
-## 7            1       600    0              0
-## 8            1       600    0              0
-## 9            1       750    0              0
-## 10           1       750    0              0
-## 11           1       900    0              0
-## 12           1       900    0              0
-## 13           1       150    1            150
-## 14           1       150    1            150
-## 15           1       300    1            300
-## 16           1       300    1            300
-## 17           1       450    1            450
-## 18           1       450    1            450
-## 19           1       600    1            600
-## 20           1       600    1            600
-## 21           1       750    1            750
-## 22           1       750    1            750
-## 23           1       900    1            900
-## 24           1       900    1            900
-## attr(,&quot;assign&quot;)
-## [1] 0 1 2 3</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-114-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    (Intercept) Intensity TimingLate Intensity:TimingLate
+## 1            1       150          0                    0
+## 2            1       150          0                    0
+## 3            1       300          0                    0
+## 4            1       300          0                    0
+## 5            1       450          0                    0
+## 6            1       450          0                    0
+## 7            1       600          0                    0
+## 8            1       600          0                    0
+## 9            1       750          0                    0
+## 10           1       750          0                    0
+## 11           1       900          0                    0
+## 12           1       900          0                    0
+## 13           1       150          1                  150
+## 14           1       150          1                  150
+## 15           1       300          1                  300
+## 16           1       300          1                  300
+## 17           1       450          1                  450
+## 18           1       450          1                  450
+## 19           1       600          1                  600
+## 20           1       600          1                  600
+## 21           1       750          1                  750
+## 22           1       750          1                  750
+## 23           1       900          1                  900
+## 24           1       900          1                  900
+## attr(,"assign")
+## [1] 0 1 2 3
+## attr(,"contrasts")
+## attr(,"contrasts")$Timing
+## [1] "contr.treatment"</code></pre>
+<p><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-143-1.png" width="480" style="display: block; margin: auto;"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-143-2.png" width="480" style="display: block; margin: auto;"></p>
 </div>
-</div>
-<div id="categorical-and-continuous-predictors-more-than-two-categories" class="section level2">
-<h2><span class="header-section-number">7.2</span> Categorical and continuous predictors (more than two categories)</h2>
-<div id="example-from-ramsey2002statistical" class="section level4">
-<h4><span class="header-section-number">7.2.0.1</span> Example: (from <span class="citation">Ramsey and Schafer (<a href="#ref-ramsey2002statistical">2002</a>)</span>):</h4>
+<div id="categorical-and-continuous-predictors-more-than-two-categories" class="section level2" number="7.2">
+<h2>
+<span class="header-section-number">7.2</span> Categorical and continuous predictors (more than two categories)<a class="anchor" aria-label="anchor" href="#categorical-and-continuous-predictors-more-than-two-categories"><i class="fas fa-link"></i></a>
+</h2>
+<p>Example: (from <span class="citation">Ramsey and Schafer (<a href="references.html#ref-ramsey2002statistical">2002</a>)</span>):</p>
 <ul>
 <li><p><span class="math inline">\(Y\)</span>: Measure of energy</p></li>
 <li><p><span class="math inline">\(X_1\)</span>: Measure of weight</p></li>
 <li><p>Group: Type of flyer (1,2,3). Z1, Z2, Z3 (dummy variables).</p></li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-115-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">flying.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/flying.csv"</span><span class="op">)</span></span>
+<span><span class="va">flying.data</span>  <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Rows: 20
+## Columns: 6
+## $ Group &lt;int&gt; 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3
+## $ x1    &lt;dbl&gt; 6.658011, 6.442540, 5.552960, 5.752573, 3.190476, 3.555348, 4.28…
+## $ y     &lt;dbl&gt; 3.77734812, 3.54961737, 3.14845333, 3.10906094, 0.90016136, 1.36…
+## $ G1    &lt;int&gt; 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+## $ G2    &lt;int&gt; 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0
+## $ G3    &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1</code></pre>
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">flying.data</span> <span class="op">&lt;-</span> <span class="va">flying.data</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">Group</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">flying.data</span>  <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x1</span>, y <span class="op">=</span> <span class="va">y</span>, col <span class="op">=</span> <span class="va">Group</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-144-1.png" width="480" style="display: block; margin: auto;"></div>
 <p>Parallel lines model (model A):</p>
 <p><span class="math display">\[\mathbb{E}(y)= \beta_0+\beta_1 z_2+ \beta_2 z_3 + \beta_3 x_1\]</span></p>
-<p>Separate lines model (model B): <span class="math display">\[\mathbb{E}(y)= \beta_0+\beta_1 z_2+ \beta_2 z_3 + \beta_3 x_1 + \beta_4 x_1 z_2+ \beta_5 x_1 z_3\]</span></p>
+<p>Separate lines model (model B):
+<span class="math display">\[\mathbb{E}(y)= \beta_0+\beta_1 z_2+ \beta_2 z_3 + \beta_3 x_1 + \beta_4 x_1 z_2+ \beta_5 x_1 z_3\]</span></p>
 <p>Hypothesis testing:</p>
 <ul>
-<li>Test <span class="math inline">\(H_0: \beta_4 = \beta_5 = 0\)</span> by comparing the two models using an F-test.</li>
-<li>Test <span class="math inline">\(H_0: \beta_1 = \beta_2 = 0\)</span> by comparing the parallel lines model to the model <span class="math inline">\(\mathbb{E}(y)= \beta_0+\beta_3 x_1\)</span> using an F-test.</li>
+<li><p>Test <span class="math inline">\(H_0: \beta_4 = \beta_5 = 0\)</span> by comparing the two models using an F-test.</p></li>
+<li><p>Test <span class="math inline">\(H_0: \beta_1 = \beta_2 = 0\)</span> by comparing the parallel lines model to the model <span class="math inline">\(\mathbb{E}(y)= \beta_0+\beta_3 x_1\)</span> using an F-test.</p></li>
 <li><p>Give the design matrix and the parameter vector for both models.</p></li>
 <li><p>Test <span class="math inline">\(H_0: \beta_4 = \beta_5 = 0\)</span>, i.e.</p></li>
 </ul>
 <p><span class="math inline">\(H_0:\)</span> Model A is correct</p>
 <p><span class="math inline">\(H_A:\)</span> Model B is preferable to Model A</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 F &amp; =\frac{(\mbox{SSE}(A)-\mbox{SSE}(B))/(k-q)}{\mbox{SSE}(B)/(n-p)}\\
 &amp; =\frac{(0.5533- 0.5049)/(5-3)}{0.5049/(20-6)}\\
 &amp; =\frac{0.0242}{0.0361}\\
 &amp; = 0.67.\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p><span class="math inline">\(F_{(2,14)}(0.95) = 3.73 &gt; 0.67\)</span> so we cannot reject <span class="math inline">\(H_0\)</span>, model A is OK.</p>
 <ul>
 <li>Test <span class="math inline">\(H_0: \beta_1 = \beta_2 = 0\)</span>, i.e. let model C = one group model:</li>
@@ -548,97 +297,20 @@ F &amp; =\frac{(\mbox{SSE}(A)-\mbox{SSE}(B))/(k-q)}{\mbox{SSE}(B)/(n-p)}\\
 <p><span class="math display">\[\mathbb{E}(y)= \beta_0+ \beta_3 x_1 \]</span></p>
 <p><span class="math inline">\(H_0:\)</span> Model C is correct</p>
 <p><span class="math inline">\(H_A:\)</span> Model A is preferable to Model C</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 F &amp; =\frac{(\mbox{SSE}(C)-\mbox{SSE}(A))/(k-q)}{\mbox{SSE}(A)/(n-p)}\\
 &amp; =\frac{\mbox{SSR}(A|C)/(3-1)}{0.5533/(20-4)}\\
-&amp; =\frac{(0.0008+0.0288)/(3-1)}{0.5533/(20-4)}\\
 &amp; =\frac{0.0296/2}{0.0346}\\
 &amp; = 0.43\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>We don’t need to see the fit for Model C, take Seq SS.</p>
 <p><span class="math inline">\(F_{(2,16)}(0.95) = 3.63 &gt; 0.43\)</span> so we cannot reject <span class="math inline">\(H_0\)</span>, model C is adequate.</p>
-<p>OUTPUT: Model A</p>
-<pre><code>
-
-
-Regression Analysis: y versus x1, Z2, Z3
-
-Analysis of Variance
-
-Source      DF   Seq SS   Seq MS  F-Value  P-Value
-Regression   3  29.4215   9.8072   283.59    0.000
-x1           1  29.3919  29.3919   849.91    0.000
-Z2           1   0.0288   0.0288     0.83    0.375
-Z3           1   0.0008   0.0008     0.02    0.883
-Error       16   0.5533   0.0346
-Total       19  29.9748
-
-
-Model Summary
-
-S         R-sq       R-sq(adj)   R-sq(pred)
-0.185963  98.15%     97.81%      97.30%
-
-
-Coefficients
-
-Term        Coef  SE Coef  T-Value  P-Value   VIF
-Constant  -1.498    0.150    -9.99    0.000
-x1        0.8150   0.0445    18.30    0.000  2.58
-Z2        -0.079    0.203    -0.39    0.703  3.80
-Z3         0.024    0.158     0.15    0.883  3.45
-
-
-Regression Equation
-
-y = -1.498 +0.8150x1 -0.079Z2 +0.024Z3
-</code></pre>
-<p>OUTPUT: Model B</p>
-<pre><code>
-Regression Analysis: y versus x1, Z2, Z3, Z2*x1, Z3*x1
-
-Analysis of Variance
-
-Source      DF   Seq SS   Seq MS  F-Value  P-Value
-Regression   5  29.4699   5.8940   163.44    0.000
-x1           1  29.3919  29.3919   815.04    0.000
-Z2           1   0.0288   0.0288     0.80    0.387
-Z3           1   0.0008   0.0008     0.02    0.886
-Z2*x1        1   0.0452   0.0452     1.25    0.282
-Z3*x1        1   0.0032   0.0032     0.09    0.770
-Error       14   0.5049   0.0361
-Total       19  29.9748
-
-
-Model Summary
-
-S         R-sq       R-sq(adj)     R-sq(pred)
-0.189900  98.32%     97.71%      96.29%
-
-
-Coefficients
-
-Term        Coef  SE Coef  T-Value  P-Value     VIF
-Constant  -1.471    0.248    -5.94    0.000
-x1        0.8047   0.0867     9.28    0.000    9.37
-Z2          1.27     1.29     0.99    0.341  146.62
-Z3        -0.110    0.385    -0.29    0.779   19.70
-Z2*x1     -0.215    0.224    -0.96    0.353  166.38
-Z3*x1      0.031    0.103     0.30    0.770   41.94
-
-
-Regression Equation
-
-y = -1.471 +0.8047 x1 +1.27 Z2 -0.110 Z3-
-- 0.215Z2 x1 +0.031Z3 x1
-</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x1G &lt;-<span class="st"> </span>flying.data<span class="op">$</span>x1 <span class="op">*</span><span class="st"> </span>flying.data<span class="op">$</span>G1
-x2G &lt;-<span class="st"> </span>flying.data<span class="op">$</span>x1 <span class="op">*</span><span class="st"> </span>flying.data<span class="op">$</span>G2
-fitA &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>G1 <span class="op">+</span><span class="st"> </span>G2, <span class="dt">data =</span> flying.data)
-<span class="kw">summary</span>(fitA)</code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fitA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">flying.data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fitA</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = y ~ x1 + G1 + G2, data = flying.data)
+## lm(formula = y ~ x1 + Group, data = flying.data)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -646,81 +318,693 @@ fitA &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.49770    0.14987  -9.993 2.77e-08 ***
+## (Intercept) -1.57636    0.28724  -5.488 4.96e-05 ***
 ## x1           0.81496    0.04454  18.297 3.76e-12 ***
-## G1          -0.07866    0.20268  -0.388    0.703    
-## G2           0.02360    0.15760   0.150    0.883    
+## Group2       0.10226    0.11418   0.896    0.384    
+## Group3       0.07866    0.20268   0.388    0.703    
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 0.186 on 16 degrees of freedom
 ## Multiple R-squared:  0.9815, Adjusted R-squared:  0.9781 
 ## F-statistic: 283.6 on 3 and 16 DF,  p-value: 4.464e-14</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fitA)</code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fitA</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: y
 ##           Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    
 ## x1         1 29.3919 29.3919 849.9108 2.691e-15 ***
-## G1         1  0.0288  0.0288   0.8327    0.3750    
-## G2         1  0.0008  0.0008   0.0224    0.8828    
+## Group      2  0.0296  0.0148   0.4276    0.6593    
 ## Residuals 16  0.5533  0.0346                       
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fitB &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>G1 <span class="op">+</span><span class="st"> </span>G2 <span class="op">+</span><span class="st"> </span>x1G <span class="op">+</span><span class="st"> </span>x2G, <span class="dt">data =</span> flying.data)
-<span class="kw">summary</span>(fitB)</code></pre></div>
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fitB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span>  <span class="op">*</span> <span class="va">Group</span>, data <span class="op">=</span> <span class="va">flying.data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fitB</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = y ~ x1 + G1 + G2 + x1G + x2G, data = flying.data)
+## lm(formula = y ~ x1 * Group, data = flying.data)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
 ## -0.25152 -0.12643 -0.00954  0.08124  0.32840 
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.47052    0.24767  -5.937 3.63e-05 ***
-## x1           0.80466    0.08668   9.283 2.33e-07 ***
-## G1           1.26807    1.28542   0.987    0.341    
-## G2          -0.11032    0.38474  -0.287    0.779    
-## x1G         -0.21487    0.22362  -0.961    0.353    
-## x2G          0.03071    0.10283   0.299    0.770    
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)  -0.2024     1.2613  -0.161   0.8748  
+## x1            0.5898     0.2061   2.861   0.0126 *
+## Group2       -1.3784     1.2952  -1.064   0.3053  
+## Group3       -1.2681     1.2854  -0.987   0.3406  
+## x1:Group2     0.2456     0.2134   1.151   0.2691  
+## x1:Group3     0.2149     0.2236   0.961   0.3529  
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 0.1899 on 14 degrees of freedom
 ## Multiple R-squared:  0.9832, Adjusted R-squared:  0.9771 
 ## F-statistic: 163.4 on 5 and 14 DF,  p-value: 6.696e-12</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fitB)</code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fitB</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: y
 ##           Df  Sum Sq Mean Sq  F value    Pr(&gt;F)    
 ## x1         1 29.3919 29.3919 815.0383 8.265e-14 ***
-## G1         1  0.0288  0.0288   0.7986    0.3866    
-## G2         1  0.0008  0.0008   0.0215    0.8855    
-## x1G        1  0.0452  0.0452   1.2543    0.2816    
-## x2G        1  0.0032  0.0032   0.0892    0.7696    
+## Group      2  0.0296  0.0148   0.4100    0.6713    
+## x1:Group   2  0.0484  0.0242   0.6718    0.5265    
 ## Residuals 14  0.5049  0.0361                       
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fitA, fitB)</code></pre></div>
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fitA</span>, <span class="va">fitB</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
-## Model 1: y ~ x1 + G1 + G2
-## Model 2: y ~ x1 + G1 + G2 + x1G + x2G
+## Model 1: y ~ x1 + Group
+## Model 2: y ~ x1 * Group
 ##   Res.Df     RSS Df Sum of Sq      F Pr(&gt;F)
 ## 1     16 0.55332                           
 ## 2     14 0.50487  2   0.04845 0.6718 0.5265</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fitC &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1, <span class="dt">data =</span> flying.data)
-<span class="co">#summary(fitC)</span>
-<span class="co">#anova(fitC)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-117-1.png" width="336" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-117-2.png" width="336" style="display: block; margin: auto;" /><img src="_main_files/figure-html/unnamed-chunk-117-3.png" width="336" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fitC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span>, data <span class="op">=</span> <span class="va">flying.data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fitC</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1, data = flying.data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.21143 -0.14422 -0.04284  0.09681  0.37695 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -1.46826    0.13716  -10.71  3.1e-09 ***
+## x1           0.80861    0.02684   30.13  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.18 on 18 degrees of freedom
+## Multiple R-squared:  0.9806, Adjusted R-squared:  0.9795 
+## F-statistic: 907.6 on 1 and 18 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fitC</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: y
+##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## x1         1 29.3919 29.3919  907.64 &lt; 2.2e-16 ***
+## Residuals 18  0.5829  0.0324                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<p><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-146-1.png" width="336" style="display: block; margin: auto;"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-146-2.png" width="336" style="display: block; margin: auto;"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-146-3.png" width="336" style="display: block; margin: auto;"></p>
+</div>
+<div id="two-way-anova-two-categorical-predictors" class="section level2" number="7.3">
+<h2>
+<span class="header-section-number">7.3</span> Two way anova: two categorical predictors<a class="anchor" aria-label="anchor" href="#two-way-anova-two-categorical-predictors"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><p>Two way analysis of variance (ANOVA) without interactions is the same a regression with two categorical explanatory variables.</p></li>
+<li><p>Two way analysis of variance (ANOVA) with interactions is the same a regression with two categorical explanatory variables plus a third categorical explanatory variable for the interaction.</p></li>
+<li><p>Remember that when the explanatory variable is categorical, conceptually it is recoded using dummy or indicator variables.</p></li>
+</ul>
+<p>Typically:</p>
+<ul>
+<li>Y = response.</li>
+<li>Two predictors A and B are categorical, with <span class="math inline">\(a\)</span> levels of A and <span class="math inline">\(b\)</span> levels of B.</li>
+</ul>
+<div id="example-paint-adhesion" class="section level3" number="7.3.1">
+<h3>
+<span class="header-section-number">7.3.1</span> Example: paint adhesion<a class="anchor" aria-label="anchor" href="#example-paint-adhesion"><i class="fas fa-link"></i></a>
+</h3>
+<p>In an experiment to improve paint adhesion, the factors examined were:</p>
+<ul>
+<li>A = application method (<span class="math inline">\(a = 2\)</span>).</li>
+<li>B = paint type (<span class="math inline">\(b = 3\)</span>),</li>
+</ul>
+<p>It is not correct to find the best paint and then separately find the best application method because that may not be the best overall combination.</p>
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">paint</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"paint.csv"</span><span class="op">)</span>, header <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">paint</span><span class="op">$</span><span class="va">Primer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">paint</span><span class="op">$</span><span class="va">Primer</span><span class="op">)</span></span>
+<span><span class="va">paint</span><span class="op">$</span><span class="va">Method</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">paint</span><span class="op">$</span><span class="va">Method</span><span class="op">)</span></span>
+<span><span class="va">paint</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Primer</span>, y <span class="op">=</span> <span class="va">Adhesion</span>, colour <span class="op">=</span> <span class="va">Method</span>, group <span class="op">=</span> <span class="va">Method</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-147-1.png" width="672"></div>
+<ul>
+<li><p>This is an example of experimental data, with <span class="math inline">\(3 \times 2\)</span> experimental conditions. In this example there are 3 replicates for each experimental condition, i.e there are 18 observations in total. The dataset could be summarized in a 3 by 2 table of means.</p></li>
+<li><p>In experimental data, the experimenter will often set up the data with equal number of observations per cell. This is described as <strong>balanced</strong> data.</p></li>
+<li><p>Observational data is unlikely to be <strong>balanced</strong>.</p></li>
+</ul>
+</div>
+<div id="notation" class="section level3" number="7.3.2">
+<h3>
+<span class="header-section-number">7.3.2</span> Notation<a class="anchor" aria-label="anchor" href="#notation"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><p>Let <span class="math inline">\(Y_{ijk}\)</span> be the <span class="math inline">\(k\)</span>th response at level <span class="math inline">\(i\)</span> of A and <span class="math inline">\(j\)</span> of B.</p></li>
+<li><p>Let <span class="math inline">\(\mu_{ij} = \mathbb{E}(Y_{ijk})\)</span> be the mean response at level <span class="math inline">\(i\)</span> of A and <span class="math inline">\(j\)</span> of B.</p></li>
+</ul>
+<p>The model is</p>
+<p><span class="math display">\[Y_{ijk} = \mu_{ij} + \epsilon_{ijk}\]</span></p>
+<p>where <span class="math inline">\(\epsilon_{ijk} \sim N(0, \sigma^2)\)</span> and are independent.</p>
+<p>This is the same as a one way ANOVA model with a single categorical predictor with <span class="math inline">\(ab\)</span> levels.</p>
+<p>The above is known as the <strong>means model</strong>.</p>
+<p>It is convenient to decompose <span class="math inline">\(\mu_{ij}\)</span> into</p>
+<p><span class="math display">\[\mu_{ij} = \mu + \alpha_i + \beta_j + \gamma_{ij}\]</span></p>
+<p>so that</p>
+<p><span class="math display">\[Y_{ijk} = \mu + \alpha_i + \beta_j + \gamma_{ij}  + \epsilon_{ijk}\]</span></p>
+<p>We can think of these parameters as:</p>
+<ul>
+<li><p><span class="math inline">\(\mu\)</span> is the overall level, or mean</p></li>
+<li><p><span class="math inline">\(\alpha_i\)</span> is the additional effect of level <span class="math inline">\(i\)</span> of A</p></li>
+<li><p><span class="math inline">\(\beta_i\)</span> is the additional effect of level <span class="math inline">\(j\)</span> of B</p></li>
+<li><p><span class="math inline">\(\gamma_{ij}\)</span> is the interaction effect of level <span class="math inline">\(i\)</span> of A and <span class="math inline">\(j\)</span> of B.</p></li>
+</ul>
+<p>The above is known as the <strong>effects model</strong>.</p>
+<p>However, the effects model is overparameterized.</p>
+<p>Means model has <span class="math inline">\(ab\)</span> <span class="math inline">\(\mu_{ij}\)</span> parameters, and in the effects model parameterisation, we express these <span class="math inline">\(\mu_{ij}\)</span> in terms of <span class="math inline">\(1+a+b+ ab\)</span> parameters.</p>
+<p>Thus we need to impose <span class="math inline">\(1+a+b\)</span> identifability constraints.</p>
+<p>Standard identifiability constraints are:
+<span class="math inline">\(\sum_i \alpha_i = 0\)</span>, <span class="math inline">\(\sum_j \beta_j = 0\)</span>, <span class="math inline">\(\sum_i \gamma_{ij} = 0\)</span> and <span class="math inline">\(\sum_j \gamma_{ij} = 0\)</span>.</p>
+</div>
+<div id="two-way-anova-in-regression-setup" class="section level3" number="7.3.3">
+<h3>
+<span class="header-section-number">7.3.3</span> Two way ANOVA in regression setup<a class="anchor" aria-label="anchor" href="#two-way-anova-in-regression-setup"><i class="fas fa-link"></i></a>
+</h3>
+<p>Let <span class="math inline">\(A_i\)</span> be indicator for level <span class="math inline">\(i\)</span> of A.</p>
+<p>Let <span class="math inline">\(B_j\)</span> be indicator for level <span class="math inline">\(j\)</span> of B.</p>
+<p>Then <span class="math inline">\(A_i B_j\)</span> is an indicator for when A is at level <span class="math inline">\(i\)</span>, B is at level <span class="math inline">\(j\)</span>.</p>
+<p>Supposing <span class="math inline">\(a=2\)</span>, <span class="math inline">\(b=3\)</span>, we can rewrite the <strong>effects model</strong> as
+<span class="math display">\[\begin{align}
+y = \mu &amp;+  \alpha_1A_1+  \alpha_2A_2  \notag \\
+&amp;+ \beta_1B_1+  \beta_2B_2 +  \beta_3B_3   \notag \\
+&amp;+ \gamma_{11}A_1B_1 + \gamma_{12}A_1B_2 + \gamma_{13}A_1B_3 + \gamma_{21}A_2B_1 + \gamma_{22}A_2B_2 + \gamma_{23}A_2B_3 \\
+&amp; + \epsilon
+\end{align}\]</span></p>
+<p>This regression model is over-parameterized.</p>
+<p>If we construct the <span class="math inline">\(\mathbf{X}\)</span> matrix, the columns are not linearly independent.</p>
+<p>This means that the <span class="math inline">\(\mathbf{X}^T \mathbf{X}\)</span> matrix does not have full rank and its inverse does not exist.</p>
+<p>In this context, the obvious identifiability constraints are to set one of the <span class="math inline">\(\alpha\)</span>’s to zero, i.e. <span class="math inline">\(\alpha_1 =0\)</span>. Also <span class="math inline">\(\beta_1 =0\)</span> and <span class="math inline">\(0 = \gamma_{11}= \gamma_{12}=\gamma_{13}=\gamma_{21}\)</span>, basically any parameter with an index of 1.</p>
+<p>Then the model becomes
+<span class="math display">\[\begin{align}
+y = \mu &amp;+   \alpha_2A_2  \notag \\
+&amp;+   \beta_2B_2 +  \beta_3B_3   \notag \\
+&amp; + \gamma_{22}A_2B_2 + \gamma_{23}A_2B_3 \\
+&amp; + \epsilon
+\end{align}\]</span></p>
+<p>which has the required number of parameters.</p>
+<p>Note that the parameter interpretation depends on the constraints chosen. Here for example
+the cell means are</p>
+</div>
+<div id="interaction-plots" class="section level3" number="7.3.4">
+<h3>
+<span class="header-section-number">7.3.4</span> Interaction plots:<a class="anchor" aria-label="anchor" href="#interaction-plots"><i class="fas fa-link"></i></a>
+</h3>
+<p>When we plot means of data, we can assess whether the lines connecting means are parallel or not, indicating interaction or not.</p>
+<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">paint_means</span> <span class="op">&lt;-</span> <span class="va">paint</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">Primer</span>, <span class="va">Method</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">Adhesion</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va">gridExtra</span><span class="op">)</span></span>
+<span><span class="va">plot1</span> <span class="op">&lt;-</span> <span class="va">paint_means</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Primer</span>, y <span class="op">=</span> <span class="va">Means</span>, colour <span class="op">=</span> <span class="va">Method</span>, group <span class="op">=</span> <span class="va">Method</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">plot2</span> <span class="op">&lt;-</span><span class="va">paint_means</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Method</span>, y <span class="op">=</span> <span class="va">Means</span>, colour <span class="op">=</span> <span class="va">Primer</span>, group <span class="op">=</span> <span class="va">Primer</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/gridExtra/man/arrangeGrob.html">grid.arrange</a></span><span class="op">(</span><span class="va">plot1</span>, <span class="va">plot2</span>, ncol<span class="op">=</span><span class="fl">2</span><span class="op">)</span> </span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-148-1.png" width="672"></div>
+</div>
+<div id="testing-hypotheses" class="section level3" number="7.3.5">
+<h3>
+<span class="header-section-number">7.3.5</span> Testing hypotheses<a class="anchor" aria-label="anchor" href="#testing-hypotheses"><i class="fas fa-link"></i></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li><p>Interactions: Test <span class="math inline">\(H_0: \gamma_{ij} = 0\)</span>, all <span class="math inline">\(i,j\)</span>.</p></li>
+<li><p>Main effect of A: Test <span class="math inline">\(H_0: \alpha_{i} = 0\)</span>, all <span class="math inline">\(i\)</span>.</p></li>
+<li><p>Main effect of B: Test <span class="math inline">\(H_0: \beta_{j} = 0\)</span>, all <span class="math inline">\(j\)</span>.</p></li>
+</ol>
+<p>Perform (1) first. Only perform (2) and (3) if there is no evidence of interaction. It does not make sense to test for main effects in the
+presence of interaction.</p>
+</div>
+<div id="two-way-anova-in-r" class="section level3" number="7.3.6">
+<h3>
+<span class="header-section-number">7.3.6</span> Two way ANOVA in R<a class="anchor" aria-label="anchor" href="#two-way-anova-in-r"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Adhesion</span> <span class="op">~</span> <span class="va">Primer</span> <span class="op">*</span> <span class="va">Method</span>, data <span class="op">=</span> <span class="va">paint</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##     (Intercept)         Primer2         Primer3         Method2 Primer2:Method2 
+##       4.2666667       1.0333333      -0.4333333       1.0333333      -0.2666667 
+## Primer3:Method2 
+##       0.3000000</code></pre>
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Adhesion
+##               Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Primer         2 4.5811  2.2906 27.8581 3.097e-05 ***
+## Method         1 4.9089  4.9089 59.7027 5.357e-06 ***
+## Primer:Method  2 0.2411  0.1206  1.4662    0.2693    
+## Residuals     12 0.9867  0.0822                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<p>Is there evidence of an interaction between primer and method?</p>
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit1</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   (Intercept) Primer2 Primer3 Method2 Primer2:Method2 Primer3:Method2
+## 1           1       0       0       0               0               0
+## 2           1       0       0       0               0               0
+## 3           1       0       0       0               0               0
+## 4           1       1       0       0               0               0
+## 5           1       1       0       0               0               0
+## 6           1       1       0       0               0               0</code></pre>
+<p>Refit the model:</p>
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Adhesion</span> <span class="op">~</span> <span class="va">Primer</span> <span class="op">+</span> <span class="va">Method</span>, data <span class="op">=</span> <span class="va">paint</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## (Intercept)     Primer2     Primer3     Method2 
+##   4.2611111   0.9000000  -0.2833333   1.0444444</code></pre>
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Adhesion
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Primer     2 4.5811  2.2906  26.119 1.884e-05 ***
+## Method     1 4.9089  4.9089  55.975 2.960e-06 ***
+## Residuals 14 1.2278  0.0877                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<p>Based on this model, what combination of primer and method are the best to use?</p>
+<div class="sourceCode" id="cb256"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit2</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">broom</span><span class="fu">::</span><span class="fu"><a href="https://generics.r-lib.org/reference/augment.html">augment</a></span><span class="op">(</span><span class="va">paint</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Primer</span>, y <span class="op">=</span> <span class="va">Adhesion</span>, col <span class="op">=</span> <span class="va">Method</span>, group <span class="op">=</span> <span class="va">Method</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Primer</span>, y <span class="op">=</span> <span class="va">.fitted</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-152-1.png" width="672"></div>
 </div>
 </div>
-<div id="quadratic-terms-and-interactions" class="section level2">
-<h2><span class="header-section-number">7.3</span> Quadratic terms and interactions</h2>
-<p>Example from <span class="citation">Ramsey and Schafer (<a href="#ref-ramsey2002statistical">2002</a>)</span> pg 252. The data on corn yields and rainfall are in `RainfallData.csv’, or library(Sleuth3) in ‘ex0915’. Variables:</p>
+<div id="polynomial-regression" class="section level2" number="7.4">
+<h2>
+<span class="header-section-number">7.4</span> Polynomial regression<a class="anchor" aria-label="anchor" href="#polynomial-regression"><i class="fas fa-link"></i></a>
+</h2>
+<p>Data on paper strength and percent of hardwood in the pulp batch from package <span class="citation">(<a href="references.html#ref-BSDA">Arnholt and Evans 2023</a>)</span>.</p>
+<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"hardwood.rda"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dr</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Rows: 19
+## Columns: 2
+## $ tensile  &lt;dbl&gt; 6.3, 11.1, 20.0, 24.0, 26.1, 30.0, 33.8, 34.0, 38.1, 39.9, 42…
+## $ hardwood &lt;dbl&gt; 1.0, 1.5, 2.0, 3.0, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 8.0, 9…</code></pre>
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dr</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hardwood</span>, y <span class="op">=</span> <span class="va">tensile</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-153-1.png" width="672"></div>
+<div class="sourceCode" id="cb260"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">tensile</span> <span class="op">~</span> <span class="va">hardwood</span>, data <span class="op">=</span> <span class="va">dr</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = tensile ~ hardwood, data = dr)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -25.986  -3.749   2.938   7.675  15.840 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)  21.3213     5.4302   3.926  0.00109 **
+## hardwood      1.7710     0.6478   2.734  0.01414 * 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 11.82 on 17 degrees of freedom
+## Multiple R-squared:  0.3054, Adjusted R-squared:  0.2645 
+## F-statistic: 7.474 on 1 and 17 DF,  p-value: 0.01414</code></pre>
+<p>The straight line does not fit the data. The regression is significant but this does not tell you about goodness of fit.</p>
+<div id="model-2-quadratic-regression" class="section level3" number="7.4.1">
+<h3>
+<span class="header-section-number">7.4.1</span> Model 2: Quadratic regression<a class="anchor" aria-label="anchor" href="#model-2-quadratic-regression"><i class="fas fa-link"></i></a>
+</h3>
+<p>Include <span class="math inline">\(x^2\)</span> as a predictor.</p>
+<div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">tensile</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">hardwood</span>,<span class="fl">2</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dr</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = tensile ~ poly(hardwood, 2), data = dr)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.8503 -3.2482 -0.7267  4.1350  6.5506 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)          34.184      1.014  33.709 2.73e-16 ***
+## poly(hardwood, 2)1   32.302      4.420   7.308 1.76e-06 ***
+## poly(hardwood, 2)2  -45.396      4.420 -10.270 1.89e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.42 on 16 degrees of freedom
+## Multiple R-squared:  0.9085, Adjusted R-squared:  0.8971 
+## F-statistic: 79.43 on 2 and 16 DF,  p-value: 4.912e-09</code></pre>
+<p>Comment: the quadratic model is a better fit. The quadratic term is significant.</p>
+<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fit2</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-155-1.png" width="672"></div>
+<p>Note: we can specify this model in two ways: using <code>poly</code> and <span class="math inline">\(I(x,2)\)</span>. However, <span class="math inline">\(x\)</span>, <span class="math inline">\(I(x^2)\)</span> etc will be correlated and correlated variables can cause problems. The use of poly() lets you avoid this by producing orthogonal polynomials.</p>
+<div class="sourceCode" id="cb265"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit2b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">tensile</span> <span class="op">~</span> <span class="va">hardwood</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">hardwood</span> <span class="op">^</span><span class="fl">2</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dr</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit2b</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = tensile ~ hardwood + I(hardwood^2), data = dr)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.8503 -3.2482 -0.7267  4.1350  6.5506 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   -6.67419    3.39971  -1.963   0.0673 .  
+## hardwood      11.76401    1.00278  11.731 2.85e-09 ***
+## I(hardwood^2) -0.63455    0.06179 -10.270 1.89e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 4.42 on 16 degrees of freedom
+## Multiple R-squared:  0.9085, Adjusted R-squared:  0.8971 
+## F-statistic: 79.43 on 2 and 16 DF,  p-value: 4.912e-09</code></pre>
+<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dr</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hardwood</span>, y <span class="op">=</span> <span class="va">tensile</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit2b</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-156-1.png" width="672"></div>
+</div>
+<div id="model-3-cubic-regression" class="section level3" number="7.4.2">
+<h3>
+<span class="header-section-number">7.4.2</span> Model 3: Cubic regression<a class="anchor" aria-label="anchor" href="#model-3-cubic-regression"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb268"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">tensile</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">hardwood</span>,<span class="fl">3</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dr</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = tensile ~ poly(hardwood, 3), data = dr)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.6250 -1.6109  0.0413  1.5892  5.0216 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)         34.1842     0.5931  57.641  &lt; 2e-16 ***
+## poly(hardwood, 3)1  32.3021     2.5850  12.496 2.48e-09 ***
+## poly(hardwood, 3)2 -45.3963     2.5850 -17.561 2.06e-11 ***
+## poly(hardwood, 3)3 -14.5740     2.5850  -5.638 4.72e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.585 on 15 degrees of freedom
+## Multiple R-squared:  0.9707, Adjusted R-squared:  0.9648 
+## F-statistic: 165.4 on 3 and 15 DF,  p-value: 1.025e-11</code></pre>
+<p>Comment: the cubic model is a better fit. The quadratic term is significant.</p>
+<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fit3</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-158-1.png" width="672"></div>
+<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dr</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hardwood</span>, y <span class="op">=</span> <span class="va">tensile</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-159-1.png" width="672"></div>
+</div>
+<div id="model-4-quartic" class="section level3" number="7.4.3">
+<h3>
+<span class="header-section-number">7.4.3</span> Model 4: Quartic<a class="anchor" aria-label="anchor" href="#model-4-quartic"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">tensile</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">hardwood</span>,<span class="fl">4</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">dr</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit4</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = tensile ~ poly(hardwood, 4), data = dr)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.1384 -1.0550 -0.3203  1.0779  4.5030 
+## 
+## Coefficients:
+##                    Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)         34.1842     0.5824  58.696  &lt; 2e-16 ***
+## poly(hardwood, 4)1  32.3021     2.5386  12.724 4.39e-09 ***
+## poly(hardwood, 4)2 -45.3963     2.5386 -17.883 4.87e-11 ***
+## poly(hardwood, 4)3 -14.5740     2.5386  -5.741 5.10e-05 ***
+## poly(hardwood, 4)4  -3.1647     2.5386  -1.247    0.233    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.539 on 14 degrees of freedom
+## Multiple R-squared:  0.9736, Adjusted R-squared:  0.9661 
+## F-statistic: 129.1 on 4 and 14 DF,  p-value: 6.994e-11</code></pre>
+<p>Comment: the quartic term is not significant.</p>
+<div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">fit4</span>,<span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-161-1.png" width="672"></div>
+<div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dr</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hardwood</span>, y <span class="op">=</span> <span class="va">tensile</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit4</span><span class="op">)</span><span class="op">)</span>, col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-161-2.png" width="672"></div>
+</div>
+</div>
+<div id="confounding-example" class="section level2" number="7.5">
+<h2>
+<span class="header-section-number">7.5</span> Confounding example<a class="anchor" aria-label="anchor" href="#confounding-example"><i class="fas fa-link"></i></a>
+</h2>
+<!-- https://natsiopoulos.netlify.app/post/anova-types/anova-types/ -->
+<p>In autumn, small winged fruit called samara fall off maple trees, spinning as they go. A forest scientist studied the relationship between how fast they fell and their “disk loading” (a quantity based on their size and weight).
+The data give the loadings and fall velocities for fruit from three trees. From <span class="citation">Ryan, Joiner, and Rogosa (<a href="references.html#ref-MTB">1994</a>)</span>.</p>
+<ul>
+<li>Y = Velocity</li>
+<li>X = Load</li>
+<li>A = Tree: 3 levels</li>
+</ul>
+<div class="sourceCode" id="cb276"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"samara.txt"</span><span class="op">)</span>, header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Rows: 36
+## Columns: 3
+## $ Tree     &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2…
+## $ Load     &lt;dbl&gt; 0.239, 0.208, 0.223, 0.224, 0.246, 0.213, 0.198, 0.219, 0.241…
+## $ Velocity &lt;dbl&gt; 1.34, 1.06, 1.14, 1.13, 1.35, 1.23, 1.23, 1.15, 1.25, 1.24, 1…</code></pre>
+<div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tree</span><span class="op">$</span><span class="va">Tree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">tree</span><span class="op">$</span><span class="va">Tree</span><span class="op">)</span></span>
+<span><span class="va">tree</span> <span class="op">&lt;-</span> <span class="va">tree</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/stats/complete.cases.html">complete.cases</a></span><span class="op">(</span><span class="va">tree</span><span class="op">)</span>,<span class="op">]</span></span></code></pre></div>
+<p>Some models we could fit:</p>
+<ul>
+<li>Different intercepts, no slope</li>
+</ul>
+<p><span class="math display">\[y = \beta_0 +  \beta_1z_2 +   \beta_2z_3  +  \epsilon\]</span></p>
+<ul>
+<li>Common slope and intercept</li>
+</ul>
+<p><span class="math display">\[y = \beta_0 +  \beta_1x + \epsilon\]</span></p>
+<ul>
+<li>Common slope</li>
+</ul>
+<p><span class="math display">\[y = \beta_0 +  \beta_1x +  \beta_2z_2 +   \beta_3z_3  +  \epsilon\]</span></p>
+<ul>
+<li>Separate lines</li>
+</ul>
+<p><span class="math display">\[y = \beta_0 +  \beta_1x +  \beta_2z_2 +   \beta_3z_3 + \\
+\beta_4 x \times z_2  + \beta_5 x \times z_3+ \epsilon\]</span></p>
+<p>Here <span class="math inline">\(z_i\)</span> is an indicator variable for the <span class="math inline">\(i\)</span>th level of the factor A.</p>
+<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit0</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Velocity</span><span class="op">~</span><span class="va">Tree</span>, data<span class="op">=</span><span class="va">tree</span><span class="op">)</span></span>
+<span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Tree</span>, y <span class="op">=</span> <span class="va">Velocity</span>, color <span class="op">=</span> <span class="va">Tree</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit0</span><span class="op">)</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">3</span>, col<span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-163-1.png" width="672"></div>
+<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit0</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Velocity ~ Tree, data = tree)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.300000 -0.082500  0.005833  0.087500  0.250000 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.23417    0.03676  33.571  &lt; 2e-16 ***
+## Tree2       -0.05417    0.05316  -1.019    0.316    
+## Tree3       -0.28333    0.05199  -5.450 5.37e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.1274 on 32 degrees of freedom
+## Multiple R-squared:  0.5097, Adjusted R-squared:  0.479 
+## F-statistic: 16.63 on 2 and 32 DF,  p-value: 1.117e-05</code></pre>
+<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Velocity</span><span class="op">~</span><span class="va">Load</span>, data<span class="op">=</span><span class="va">tree</span><span class="op">)</span></span>
+<span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Load</span>, y <span class="op">=</span> <span class="va">Velocity</span>, color <span class="op">=</span> <span class="va">Tree</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-163-2.png" width="672"></div>
+<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Velocity</span><span class="op">~</span><span class="va">Load</span><span class="op">+</span><span class="va">Tree</span>, data<span class="op">=</span><span class="va">tree</span><span class="op">)</span></span>
+<span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Load</span>, y <span class="op">=</span> <span class="va">Velocity</span>, color <span class="op">=</span> <span class="va">Tree</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-163-3.png" width="672"></div>
+<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Velocity</span><span class="op">~</span><span class="va">Tree</span> <span class="op">*</span> <span class="va">Load</span>, data<span class="op">=</span><span class="va">tree</span><span class="op">)</span></span>
+<span><span class="va">tree</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Load</span>, y <span class="op">=</span> <span class="va">Velocity</span>, color <span class="op">=</span> <span class="va">Tree</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-163-4.png" width="672"></div>
+<p>From the plots above we can see that the velocity is different between the trees. Particularly, tree 3 seems to have the lowest velocity. We can also see that tree 2 has a wide range of velocities.</p>
+<p>Is this difference in velocity because of the size of the samara fruits or the tree also affects it? Would we expect a samara of specific load to fall with the same velocity from tree 1 as it would have fallen from tree 3?</p>
+<p>We can answer these questions by comparing the models above.</p>
+<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Velocity ~ Tree * Load, data = tree)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.120023 -0.049465 -0.001298  0.049938  0.145571 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)   0.5414     0.2632   2.057   0.0488 *
+## Tree2        -0.8408     0.3356  -2.505   0.0181 *
+## Tree3        -0.2987     0.4454  -0.671   0.5078  
+## Load          3.0629     1.1599   2.641   0.0132 *
+## Tree2:Load    3.7343     1.5000   2.490   0.0188 *
+## Tree3:Load    0.8205     2.2837   0.359   0.7220  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.07554 on 29 degrees of freedom
+## Multiple R-squared:  0.8436, Adjusted R-squared:  0.8167 
+## F-statistic: 31.29 on 5 and 29 DF,  p-value: 7.656e-11</code></pre>
+<p><span class="math inline">\(\beta_5\)</span> is the difference in the change in mean circumference associated with a 1 unit increase in Load for tree 3 as opposed to tree 1.</p>
+<p>Write down a 95% confidence interval for <span class="math inline">\(\beta_5\)</span>.</p>
+<p>What is the estimated change in mean circumference associated with a 1 unit increase in Load for tree 3?</p>
+<div id="comparing-models-2-and-3" class="section level3" number="7.5.1">
+<h3>
+<span class="header-section-number">7.5.1</span> Comparing models 2 and 3:<a class="anchor" aria-label="anchor" href="#comparing-models-2-and-3"><i class="fas fa-link"></i></a>
+</h3>
+<p>Test <span class="math inline">\(H_0: \beta_4= \beta_5 = 0\)</span> versus <span class="math inline">\(H_a: \beta_4, \beta_5\)</span> are not both zero.</p>
+<p>If you do not reject <span class="math inline">\(H_0\)</span>, then use model 2 to describe the association between Velocity, Load and tree.</p>
+<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit2</span>, <span class="va">fit3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: Velocity ~ Load + Tree
+## Model 2: Velocity ~ Tree * Load
+##   Res.Df     RSS Df Sum of Sq     F  Pr(&gt;F)  
+## 1     31 0.20344                             
+## 2     29 0.16549  2  0.037949 3.325 0.05011 .
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div id="comparing-models-1-and-2" class="section level3" number="7.5.2">
+<h3>
+<span class="header-section-number">7.5.2</span> Comparing models 1 and 2:<a class="anchor" aria-label="anchor" href="#comparing-models-1-and-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Starting from model 2 as the full model, we can see if model 1 is an appropriate simplification:</p>
+<p>Test <span class="math inline">\(H_0: \beta_2= \beta_3 = 0\)</span> versus <span class="math inline">\(H_a: \beta_2, \beta_3\)</span> are not both zero.</p>
+<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit1</span>, <span class="va">fit2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: Velocity ~ Load
+## Model 2: Velocity ~ Load + Tree
+##   Res.Df     RSS Df Sum of Sq      F Pr(&gt;F)
+## 1     33 0.21476                           
+## 2     31 0.20344  2  0.011322 0.8626 0.4319</code></pre>
+<p>In conclusion, we found out that the Tree doesn’t affect the velocity, only the Load does. So for samara fruits of the same Load, the velocity would be the same for every tree. The reason why the velocity in the Tree 3 is smaller is because it has smaller fruits.</p>
+</div>
+<div id="type-1-and-type-2-sums-of-squares" class="section level3" number="7.5.3">
+<h3>
+<span class="header-section-number">7.5.3</span> Type 1 and type 2 sums of squares<a class="anchor" aria-label="anchor" href="#type-1-and-type-2-sums-of-squares"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Velocity
+##           Df  Sum Sq  Mean Sq F value    Pr(&gt;F)    
+## Tree       2 0.53942 0.269708  47.262 7.488e-10 ***
+## Load       1 0.31554 0.315542  55.294 3.406e-08 ***
+## Tree:Load  2 0.03795 0.018975   3.325   0.05011 .  
+## Residuals 29 0.16549 0.005707                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">car</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/car/man/Anova.html">Anova</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: Velocity
+##             Sum Sq Df F value    Pr(&gt;F)    
+## Tree      0.011322  2   0.992   0.38306    
+## Load      0.315542  1  55.294 3.406e-08 ***
+## Tree:Load 0.037949  2   3.325   0.05011 .  
+## Residuals 0.165492 29                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div id="another-factor" class="section level3" number="7.5.4">
+<h3>
+<span class="header-section-number">7.5.4</span> Another factor<a class="anchor" aria-label="anchor" href="#another-factor"><i class="fas fa-link"></i></a>
+</h3>
+<p>Suppose the data was collected over 2 Days, and it was suspected that day might also impact on the relationship between Load and Velocity.</p>
+<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tree</span><span class="op">$</span><span class="va">Day</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, length<span class="op">=</span><span class="fl">35</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fit4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Velocity</span> <span class="op">~</span>  <span class="va">Tree</span><span class="op">*</span><span class="va">Load</span><span class="op">*</span><span class="va">Day</span>, data<span class="op">=</span><span class="va">tree</span><span class="op">)</span></span>
+<span><span class="va">tree</span><span class="op">$</span><span class="va">fit4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="va">fit4</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">tree</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Load</span>, y <span class="op">=</span> <span class="va">Velocity</span>, color <span class="op">=</span> <span class="va">Tree</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">Day</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">stat_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-168-1.png" width="672"></div>
+<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># ggplot(tree, aes(x = Load, y = Velocity, color = Tree)) + geom_point()+  facet_wrap(~Day)+ geom_line(aes(y=fit4 )) # the same</span></span></code></pre></div>
+<ul>
+<li><p>This model allows for a 3-way interaction between Load, Tree and Day.</p></li>
+<li><p>We can say that the interaction between Tree and Load varies with Day, or equivalently, that the interaction between Load and Day varies with Tree.</p></li>
+<li><p>To assess whether Day may be omitted, compare to fit3:</p></li>
+</ul>
+<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit3</span>, <span class="va">fit4</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: Velocity ~ Tree * Load
+## Model 2: Velocity ~ Tree * Load * Day
+##   Res.Df     RSS Df Sum of Sq      F Pr(&gt;F)
+## 1     29 0.16549                           
+## 2     23 0.14061  6  0.024887 0.6785 0.6684</code></pre>
+</div>
+</div>
+<div id="quadratic-terms-and-interactions" class="section level2" number="7.6">
+<h2>
+<span class="header-section-number">7.6</span> Quadratic terms and interactions<a class="anchor" aria-label="anchor" href="#quadratic-terms-and-interactions"><i class="fas fa-link"></i></a>
+</h2>
+<p>Example from <span class="citation">Ramsey and Schafer (<a href="references.html#ref-ramsey2002statistical">2002</a>)</span> pg 252. The data on corn yields and rainfall are in `RainfallData.csv’, or library(Sleuth3) in ‘ex0915’.
+Variables:</p>
 <ul>
 <li>Yield: corn yield (bushels/acre)</li>
 <li>Rainfall: rainfall (inches/year)</li>
@@ -728,13 +1012,275 @@ fitA &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 </ul>
 <p>Link: <a href="http://www.rpubs.com/kdomijan/332466" class="uri">http://www.rpubs.com/kdomijan/332466</a></p>
 </div>
-<div id="an-example-with-two-continuous-and-two-categorical-predictors" class="section level2">
-<h2><span class="header-section-number">7.4</span> An example with two continuous and two categorical predictors</h2>
-<p>FEV data - for a full description see <a href="http://ww2.amstat.org/publications/jse/v13n2/datasets.kahn.html" class="uri">http://ww2.amstat.org/publications/jse/v13n2/datasets.kahn.html</a>.</p>
+<div id="an-example-with-two-continuous-and-two-categorical-predictors" class="section level2" number="7.7">
+<h2>
+<span class="header-section-number">7.7</span> An example with two continuous and two categorical predictors<a class="anchor" aria-label="anchor" href="#an-example-with-two-continuous-and-two-categorical-predictors"><i class="fas fa-link"></i></a>
+</h2>
+<p>FEV data - for a full description see <span class="citation">Kahn (<a href="references.html#ref-Kahn01012005">2005</a>)</span>.</p>
 <p>Response variable: fev (forced expiratory volume) measures respiratory function.</p>
 <p>Predictors: age, height, gender and smoke.</p>
-<p>The dataset is in <code>library(covreg)</code>.</p>
-<p>Link: <a href="http://www.rpubs.com/kdomijan/325930" class="uri">http://www.rpubs.com/kdomijan/325930</a></p>
+<p>The dataset is in <code><a href="https://rdrr.io/r/base/library.html">library(covreg)</a></code>.</p>
+<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="fu">here</span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"fev.rda"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">fev</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Rows: 654
+## Columns: 5
+## $ age    &lt;int&gt; 9, 8, 7, 9, 9, 8, 6, 6, 8, 9, 6, 8, 8, 8, 8, 7, 5, 6, 9, 9, 5, …
+## $ fev    &lt;dbl&gt; 1.708, 1.724, 1.720, 1.558, 1.895, 2.336, 1.919, 1.415, 1.987, …
+## $ height &lt;dbl&gt; 57.0, 67.5, 54.5, 53.0, 57.0, 61.0, 58.0, 56.0, 58.5, 60.0, 53.…
+## $ male   &lt;int&gt; 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, …
+## $ smoke  &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</code></pre>
+<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fev</span> <span class="op">&lt;-</span> <span class="va">fev</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>male <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">male</span><span class="op">)</span>, </span>
+<span>                      smoke <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">smoke</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Does smoking affect pulmonary function?</p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-171-1.png" width="672"></div>
+<p>From this plot it appers that smoking improves lung function! However, in the plot, smoking is not adjusted for age and body size.</p>
+<p>Let’s visualize the effect of smoking on fev accounting for age and height:</p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-172-1.png" width="672"></div>
+<ul>
+<li><p>Smokers (blue) tend to have lower fev compared to individuals of same age/height.</p></li>
+<li><p>Younger children are less likely to be smokers, but more likely to have have lower fev than older (and bigger) ones.</p></li>
+<li><p>This is an example of <strong>Simpson’s paradox</strong>.</p></li>
+<li><p>Height and age are not independent - older children tend to be taller, but this trend tapers off after 14.</p></li>
+<li><p>What about gender? For children older than 10, boys are taller than girls. Males (blue) have higher fev, but this is confounded with height.</p></li>
+</ul>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-173-1.png" width="672"></div>
+<p>Let’s fit some models.</p>
+<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fev</span><span class="op">~</span> <span class="va">age</span> <span class="op">+</span> <span class="va">smoke</span>, data <span class="op">=</span> <span class="va">fev</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = fev ~ age + smoke, data = fev)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.68070 -0.35220 -0.04599  0.35034  2.08515 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.349135   0.081787   4.269 2.26e-05 ***
+## age          0.232476   0.008223  28.272  &lt; 2e-16 ***
+## smoke1      -0.208911   0.080573  -2.593  0.00973 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.564 on 651 degrees of freedom
+## Multiple R-squared:  0.5782, Adjusted R-squared:  0.5769 
+## F-statistic: 446.1 on 2 and 651 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Age has a positive effect of fev and smoking negative. The plot of age by fev suggested that we should include a smoking by age interaction.</p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-175-1.png" width="672"></div>
+<p>Our second model includes interaction, which is shown to be significant:</p>
+<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fev</span><span class="op">~</span> <span class="va">age</span> <span class="op">*</span> <span class="va">smoke</span>, data <span class="op">=</span> <span class="va">fev</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = fev ~ age * smoke, data = fev)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.77573 -0.34712 -0.03269  0.33471  2.05749 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.242056   0.083021   2.916  0.00367 ** 
+## age          0.243704   0.008371  29.114  &lt; 2e-16 ***
+## smoke1       1.904894   0.424926   4.483 8.70e-06 ***
+## age:smoke1  -0.159959   0.031594  -5.063 5.38e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.5536 on 650 degrees of freedom
+## Multiple R-squared:  0.5942, Adjusted R-squared:  0.5923 
+## F-statistic: 317.2 on 3 and 650 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Display the fitted model:</p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-177-1.png" width="672"></div>
+<p>Does the model fit well? Let’s take a look at the fits vs residuals diagnostic plot (coloured by gender).</p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-178-1.png" width="672"></div>
+<p>We see:</p>
+<ul>
+<li><p>Increasing variance of the residuals.</p></li>
+<li><p>Gender or height might account for some of this.</p></li>
+<li><p>Remember that there is a relationship between age and height, as well as height and gender.</p></li>
+</ul>
+<p>The scatterplots indicated that a quadratic fit might be a good option for height.</p>
+<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fev</span><span class="op">~</span> <span class="va">height</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">height</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">+</span> <span class="va">smoke</span> , data <span class="op">=</span> <span class="va">fev</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = fev ~ height + I(height^2) + smoke, data = fev)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.80474 -0.23068 -0.00234  0.21778  1.99269 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  6.0404522  1.5047762   4.014 6.66e-05 ***
+## height      -0.2507239  0.0499314  -5.021 6.63e-07 ***
+## I(height^2)  0.0031632  0.0004121   7.676 6.04e-14 ***
+## smoke1      -0.0185929  0.0563310  -0.330    0.741    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.413 on 650 degrees of freedom
+## Multiple R-squared:  0.7741, Adjusted R-squared:  0.7731 
+## F-statistic: 742.6 on 3 and 650 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>We see that:</p>
+<ul>
+<li><p>Quadratic term is significant</p></li>
+<li><p>Smoking is no longer significant</p></li>
+<li><p>Interaction with height?</p></li>
+</ul>
+<p>Display the fitted model:</p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-180-1.png" width="672"></div>
+<p>Let’s consider another, more complex model:</p>
+<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fev</span><span class="op">~</span>  <span class="va">male</span><span class="op">+</span> <span class="va">height</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="va">height</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>  <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="va">smoke</span>, data <span class="op">=</span> <span class="va">fev</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit4</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = fev ~ male + height + I(height^2) + age + smoke, 
+##     data = fev)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.61264 -0.22793  0.00617  0.22435  1.80390 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  6.8630488  1.4990763   4.578 5.62e-06 ***
+## male1        0.0945539  0.0328676   2.877  0.00415 ** 
+## height      -0.2732761  0.0496785  -5.501 5.44e-08 ***
+## I(height^2)  0.0031165  0.0004086   7.628 8.54e-14 ***
+## age          0.0699792  0.0091943   7.611 9.62e-14 ***
+## smoke1      -0.1325347  0.0570996  -2.321  0.02059 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.3951 on 648 degrees of freedom
+## Multiple R-squared:  0.7939, Adjusted R-squared:  0.7923 
+## F-statistic: 499.2 on 5 and 648 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Does the model fit well? The points below are coloured by gender.</p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-182-1.png" width="672"></div>
+<p>We see that even with such a small dataset, many models are possible. One can consider adding interactions to the last model above. It can be helpful to think of relationships between variables in a structured way. This is sometimes set out in a directed graph (causal diagram).</p>
+<p>One could argue that height is a consequence of smoke (unlike confounders age and sex). But including height in our model (adjusting for height) we might get a downward biased (incorrect) estimate of the effect of smoking.
+For an indepth discussion of causal analysis of this datatset see <span class="citation">Cummiskey et al. (<a href="references.html#ref-Cummiskey02012020">2020</a>)</span>.</p>
+<!--  - Therefore, sex and age are confounders of the smoke and fev relationship.  -->
+<!--  - Height is a consequence of smoke, so it does not meet the definition of a confounder. -->
+<!-- - We say height is on the causal path between smoking and forced expiratory volume.  -->
+<!-- - But adjusting for height would give a downward biased causal effect of smoking and, therefore, not the correct interpretation of the effect of smoking. -->
+<p>Without height:</p>
+<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fev</span><span class="op">~</span> <span class="va">male</span><span class="op">*</span><span class="va">smoke</span><span class="op">+</span><span class="va">age</span><span class="op">*</span><span class="va">smoke</span>, data <span class="op">=</span> <span class="va">fev</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit5</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = fev ~ male * smoke + age * smoke, data = fev)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.87731 -0.33574 -0.02565  0.30803  1.93283 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   0.123763   0.081090   1.526  0.12744    
+## male1         0.278636   0.043524   6.402 2.95e-10 ***
+## smoke1        2.065510   0.404618   5.105 4.36e-07 ***
+## age           0.240731   0.007974  30.188  &lt; 2e-16 ***
+## male1:smoke1  0.456419   0.141805   3.219  0.00135 ** 
+## smoke1:age   -0.181915   0.030397  -5.985 3.59e-09 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.5265 on 648 degrees of freedom
+## Multiple R-squared:  0.6341, Adjusted R-squared:  0.6312 
+## F-statistic: 224.6 on 5 and 648 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-185-1.png" width="672"></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-186-1.png" width="672"></div>
+<!-- ## Visualising linear models in h-dim: added variable plots and conditional visualisation for the bodyfat data -->
+<!-- Data originally published by @Johnson02092021.  -->
+<!-- ```{r, echo= FALSE, message = FALSE} -->
+<!-- bodyfat <- read.table(here("data", "bodyfat.txt"), header = TRUE) -->
+<!-- ``` -->
+<!-- `Bfat` is response  - we are trying to predict it from all the other measurements. Looking at the scatterplot matrix, most of the variables are positively correlated, but `height` is slightly negatively correlated with `age` and bodyfat. Two outliers with very wide ankles.   -->
+<!-- ```{r} -->
+<!-- pairs(bodyfat) -->
+<!-- ``` -->
+<!-- Fit the full model and a model with no `weight` and `ankle``.  -->
+<!-- ```{r} -->
+<!-- fit1 <- lm(bfat~., data = bodyfat) # all predictors -->
+<!-- summary(fit1) -->
+<!-- fit2 <- lm(bfat~., data = bodyfat[,-c(3,8)]) # no weight and ankle -->
+<!-- summary(fit2) -->
+<!-- ``` -->
+<!-- In the scatterplot matrix, we have seen that the marginal association between `bfat` and `neck` is positive, i.e. people with wider neck circumference have higher bodyfat. But the opposite is true when we take into account other predictors, e.g. `abdomen`, `height`. Neck is significant and has a negative coefficient! Let's have a look at added variable (AV) plots. -->
+<!-- AV plots show the adjusted association between the response and predictors which can be quite different from what we observe in scatterplot matrices (marginal relationship). AV plots can be useful in detecting outliers and cases where the adjusted association between the response and predictors is due to an influence point.  -->
+<!-- ```{r} -->
+<!-- avPlots(fit2)  -->
+<!-- ``` -->
+<!-- Clearly `neck` is a useful predictor of `bfat` in addition to the other variables, but that wider neck implies lower `bfat`. Maybe once accounting for the other predictors of `bfat`, wider neck also has something to tell us about the person (more likely to be male or have higher muscle percentage and therefore lower bodyfat?). -->
+<!-- If this is the case, what is the conditional ssociation between `bfat` and `neck`? -->
+<!-- Let's first condition on abdomen only: -->
+<!-- ```{r} -->
+<!-- bodyfat$abdomenBin = cut(bodyfat$abdomen, c(70, seq(80,100,5), 130)) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- p<- ggplot(bodyfat, aes(neck , bfat)) + geom_point() +geom_smooth(method = "lm", se = FALSE) -->
+<!-- p + facet_grid(. ~ abdomenBin, scales = "free_x")#better -->
+<!-- #  -->
+<!-- # p<- ggplot(bodyfat, aes(weight , bfat)) + geom_point() -->
+<!-- # p + facet_grid(. ~ abdomenBin)#better -->
+<!-- #  -->
+<!-- # p<- ggplot(bodyfat, aes(weight , neck)) + geom_point() -->
+<!-- # p + facet_grid(. ~ abdomenBin)#better -->
+<!-- ``` -->
+<!-- At different ranges of abdomen circumference, the association between `bfat` and `neck` is no longer positive.  -->
+<!-- Let's look at other conditional displays: -->
+<!-- ```{r echo = FALSE, message = FALSE} -->
+<!-- library(condvis2) -->
+<!-- # p <- condvis(data = bodyfat[-c(3,8,9)], model = list(fit2 = fit2), sectionvars = "neck") -->
+<!-- # p <- p |> dplyr::select(-neck) -->
+<!-- path <- pamPath(bodyfat[-c(3,8,9)], conditionvars = c("age", "height", "abdomen", "knee")) -->
+<!-- path <- claraPath(bodyfat[-c(3,8,9)], conditionvars = c("age", "height", "abdomen", "knee"), length = 12) -->
+<!-- p <- path -->
+<!-- row_desc <- apply(path, 1, function(row) { -->
+<!--   vals <- format(row, trim = TRUE, scientific = FALSE) -->
+<!--    paste(sprintf("%s=%s", names(p), vals), collapse = "\n ") -->
+<!-- }) -->
+<!-- dat_new <- bodyfat |> dplyr::select(neck, bfat) -->
+<!-- distance <- similarityweight(bodyfat, p, distance = "maxnorm") -->
+<!-- d_new <- NULL -->
+<!-- for (i in 1:nrow(p)) { -->
+<!--   p_new <- NULL -->
+<!--   for (j in 1:nrow(dat_new))  p_new <- rbind(p_new, p[i, ]) -->
+<!--   p_new <- cbind(p_new, dat_new) -->
+<!--   p_new <- p_new |> dplyr::mutate(graph = rep(row_desc[i], nrow(dat_new)), wts = as.numeric(distance[, i])) -->
+<!--   d_new <- rbind(p_new, d_new) -->
+<!-- } -->
+<!-- # distance <- similarityweight(d_new, p) -->
+<!-- d_new <- d_new |> dplyr::mutate(fit2_pred = predict(fit2, newdata = d_new)) -->
+<!-- ggplot(d_new, aes(x = neck, y = bfat, alpha = wts)) + -->
+<!--   geom_point() + -->
+<!--   geom_line(aes(y = fit2_pred)) + -->
+<!--   facet_wrap(~ graph, labeller = labeller(row_desc)) -->
+<!-- ``` -->
+<!-- This visualisation is constructed from R package `condvis2` [@condvis2], described in [@Hurley02012022]. The plot shows 12 low-dimensional visualisations, constructed showing the relationship between the response (`bfat`) and predictor `neck`, conditional on the values of remaining predictors. The 12 plots correspond to the 12 `sections` of the data space. The `sections` are obtained from a tour of data space based on centers of clusters (medoids) of the data. The transparency of the points in the plots is proportional to the distance of the points to the section of the plot. Here we see a negative relationship between `bfat` and `neck` when conditioning at different combinations of the remaining predictors. -->
+<!-- Another example of **Simpson's paradox**, quite hard to detect in high dimensional data with many comntinuous predictors! -->
+<!-- ========================================================= -->
+<!-- An even more flexible fit: -->
+<!-- ```{r} -->
+<!-- fit6 <- lm(fev~ male * poly(age,2) * smoke, data = fev) -->
+<!-- summary(fit6) -->
+<!-- ``` -->
+<!-- ```{r echo = FALSE} -->
+<!-- fev |>  ggplot(aes(x=age, y=fev, group = smoke))+geom_point(aes(color=smoke,shape = male)) +geom_line(aes(y = fitted(fit6), col = smoke))+ -->
+<!--   facet_wrap(~ male) -->
+<!-- ``` -->
 <!-- * Plot corn $yield$ vs $rainfall$. -->
 <!-- Fit the multiple regression of corn $yield$ on $rainfall$ and $rainfall^2$. -->
 <!-- Save the residuals. -->
@@ -854,72 +1400,94 @@ fitA &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op"
 
 </div>
 </div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-ramsey2002statistical">
-<p>Ramsey, Fred, and Daniel Schafer. 2002. <em>The Statistical Sleuth: A Course in Methods of Data Analysis</em>. 2nd ed. Duxbury Press.</p>
-</div>
-</div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="diagnostic-methods-in-more-details.html"><span class="header-section-number">6</span> Diagnostic methods (in more details)</a></div>
+<div class="next"><a href="about.html"><span class="header-section-number">8</span> About</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#special-cases-of-multiple-regression"><span class="header-section-number">7</span> Special cases of multiple regression</a></li>
+<li><a class="nav-link" href="#categorical-and-continuous-predictors-binary-categories"><span class="header-section-number">7.1</span> Categorical and continuous predictors (binary categories)</a></li>
+<li><a class="nav-link" href="#categorical-and-continuous-predictors-more-than-two-categories"><span class="header-section-number">7.2</span> Categorical and continuous predictors (more than two categories)</a></li>
+<li>
+<a class="nav-link" href="#two-way-anova-two-categorical-predictors"><span class="header-section-number">7.3</span> Two way anova: two categorical predictors</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#example-paint-adhesion"><span class="header-section-number">7.3.1</span> Example: paint adhesion</a></li>
+<li><a class="nav-link" href="#notation"><span class="header-section-number">7.3.2</span> Notation</a></li>
+<li><a class="nav-link" href="#two-way-anova-in-regression-setup"><span class="header-section-number">7.3.3</span> Two way ANOVA in regression setup</a></li>
+<li><a class="nav-link" href="#interaction-plots"><span class="header-section-number">7.3.4</span> Interaction plots:</a></li>
+<li><a class="nav-link" href="#testing-hypotheses"><span class="header-section-number">7.3.5</span> Testing hypotheses</a></li>
+<li><a class="nav-link" href="#two-way-anova-in-r"><span class="header-section-number">7.3.6</span> Two way ANOVA in R</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#polynomial-regression"><span class="header-section-number">7.4</span> Polynomial regression</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#model-2-quadratic-regression"><span class="header-section-number">7.4.1</span> Model 2: Quadratic regression</a></li>
+<li><a class="nav-link" href="#model-3-cubic-regression"><span class="header-section-number">7.4.2</span> Model 3: Cubic regression</a></li>
+<li><a class="nav-link" href="#model-4-quartic"><span class="header-section-number">7.4.3</span> Model 4: Quartic</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#confounding-example"><span class="header-section-number">7.5</span> Confounding example</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#comparing-models-2-and-3"><span class="header-section-number">7.5.1</span> Comparing models 2 and 3:</a></li>
+<li><a class="nav-link" href="#comparing-models-1-and-2"><span class="header-section-number">7.5.2</span> Comparing models 1 and 2:</a></li>
+<li><a class="nav-link" href="#type-1-and-type-2-sums-of-squares"><span class="header-section-number">7.5.3</span> Type 1 and type 2 sums of squares</a></li>
+<li><a class="nav-link" href="#another-factor"><span class="header-section-number">7.5.4</span> Another factor</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#quadratic-terms-and-interactions"><span class="header-section-number">7.6</span> Quadratic terms and interactions</a></li>
+<li><a class="nav-link" href="#an-example-with-two-continuous-and-two-categorical-predictors"><span class="header-section-number">7.7</span> An example with two continuous and two categorical predictors</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="diagnostic-methods-in-more-details.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Linear Models Lecture Notes</strong>" was written by Katarina Domijan. It was last built on 2025-12-16.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
-"linkedin": false,
-"weibo": false,
-"instapper": false,
-"vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"download": null,
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>

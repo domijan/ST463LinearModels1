@@ -1,266 +1,94 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="en">
 <head>
-
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Notes for ST463/ST683 Linear Models 1</title>
-  <meta name="description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
-
-  <meta property="og:title" content="Notes for ST463/ST683 Linear Models 1" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook." />
-  <meta name="github-repo" content="domijank/ST463" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Notes for ST463/ST683 Linear Models 1" />
-  
-  <meta name="twitter:description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook." />
-  
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 Multiple regression | Linear Models Lecture Notes</title>
 <meta name="author" content="Katarina Domijan">
-
-
-<meta name="date" content="2018-11-12">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  
-  
-<link rel="prev" href="SLR.html">
-<link rel="next" href="model-comparisons-and-testing-for-lack-of-fit.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
+<meta name="description" content="4.1 Introductory examples    Setup: response variable \(y\), predictors \(x_1\), \(x_2\), …, \(x_k\).  4.1.1 Example 1: Fuel Use Example from Section 2. Information was recorded on fuel usage and...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Chapter 4 Multiple regression | Linear Models Lecture Notes">
+<meta property="og:type" content="book">
+<meta property="og:description" content="4.1 Introductory examples    Setup: response variable \(y\), predictors \(x_1\), \(x_2\), …, \(x_k\).  4.1.1 Example 1: Fuel Use Example from Section 2. Information was recorded on fuel usage and...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 Multiple regression | Linear Models Lecture Notes">
+<meta name="twitter:description" content="4.1 Introductory examples    Setup: response variable \(y\), predictors \(x_1\), \(x_2\), …, \(x_k\).  4.1.1 Example 1: Fuel Use Example from Section 2. Information was recorded on fuel usage and...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
-
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 0em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Module Preliminaries</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#recommended-texts"><i class="fa fa-check"></i><b>1.1</b> Recommended texts</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#software"><i class="fa fa-check"></i><b>1.2</b> Software</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-scripts"><i class="fa fa-check"></i><b>1.3</b> R Scripts</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#introductory-examples"><i class="fa fa-check"></i><b>2.1</b> Introductory Examples</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#mother-and-daughter-heights"><i class="fa fa-check"></i><b>2.1.1</b> Mother and daughter heights</a></li>
-<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#bacterial-count-and-storage-temperature"><i class="fa fa-check"></i><b>2.1.2</b> Bacterial count and storage temperature</a></li>
-<li class="chapter" data-level="2.1.3" data-path="intro.html"><a href="intro.html#yield-and-rainfall"><i class="fa fa-check"></i><b>2.1.3</b> Yield and Rainfall</a></li>
-<li class="chapter" data-level="2.1.4" data-path="intro.html"><a href="intro.html#driving"><i class="fa fa-check"></i><b>2.1.4</b> Driving</a></li>
-<li class="chapter" data-level="2.1.5" data-path="intro.html"><a href="intro.html#fuel"><i class="fa fa-check"></i><b>2.1.5</b> Fuel Consumption</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="SLR.html"><a href="SLR.html"><i class="fa fa-check"></i><b>3</b> Simple Linear regression</a><ul>
-<li class="chapter" data-level="3.1" data-path="SLR.html"><a href="SLR.html#OLS"><i class="fa fa-check"></i><b>3.1</b> Ordinary least squares</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="SLR.html"><a href="SLR.html#residuals"><i class="fa fa-check"></i><b>3.1.1</b> Residuals</a></li>
-<li class="chapter" data-level="3.1.2" data-path="SLR.html"><a href="SLR.html#some-algebraic-implications-of-the-ols-fit"><i class="fa fa-check"></i><b>3.1.2</b> Some algebraic implications of the OLS fit</a></li>
-<li class="chapter" data-level="3.1.3" data-path="SLR.html"><a href="SLR.html#ols-estimates-for-the-fuel-consumption-example"><i class="fa fa-check"></i><b>3.1.3</b> OLS Estimates for the Fuel Consumption Example</a></li>
-<li class="chapter" data-level="3.1.4" data-path="SLR.html"><a href="SLR.html#interpretation-of-the-fitted-simple-linear-regression-line-parameter-estimates"><i class="fa fa-check"></i><b>3.1.4</b> Interpretation of the fitted simple linear regression line: Parameter estimates</a></li>
-<li class="chapter" data-level="3.1.5" data-path="SLR.html"><a href="SLR.html#predicting"><i class="fa fa-check"></i><b>3.1.5</b> Predicting</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="SLR.html"><a href="SLR.html#the-formal-simple-linear-regression-model"><i class="fa fa-check"></i><b>3.2</b> The formal simple linear regression model</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="SLR.html"><a href="SLR.html#model"><i class="fa fa-check"></i><b>3.2.1</b> Model</a></li>
-<li class="chapter" data-level="3.2.2" data-path="SLR.html"><a href="SLR.html#assumptions"><i class="fa fa-check"></i><b>3.2.2</b> Assumptions</a></li>
-<li class="chapter" data-level="3.2.3" data-path="SLR.html"><a href="SLR.html#estimation-of-sigma2"><i class="fa fa-check"></i><b>3.2.3</b> Estimation of <span class="math inline">\(\sigma^2\)</span></a></li>
-<li class="chapter" data-level="3.2.4" data-path="SLR.html"><a href="SLR.html#review-of-some-probability-results"><i class="fa fa-check"></i><b>3.2.4</b> Review of some probability results</a></li>
-<li class="chapter" data-level="3.2.5" data-path="SLR.html"><a href="SLR.html#prop"><i class="fa fa-check"></i><b>3.2.5</b> Properties of the estimates</a></li>
-<li class="chapter" data-level="3.2.6" data-path="SLR.html"><a href="SLR.html#special-cases"><i class="fa fa-check"></i><b>3.2.6</b> Special cases</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="SLR.html"><a href="SLR.html#simple-linear-regression-models-in-r-and-minitab"><i class="fa fa-check"></i><b>3.3</b> Simple linear regression models in R and Minitab</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="SLR.html"><a href="SLR.html#minitab"><i class="fa fa-check"></i><b>3.3.1</b> Minitab</a></li>
-<li class="chapter" data-level="3.3.2" data-path="SLR.html"><a href="SLR.html#r"><i class="fa fa-check"></i><b>3.3.2</b> R</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="SLR.html"><a href="SLR.html#statistical-inference"><i class="fa fa-check"></i><b>3.4</b> Statistical inference</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="SLR.html"><a href="SLR.html#r-simulation-paraminference.r"><i class="fa fa-check"></i><b>3.4.1</b> R simulation: ParamInference.R</a></li>
-<li class="chapter" data-level="3.4.2" data-path="SLR.html"><a href="SLR.html#inference-for-beta_1"><i class="fa fa-check"></i><b>3.4.2</b> Inference for <span class="math inline">\(\beta_1\)</span></a></li>
-<li class="chapter" data-level="3.4.3" data-path="SLR.html"><a href="SLR.html#inference-for-beta_0"><i class="fa fa-check"></i><b>3.4.3</b> Inference for <span class="math inline">\(\beta_0\)</span></a></li>
-<li class="chapter" data-level="3.4.4" data-path="SLR.html"><a href="SLR.html#inference-for-mean-response"><i class="fa fa-check"></i><b>3.4.4</b> Inference for mean response</a></li>
-<li class="chapter" data-level="3.4.5" data-path="SLR.html"><a href="SLR.html#inference-for-prediction"><i class="fa fa-check"></i><b>3.4.5</b> Inference for prediction</a></li>
-</ul></li>
-<li class="chapter" data-level="3.5" data-path="SLR.html"><a href="SLR.html#analysis-of-variance-for-s.l.r."><i class="fa fa-check"></i><b>3.5</b> Analysis of variance (for s.l.r.)</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="SLR.html"><a href="SLR.html#anova-decomposition"><i class="fa fa-check"></i><b>3.5.1</b> ANOVA decomposition</a></li>
-<li class="chapter" data-level="3.5.2" data-path="SLR.html"><a href="SLR.html#anova-table"><i class="fa fa-check"></i><b>3.5.2</b> ANOVA table</a></li>
-<li class="chapter" data-level="3.5.3" data-path="SLR.html"><a href="SLR.html#special-cases-1"><i class="fa fa-check"></i><b>3.5.3</b> Special cases</a></li>
-<li class="chapter" data-level="3.5.4" data-path="SLR.html"><a href="SLR.html#does-regression-on-x-explain-y"><i class="fa fa-check"></i><b>3.5.4</b> Does regression on x explain y?</a></li>
-<li class="chapter" data-level="3.5.5" data-path="SLR.html"><a href="SLR.html#notes-on-the-anova-table"><i class="fa fa-check"></i><b>3.5.5</b> Notes on the ANOVA table</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="SLR.html"><a href="SLR.html#sample-correlation"><i class="fa fa-check"></i><b>3.6</b> Sample correlation</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="SLR.html"><a href="SLR.html#examples-of-correlation"><i class="fa fa-check"></i><b>3.6.1</b> Examples of correlation</a></li>
-<li class="chapter" data-level="3.6.2" data-path="SLR.html"><a href="SLR.html#comparison-of-the-correlation-and-coefficient-of-determination-for-two-data-sets."><i class="fa fa-check"></i><b>3.6.2</b> Comparison of the correlation and coefficient of determination for two data sets.</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="SLR.html"><a href="SLR.html#assessing-the-simple-linear-regression-model-assumptions"><i class="fa fa-check"></i><b>3.7</b> Assessing the simple linear regression model assumptions</a><ul>
-<li class="chapter" data-level="3.7.1" data-path="SLR.html"><a href="SLR.html#assumptions-1"><i class="fa fa-check"></i><b>3.7.1</b> Assumptions</a></li>
-<li class="chapter" data-level="3.7.2" data-path="SLR.html"><a href="SLR.html#violations-and-consequences"><i class="fa fa-check"></i><b>3.7.2</b> Violations and consequences</a></li>
-<li class="chapter" data-level="3.7.3" data-path="SLR.html"><a href="SLR.html#graphical-tools-for-assessment"><i class="fa fa-check"></i><b>3.7.3</b> Graphical tools for assessment</a></li>
-<li class="chapter" data-level="3.7.4" data-path="SLR.html"><a href="SLR.html#cigarette"><i class="fa fa-check"></i><b>3.7.4</b> Cigarette Data</a></li>
-</ul></li>
-<li class="chapter" data-level="3.8" data-path="SLR.html"><a href="SLR.html#a-note-on-the-galton-paradox"><i class="fa fa-check"></i><b>3.8</b> A note on the Galton paradox</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="SLR.html"><a href="SLR.html#the-galton-paradox"><i class="fa fa-check"></i><b>3.8.1</b> The Galton paradox</a></li>
-<li class="chapter" data-level="3.8.2" data-path="SLR.html"><a href="SLR.html#two-regressions"><i class="fa fa-check"></i><b>3.8.2</b> Two regressions</a></li>
-<li class="chapter" data-level="3.8.3" data-path="SLR.html"><a href="SLR.html#regression-vs-orthogonal-regression"><i class="fa fa-check"></i><b>3.8.3</b> Regression vs orthogonal regression</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>4</b> Multiple regression</a><ul>
-<li class="chapter" data-level="4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#introductory-examples-1"><i class="fa fa-check"></i><b>4.1</b> Introductory examples</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example-1-fuel-use"><i class="fa fa-check"></i><b>4.1.1</b> Example 1: Fuel Use</a></li>
-<li class="chapter" data-level="4.1.2" data-path="multiple-regression.html"><a href="multiple-regression.html#example-2-categorical-predictors"><i class="fa fa-check"></i><b>4.1.2</b> Example 2: Categorical predictors</a></li>
-<li class="chapter" data-level="4.1.3" data-path="multiple-regression.html"><a href="multiple-regression.html#example-3-polynomials"><i class="fa fa-check"></i><b>4.1.3</b> Example 3: Polynomials</a></li>
-<li class="chapter" data-level="4.1.4" data-path="multiple-regression.html"><a href="multiple-regression.html#example-4-nonlinear-relationships"><i class="fa fa-check"></i><b>4.1.4</b> Example 4: Nonlinear relationships</a></li>
-<li class="chapter" data-level="4.1.5" data-path="multiple-regression.html"><a href="multiple-regression.html#cigarette-data-continued"><i class="fa fa-check"></i><b>4.1.5</b> Cigarette Data continued</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#least-squares-estimation-for-multiple-regression"><i class="fa fa-check"></i><b>4.2</b> Least squares estimation for multiple regression</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="multiple-regression.html"><a href="multiple-regression.html#estimation-of-sigma2-varepsilon"><i class="fa fa-check"></i><b>4.2.1</b> Estimation of <span class="math inline">\(\sigma^2\)</span> = Var<span class="math inline">\((\epsilon)\)</span></a></li>
-<li class="chapter" data-level="4.2.2" data-path="multiple-regression.html"><a href="multiple-regression.html#estimation-of-varhatbeta"><i class="fa fa-check"></i><b>4.2.2</b> Estimation of Var<span class="math inline">\((\hat{\beta})\)</span></a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="multiple-regression.html"><a href="multiple-regression.html#prediction-from-multiple-linear-regression-model"><i class="fa fa-check"></i><b>4.3</b> Prediction from multiple linear regression model</a></li>
-<li class="chapter" data-level="4.4" data-path="multiple-regression.html"><a href="multiple-regression.html#regression-models-in-matrix-notation-examples"><i class="fa fa-check"></i><b>4.4</b> Regression models in matrix notation: examples</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example-1-slr"><i class="fa fa-check"></i><b>4.4.1</b> Example 1: SLR</a></li>
-<li class="chapter" data-level="4.4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#example-2"><i class="fa fa-check"></i><b>4.4.2</b> Example 2</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="multiple-regression.html"><a href="multiple-regression.html#the-formal-multiple-regression-model-and-properties"><i class="fa fa-check"></i><b>4.5</b> The formal multiple regression model and properties</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="multiple-regression.html"><a href="multiple-regression.html#concepts-random-vectors-covariance-matrix-multivariate-normal-distribution-mvn."><i class="fa fa-check"></i><b>4.5.1</b> Concepts: random vectors, covariance matrix, multivariate normal distribution (MVN).</a></li>
-<li class="chapter" data-level="4.5.2" data-path="multiple-regression.html"><a href="multiple-regression.html#multiple-regression-model"><i class="fa fa-check"></i><b>4.5.2</b> Multiple regression model</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="multiple-regression.html"><a href="multiple-regression.html#the-hat-matrix"><i class="fa fa-check"></i><b>4.6</b> The hat matrix</a><ul>
-<li class="chapter" data-level="4.6.1" data-path="multiple-regression.html"><a href="multiple-regression.html#the-qr-decomposition-of-a-matrix"><i class="fa fa-check"></i><b>4.6.1</b> The QR Decomposition of a matrix</a></li>
-</ul></li>
-<li class="chapter" data-level="4.7" data-path="multiple-regression.html"><a href="multiple-regression.html#anova-for-multiple-regression"><i class="fa fa-check"></i><b>4.7</b> ANOVA for multiple regression</a></li>
-<li class="chapter" data-level="4.8" data-path="multiple-regression.html"><a href="multiple-regression.html#way-anova-model"><i class="fa fa-check"></i><b>4.8</b> 1-way ANOVA model</a><ul>
-<li class="chapter" data-level="4.8.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example"><i class="fa fa-check"></i><b>4.8.1</b> Example:</a></li>
-</ul></li>
-<li class="chapter" data-level="4.9" data-path="multiple-regression.html"><a href="multiple-regression.html#one-way-anova-in-regression-notation"><i class="fa fa-check"></i><b>4.9</b> One way ANOVA in regression notation</a><ul>
-<li class="chapter" data-level="4.9.1" data-path="multiple-regression.html"><a href="multiple-regression.html#fitting-the-model-in-mtb-and-r"><i class="fa fa-check"></i><b>4.9.1</b> Fitting the model in MTB and R</a></li>
-</ul></li>
-<li class="chapter" data-level="4.10" data-path="multiple-regression.html"><a href="multiple-regression.html#confidence-intervals-and-hypothesis-tests-for-linear-combinations-of-boldsymbolbeta"><i class="fa fa-check"></i><b>4.10</b> Confidence intervals and hypothesis tests for linear combinations of <span class="math inline">\(\boldsymbol{\beta}\)</span></a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html"><i class="fa fa-check"></i><b>5</b> Model comparisons and testing for lack of fit</a><ul>
-<li class="chapter" data-level="5.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#f-tests-for-comparing-two-models"><i class="fa fa-check"></i><b>5.1</b> F-tests for comparing two models</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-1"><i class="fa fa-check"></i><b>5.1.1</b> Example:</a></li>
-<li class="chapter" data-level="5.1.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#f-test-to-compare-models"><i class="fa fa-check"></i><b>5.1.2</b> F-test to compare models:</a></li>
-<li class="chapter" data-level="5.1.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data"><i class="fa fa-check"></i><b>5.1.3</b> Example: Steam data</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#sequential-sums-of-squares"><i class="fa fa-check"></i><b>5.2</b> Sequential sums of squares</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-3"><i class="fa fa-check"></i><b>5.2.1</b> Example:</a></li>
-<li class="chapter" data-level="5.2.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data-1"><i class="fa fa-check"></i><b>5.2.2</b> Example: Steam data</a></li>
-<li class="chapter" data-level="5.2.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-contd-in-mtb"><i class="fa fa-check"></i><b>5.2.3</b> Example: Steam cont’d in MTB</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#testing-for-lack-of-fit"><i class="fa fa-check"></i><b>5.3</b> Testing for lack of fit</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-voltage"><i class="fa fa-check"></i><b>5.3.1</b> Example: Voltage</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#added-variable-plots"><i class="fa fa-check"></i><b>5.4</b> Added variable plots</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-vs.temp-inv-prod"><i class="fa fa-check"></i><b>5.4.1</b> Example: STEAM vs. TEMP, INV, PROD</a></li>
-<li class="chapter" data-level="5.4.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-added-variable-plot-for-prod."><i class="fa fa-check"></i><b>5.4.2</b> Example: Added variable plot for PROD.</a></li>
-<li class="chapter" data-level="5.4.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data-contd"><i class="fa fa-check"></i><b>5.4.3</b> Example: Steam data cont’d</a></li>
-<li class="chapter" data-level="5.4.4" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#properties-of-avps"><i class="fa fa-check"></i><b>5.4.4</b> Properties of AVPs:</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#visualising-models-in-hdim-added-variable-plots-for-the-bodyfat-data."><i class="fa fa-check"></i><b>5.5</b> Visualising Models in Hdim: added variable plots for the bodyfat data.</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html"><i class="fa fa-check"></i><b>6</b> Diagnostic methods (in more details)</a><ul>
-<li class="chapter" data-level="6.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#model-assumptions"><i class="fa fa-check"></i><b>6.1</b> Model assumptions</a></li>
-<li class="chapter" data-level="6.2" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#residuals-1"><i class="fa fa-check"></i><b>6.2</b> Residuals</a></li>
-<li class="chapter" data-level="6.3" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#leverage-values"><i class="fa fa-check"></i><b>6.3</b> Leverage values</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#properties-of-h_ii"><i class="fa fa-check"></i><b>6.3.1</b> Properties of <span class="math inline">\(h_{ii}\)</span>:</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#standardised-residuals"><i class="fa fa-check"></i><b>6.4</b> Standardised residuals</a></li>
-<li class="chapter" data-level="6.5" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#leave-one-out-methods"><i class="fa fa-check"></i><b>6.5</b> Leave-one-out methods</a></li>
-<li class="chapter" data-level="6.6" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#other-influence-measures"><i class="fa fa-check"></i><b>6.6</b> Other influence measures</a></li>
-<li class="chapter" data-level="6.7" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#testing-outliers"><i class="fa fa-check"></i><b>6.7</b> Testing outliers</a></li>
-<li class="chapter" data-level="6.8" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#diagnostics-examples-two-case-studies"><i class="fa fa-check"></i><b>6.8</b> Diagnostics examples (two case studies)</a><ul>
-<li class="chapter" data-level="6.8.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#example-1-brain-size-versus-body-gestation-period-and-litter"><i class="fa fa-check"></i><b>6.8.1</b> Example 1: Brain size versus body gestation period and litter</a></li>
-<li class="chapter" data-level="6.8.2" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#example-2-rat-data"><i class="fa fa-check"></i><b>6.8.2</b> Example 2: Rat data</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html"><i class="fa fa-check"></i><b>7</b> Special cases of multiple regression</a><ul>
-<li class="chapter" data-level="7.1" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#categorical-and-continuous-predictors-binary-categories"><i class="fa fa-check"></i><b>7.1</b> Categorical and continuous predictors (binary categories)</a></li>
-<li class="chapter" data-level="7.2" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#categorical-and-continuous-predictors-more-than-two-categories"><i class="fa fa-check"></i><b>7.2</b> Categorical and continuous predictors (more than two categories)</a></li>
-<li class="chapter" data-level="7.3" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#quadratic-terms-and-interactions"><i class="fa fa-check"></i><b>7.3</b> Quadratic terms and interactions</a></li>
-<li class="chapter" data-level="7.4" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#an-example-with-two-continuous-and-two-categorical-predictors"><i class="fa fa-check"></i><b>7.4</b> An example with two continuous and two categorical predictors</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Linear Models Lecture Notes</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notes for ST463/ST683 Linear Models 1</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Module Preliminaries</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Introduction</a></li>
+<li><a class="" href="SLR.html"><span class="header-section-number">3</span> Simple Linear regression</a></li>
+<li><a class="active" href="multiple-regression.html"><span class="header-section-number">4</span> Multiple regression</a></li>
+<li><a class="" href="model-comparisons-and-testing-for-lack-of-fit.html"><span class="header-section-number">5</span> Model comparisons and testing for lack of fit</a></li>
+<li><a class="" href="diagnostic-methods-in-more-details.html"><span class="header-section-number">6</span> Diagnostic methods (in more details)</a></li>
+<li><a class="" href="special-cases-of-multiple-regression.html"><span class="header-section-number">7</span> Special cases of multiple regression</a></li>
+<li><a class="" href="about.html"><span class="header-section-number">8</span> About</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="multiple-regression" class="section level1">
-<h1><span class="header-section-number">4</span> Multiple regression</h1>
-<div id="introductory-examples-1" class="section level2">
-<h2><span class="header-section-number">4.1</span> Introductory examples</h2>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="multiple-regression" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Multiple regression<a class="anchor" aria-label="anchor" href="#multiple-regression"><i class="fas fa-link"></i></a>
+</h1>
+<div id="introductory-examples-1" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> Introductory examples<a class="anchor" aria-label="anchor" href="#introductory-examples-1"><i class="fas fa-link"></i></a>
+</h2>
 <!-- # ```{r, echo=FALSE} -->
 <!-- # library(rgl) -->
 <!-- # library(htmltools) -->
@@ -268,9 +96,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <!-- #  -->
 <!-- # ``` -->
 <p>Setup: response variable <span class="math inline">\(y\)</span>, predictors <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, …, <span class="math inline">\(x_k\)</span>.</p>
-<div id="example-1-fuel-use" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> Example 1: Fuel Use</h3>
-<p>Example from Section <a href="intro.html#intro">2</a>. Information was recorded on fuel usage and average temperature (<span class="math inline">\(^oF\)</span>) over the course of one week for eight office complexes of similar size. Data are from <span class="citation">Bowerman and Schafer (<a href="#ref-bowerman1990linear">1990</a>)</span>.</p>
+<div id="example-1-fuel-use" class="section level3" number="4.1.1">
+<h3>
+<span class="header-section-number">4.1.1</span> Example 1: Fuel Use<a class="anchor" aria-label="anchor" href="#example-1-fuel-use"><i class="fas fa-link"></i></a>
+</h3>
+<p>Example from Section <a href="intro.html#intro">2</a>. Information was recorded on fuel usage and average temperature (<span class="math inline">\(^oF\)</span>) over the course of one week for eight office complexes of similar size. Data are from <span class="citation">Bowerman and Schafer (<a href="references.html#ref-bowerman1990linear">1990</a>)</span>.</p>
 <p><span class="math inline">\(y\)</span> = fuel use,</p>
 <p><span class="math inline">\(x_1\)</span> = temperature,</p>
 <p><span class="math inline">\(x_2\)</span> = chill index.</p>
@@ -282,14 +112,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <!-- \vdots & \vdots& \vdots& \vdots \\ -->
 <!-- 8 & $y_8$ & $x_{81} $ & $x_{82} $\\ -->
 <!-- \end{tabular} -->
-<table>
-<thead>
-<tr class="header">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
 <th align="right">Temp</th>
 <th align="right">Fuel</th>
 <th align="right">Chill</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="right">28.0</td>
@@ -332,7 +160,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <td align="right">0</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>We wish to use <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> to predict <span class="math inline">\(y\)</span>. This should give more accurate predictions than either <span class="math inline">\(x_1\)</span> or <span class="math inline">\(x_2\)</span> alone.</p>
 <p>A multiple linear regression model is: fuel use <span class="math inline">\(\approx\)</span> a linear function of temperature and chill index.</p>
 <p>More precisely:</p>
@@ -341,7 +169,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>When <span class="math inline">\(\mathbb{E}[\epsilon ] = 0\)</span> we have</p>
 <p><span class="math display">\[\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2.\]</span></p>
 <p>In SLR we can check model appropriateness by plotting <span class="math inline">\(y\)</span> vs <span class="math inline">\(x\)</span> and observing whether the points fall close to a line. Here we could construct a 3-d plot of <span class="math inline">\(y\)</span>, <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span> and points should fall close to a plane.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="384" style="display: block; margin: auto;" /></p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-77-1.png" width="384" style="display: block; margin: auto;"></div>
 <p>For a given set of values of <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>, say <span class="math inline">\(x_1 = 45.9\)</span> and <span class="math inline">\(x_2 = 8\)</span>, the model says that the <strong>mean</strong> fuel use is:</p>
 <p><span class="math display">\[\mathbb{E}[y] = \beta_0 + \beta_1 \times 45.9 + \beta_2 \times 8.\]</span></p>
 <p>If <span class="math inline">\(x_1 = x_2 = 0\)</span> then <span class="math inline">\(\mathbb{E}[y] = \beta_0\)</span>, the model intercept.</p>
@@ -352,64 +180,67 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Substracting these we find that <span class="math inline">\(\beta_1\)</span> is the increase in <span class="math inline">\(\mathbb{E}[y]\)</span> associated with 1 unit increase in <span class="math inline">\(x_1\)</span> for a fixed <span class="math inline">\(x_2\)</span>.</p>
 <p>I.e. two weeks having the same chill index but whose temperature differed by <span class="math inline">\(1^o\)</span> would have a mean fuel use difference of <span class="math inline">\(\beta_1\)</span>.</p>
 </div>
-<div id="example-2-categorical-predictors" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> Example 2: Categorical predictors</h3>
-<p>Suppose we wish to predict the fuel efficiency of different car types. Data are from <span class="citation">Cryer and Miller (<a href="#ref-cryer1991statistics">1991</a>)</span>. We have data on:</p>
+<div id="example-2-categorical-predictors" class="section level3" number="4.1.2">
+<h3>
+<span class="header-section-number">4.1.2</span> Example 2: Categorical predictors<a class="anchor" aria-label="anchor" href="#example-2-categorical-predictors"><i class="fas fa-link"></i></a>
+</h3>
+<p>Suppose we wish to predict the fuel efficiency of different car types. Data are from <span class="citation">Cryer and Miller (<a href="references.html#ref-cryer1991statistics">1991</a>)</span>. We have data on:</p>
 <p><span class="math inline">\(y\)</span> = gallons per mile (gpm),</p>
 <p><span class="math inline">\(x_1\)</span> = car weight (w),</p>
 <p><span class="math inline">\(x_2\)</span> = transmission type (ttype): 1 = automatic or 0 = manual.</p>
 <p>We use the model</p>
 <p><span class="math display">\[\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2.\]</span></p>
-<p><span class="math inline">\(\beta_0\)</span> = the mean gpm for cars of weight <span class="math inline">\(w = 0\)</span> and ttype = manual. <span class="math inline">\(\beta_1\)</span> = change in mean gpm when weight increases by 1 for the same ttype. <span class="math inline">\(\beta_2\)</span> = change in mean gpm when the car of the same weight is changed from manual to automatic.</p>
+<p><span class="math inline">\(\beta_0\)</span> = the mean gpm for cars of weight <span class="math inline">\(w = 0\)</span> and ttype = manual.
+<span class="math inline">\(\beta_1\)</span> = change in mean gpm when weight increases by 1 for the same ttype.
+<span class="math inline">\(\beta_2\)</span> = change in mean gpm when the car of the same weight is changed from manual to automatic.</p>
 <p>The model says that:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \mathbb{E}[y] &amp; = \beta_0 + \beta_1 x_1 \quad \mbox{ for manual}\\
 &amp; = \beta_0 + \beta_2 + \beta_1 x_1 \quad \mbox{ for automatic.}
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>Therefore we are fitting two lines with different intercepts but the same slope.</p>
 <p>The data should look like:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="384" style="display: block; margin: auto;" /></p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-78-1.png" width="384" style="display: block; margin: auto;"></div>
 <p>Suppose the data look like this:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="384" style="display: block; margin: auto;" /></p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-79-1.png" width="384" style="display: block; margin: auto;"></div>
 <p>This suggests we should fit two lines with different intercepts and different slopes. We introduce a third predictor:</p>
 <p><span class="math display">\[\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1x_2,\]</span></p>
 <p>giving:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \mathbb{E}[y] &amp; = \beta_0 + \beta_1 x_1 \quad \mbox{ for manual}\\
 &amp; = (\beta_0 + \beta_2) + (\beta_1 + \beta_3) x_1 \quad \mbox{ for automatic.}
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>The term <span class="math inline">\(x_1x_2\)</span> is called an interaction term.</p>
 <p>Here:</p>
 <p><span class="math inline">\(\beta_2\)</span> = difference in intercept</p>
 <p><span class="math inline">\(\beta_3\)</span> = difference in slope.</p>
 </div>
-<div id="example-3-polynomials" class="section level3">
-<h3><span class="header-section-number">4.1.3</span> Example 3: Polynomials</h3>
+<div id="example-3-polynomials" class="section level3" number="4.1.3">
+<h3>
+<span class="header-section-number">4.1.3</span> Example 3: Polynomials<a class="anchor" aria-label="anchor" href="#example-3-polynomials"><i class="fas fa-link"></i></a>
+</h3>
 <p>We have one predictor <span class="math inline">\(x\)</span> but the plot of <span class="math inline">\(y\)</span> vs <span class="math inline">\(x\)</span> exhibits a quadratic pattern.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="384" style="display: block; margin: auto;" /> Then we can fit a multiple regression model:</p>
+<div class="inline-figure">
+<img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-80-1.png" width="384" style="display: block; margin: auto;">
+Then we can fit a multiple regression model:</div>
 <p><span class="math display">\[\mathbb{E}[y] = \beta_0 + \beta_1 x + \beta_2 x^2.\]</span></p>
 <p>This is also called a quadratic regression model or, more generally, a polynomial regression model.</p>
 <p>Higher order polynomial regression models can also be used if needed.</p>
-<div id="unnamed_chunk_59div" class="rglWebGL">
-
-</div>
-<script type="text/javascript">
-var unnamed_chunk_59div = document.getElementById("unnamed_chunk_59div"),
-unnamed_chunk_59rgl = new rglwidgetClass();
-unnamed_chunk_59div.width = 673;
-unnamed_chunk_59div.height = 481;
-unnamed_chunk_59rgl.initialize(unnamed_chunk_59div,
-{"material":{"color":"#000000","alpha":1,"lit":true,"ambient":"#000000","specular":"#FFFFFF","emission":"#000000","shininess":50,"smooth":true,"front":"filled","back":"filled","size":3,"lwd":1,"fog":false,"point_antialias":false,"line_antialias":false,"texture":null,"textype":"rgb","texmipmap":false,"texminfilter":"linear","texmagfilter":"linear","texenvmap":false,"depth_mask":true,"depth_test":"less","isTransparent":false},"rootSubscene":1,"objects":{"26":{"id":26,"type":"surface","material":{},"vertices":[[0,0,0.2],[0.1,0,0.4],[0.2,0,0.6],[0.3,0,0.8],[0.4,0,1],[0.5,0,1.2],[0.6,0,1.4],[0.7,0,1.6],[0.8,0,1.8],[0.9,0,2],[1,0,2.2],[0,0.01,0.25],[0.1,0.01,0.45],[0.2,0.01,0.65],[0.3,0.01,0.85],[0.4,0.01,1.05],[0.5,0.01,1.25],[0.6,0.01,1.45],[0.7,0.01,1.65],[0.8,0.01,1.85],[0.9,0.01,2.05],[1,0.01,2.25],[0,0.04,0.4],[0.1,0.04,0.6],[0.2,0.04,0.8],[0.3,0.04,1],[0.4,0.04,1.2],[0.5,0.04,1.4],[0.6,0.04,1.6],[0.7,0.04,1.8],[0.8,0.04,2],[0.9,0.04,2.2],[1,0.04,2.4],[0,0.09,0.65],[0.1,0.09,0.85],[0.2,0.09,1.05],[0.3,0.09,1.25],[0.4,0.09,1.45],[0.5,0.09,1.65],[0.6,0.09,1.85],[0.7,0.09,2.05],[0.8,0.09,2.25],[0.9,0.09,2.45],[1,0.09,2.65],[0,0.16,1],[0.1,0.16,1.2],[0.2,0.16,1.4],[0.3,0.16,1.6],[0.4,0.16,1.8],[0.5,0.16,2],[0.6,0.16,2.2],[0.7,0.16,2.4],[0.8,0.16,2.6],[0.9,0.16,2.8],[1,0.16,3],[0,0.25,1.45],[0.1,0.25,1.65],[0.2,0.25,1.85],[0.3,0.25,2.05],[0.4,0.25,2.25],[0.5,0.25,2.45],[0.6,0.25,2.65],[0.7,0.25,2.85],[0.8,0.25,3.05],[0.9,0.25,3.25],[1,0.25,3.45],[0,0.36,2],[0.1,0.36,2.2],[0.2,0.36,2.4],[0.3,0.36,2.6],[0.4,0.36,2.8],[0.5,0.36,3],[0.6,0.36,3.2],[0.7,0.36,3.4],[0.8,0.36,3.6],[0.9,0.36,3.8],[1,0.36,4],[0,0.49,2.65],[0.1,0.49,2.85],[0.2,0.49,3.05],[0.3,0.49,3.25],[0.4,0.49,3.45],[0.5,0.49,3.65],[0.6,0.49,3.85],[0.7,0.49,4.05],[0.8,0.49,4.25],[0.9,0.49,4.45],[1,0.49,4.65],[0,0.64,3.4],[0.1,0.64,3.6],[0.2,0.64,3.8],[0.3,0.64,4],[0.4,0.64,4.2],[0.5,0.64,4.4],[0.6,0.64,4.6],[0.7,0.64,4.8],[0.8,0.64,5],[0.9,0.64,5.2],[1,0.64,5.4],[0,0.81,4.25],[0.1,0.81,4.45],[0.2,0.81,4.65],[0.3,0.81,4.85],[0.4,0.81,5.05],[0.5,0.81,5.25],[0.6,0.81,5.45],[0.7,0.81,5.65],[0.8,0.81,5.85],[0.9,0.81,6.05],[1,0.81,6.25],[0,1,5.2],[0.1,1,5.4],[0.2,1,5.6],[0.3,1,5.8],[0.4,1,6],[0.5,1,6.2],[0.6,1,6.4],[0.7,1,6.6],[0.8,1,6.8],[0.9,1,7],[1,1,7.2]],"normals":[[-0.3651484,-0.9128709,0.1825742],[-0.3651485,-0.9128709,0.1825743],[-0.3651485,-0.9128709,0.1825743],[-0.3651484,-0.9128709,0.1825742],[-0.3651486,-0.9128709,0.1825743],[-0.3651485,-0.9128709,0.1825742],[-0.3651483,-0.9128711,0.1825742],[-0.3651483,-0.912871,0.1825741],[-0.3651483,-0.9128711,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651487,-0.9128709,0.1825743],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651483,-0.9128711,0.1825742],[-0.3651483,-0.9128711,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651483,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825741],[-0.3651483,-0.9128711,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651483,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651483,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651483,-0.9128711,0.1825742],[-0.3651483,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651483,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651483,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651483,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651483,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651483,-0.912871,0.1825742],[-0.3651482,-0.912871,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651481,-0.912871,0.1825742],[-0.3651483,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651485,-0.912871,0.1825742],[-0.3651483,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825741],[-0.3651481,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651487,-0.9128709,0.1825742],[-0.3651481,-0.9128711,0.1825742],[-0.3651483,-0.9128709,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651483,-0.912871,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651482,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651483,-0.912871,0.1825742],[-0.3651484,-0.9128709,0.1825742],[-0.3651485,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651483,-0.9128709,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651485,-0.9128709,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651484,-0.912871,0.1825742],[-0.3651482,-0.912871,0.1825742],[-0.3651485,-0.912871,0.1825742],[-0.3651485,-0.912871,0.1825742],[-0.3651485,-0.912871,0.1825742],[-0.3651485,-0.912871,0.1825742],[-0.3651483,-0.9128709,0.1825742],[-0.3651483,-0.912871,0.1825742],[-0.3651485,-0.912871,0.1825742],[-0.3651485,-0.912871,0.1825742],[-0.3651485,-0.912871,0.1825742],[-0.3651483,-0.9128709,0.1825742],[-0.3651481,-0.9128711,0.1825743]],"colors":[[0.6784314,0.8470588,0.9019608,1]],"dim":[[11,11]],"centers":[[0.05,0.005,0.325],[0.15,0.005,0.525],[0.25,0.005,0.725],[0.35,0.005,0.925],[0.45,0.005,1.125],[0.55,0.005,1.325],[0.65,0.005,1.525],[0.75,0.005,1.725],[0.85,0.005,1.925],[0.95,0.005,2.125],[0.05,0.025,0.425],[0.15,0.025,0.625],[0.25,0.025,0.825],[0.35,0.025,1.025],[0.45,0.025,1.225],[0.55,0.025,1.425],[0.65,0.025,1.625],[0.75,0.025,1.825],[0.85,0.025,2.025],[0.95,0.025,2.225],[0.05,0.065,0.625],[0.15,0.065,0.825],[0.25,0.065,1.025],[0.35,0.065,1.225],[0.45,0.065,1.425],[0.55,0.065,1.625],[0.65,0.065,1.825],[0.75,0.065,2.025],[0.85,0.065,2.225],[0.95,0.065,2.425],[0.05,0.125,0.925],[0.15,0.125,1.125],[0.25,0.125,1.325],[0.35,0.125,1.525],[0.45,0.125,1.725],[0.55,0.125,1.925],[0.65,0.125,2.125],[0.75,0.125,2.325],[0.85,0.125,2.525],[0.95,0.125,2.725],[0.05,0.205,1.325],[0.15,0.205,1.525],[0.25,0.205,1.725],[0.35,0.205,1.925],[0.45,0.205,2.125],[0.55,0.205,2.325],[0.65,0.205,2.525],[0.75,0.205,2.725],[0.85,0.205,2.925],[0.95,0.205,3.125],[0.05,0.305,1.825],[0.15,0.305,2.025],[0.25,0.305,2.225],[0.35,0.305,2.425],[0.45,0.305,2.625],[0.55,0.305,2.825],[0.65,0.305,3.025],[0.75,0.305,3.225],[0.85,0.305,3.425],[0.95,0.305,3.625],[0.05,0.425,2.425],[0.15,0.425,2.625],[0.25,0.425,2.825],[0.35,0.425,3.025],[0.45,0.425,3.225],[0.55,0.425,3.425],[0.65,0.425,3.625],[0.75,0.425,3.825],[0.85,0.425,4.025],[0.95,0.425,4.225],[0.05,0.565,3.125],[0.15,0.565,3.325],[0.25,0.565,3.525],[0.35,0.565,3.725],[0.45,0.565,3.925],[0.55,0.565,4.125],[0.65,0.565,4.325],[0.75,0.565,4.525],[0.85,0.565,4.725],[0.95,0.565,4.925],[0.05,0.725,3.925],[0.15,0.725,4.125],[0.25,0.725,4.325],[0.35,0.725,4.525],[0.45,0.725,4.725],[0.55,0.725,4.925],[0.65,0.725,5.125],[0.75,0.725,5.325],[0.85,0.725,5.525],[0.95,0.725,5.725],[0.05,0.905,4.825],[0.15,0.905,5.025],[0.25,0.905,5.225],[0.35,0.905,5.425],[0.45,0.905,5.625],[0.55,0.905,5.825],[0.65,0.905,6.025],[0.75,0.905,6.225],[0.85,0.905,6.425],[0.95,0.905,6.625]],"ignoreExtent":false,"flags":3},"28":{"id":28,"type":"text","material":{"lit":false},"vertices":[[0.5,-0.1695,-0.9865]],"colors":[[0,0,0,1]],"texts":[["X1"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[0.5,-0.1695,-0.9865]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":2064},"29":{"id":29,"type":"text","material":{"lit":false},"vertices":[[-0.1695,0.5,-0.9865]],"colors":[[0,0,0,1]],"texts":[["X1^2"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.1695,0.5,-0.9865]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":2064},"30":{"id":30,"type":"text","material":{"lit":false},"vertices":[[-0.1695,-0.1695,3.7]],"colors":[[0,0,0,1]],"texts":[["Y"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.1695,-0.1695,3.7]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"flags":2064},"31":{"id":31,"type":"points","material":{"lit":false},"vertices":[[0.8397665,0.7052078,5.140732],[0.2284242,0.05217763,1.023382],[0.8851086,0.7834173,5.603371],[0.9227855,0.8515332,6.599232],[0.4355152,0.1896735,2.161743],[0.1082561,0.01171938,0.6868128],[0.4713058,0.2221292,1.931896],[0.4302603,0.1851239,1.990135],[0.5800594,0.336469,2.586663],[0.4703158,0.221197,2.678872],[0.8585019,0.7370254,5.814704],[0.4867907,0.2369651,2.196172],[0.1009134,0.01018352,1.201233],[0.5776656,0.3336976,3.238163],[0.8741918,0.7642112,6.250999],[0.4564963,0.2083889,2.091289],[0.5779569,0.3340342,3.53288],[0.8049867,0.6480036,4.633402],[0.8139629,0.6625355,5.269917],[0.5023376,0.2523431,2.375024],[0.2429452,0.05902236,0.729432],[0.7146475,0.5107211,4.271526],[0.7879834,0.6209179,5.123603],[0.2906366,0.08446964,1.285422],[0.2936804,0.08624818,1.147003],[0.2370727,0.05620346,0.2403809],[0.7452475,0.5553939,4.622567],[0.3240979,0.1050395,1.943704],[0.2048145,0.04194897,0.6890714],[0.7414766,0.5497876,4.176999],[0.09707925,0.00942438,0.3688321],[0.5736447,0.3290682,2.824929],[0.03009684,0.0009058198,0.4929458],[0.6605286,0.436298,3.644022],[0.05620262,0.003158734,0.5669982],[0.7732865,0.5979719,4.906526],[0.06045797,0.003655166,0.2033258],[0.5829539,0.3398353,3.812376],[0.9528599,0.9079419,6.523142],[0.5762609,0.3320766,3.104197],[0.9062315,0.8212556,5.912539],[0.2916188,0.08504152,0.8550432],[0.27361,0.07486241,0.9233162],[0.1828003,0.03341595,0.9835135],[0.1736785,0.03016421,0.9465897],[0.5537604,0.3066506,2.656907],[0.6014789,0.3617768,3.252203],[0.816665,0.6669417,4.715398],[0.3904147,0.1524236,1.215384],[0.9094192,0.8270432,6.12576],[0.2670626,0.07132243,1.106645],[0.3376175,0.1139855,1.350134],[0.9452911,0.8935752,6.897296],[0.418204,0.1748946,1.745697],[0.5131808,0.2633545,2.966808],[0.03214211,0.001033116,0.1536527],[0.440395,0.1939478,1.966855],[0.5998822,0.3598586,3.086706],[0.2234557,0.04993246,0.8345151],[0.8133298,0.6615054,4.908097],[0.7644365,0.5843632,5.161893],[0.6331432,0.4008703,4.127993],[0.5326775,0.2837453,2.563154],[0.3890525,0.1513618,2.582082],[0.9912454,0.9825675,6.639333],[0.1396624,0.01950559,0.5638688],[0.7829224,0.6129675,4.65436],[0.1367597,0.01870323,0.4258581],[0.9776253,0.9557512,7.414464],[0.425617,0.1811499,2.303255],[0.4263583,0.1817814,2.036983],[0.4062117,0.1650079,2.082872],[0.6945658,0.4824216,4.133536],[0.4305338,0.1853593,2.165594],[0.1904996,0.03629011,0.4930468],[0.8388267,0.7036301,5.705868],[0.2500319,0.06251594,0.9539216],[0.1641759,0.02695372,-0.09668939],[0.1303018,0.01697857,0.9344074],[0.965629,0.9324393,7.142746],[0.2732956,0.07469048,1.4872],[0.3250588,0.1056632,1.268385],[0.1818216,0.03305908,0.7353843],[0.8700904,0.7570572,6.380338],[0.6061129,0.3673728,3.265011],[0.05462998,0.002984435,0.602837],[0.9834432,0.9671605,7.189126],[0.9480615,0.8988205,6.513563],[0.9243242,0.8543752,6.105085],[0.2735427,0.07482562,1.565122],[0.007860089,6.1781e-05,0.3801819],[0.4972031,0.2472109,2.214641],[0.6785587,0.4604419,3.804083],[0.007203906,5.189626e-05,0.3325222],[0.8552006,0.7313681,5.714032],[0.1462756,0.02139654,0.3928683],[0.404933,0.1639707,1.990123],[0.3415836,0.1166793,1.934461],[0.1619111,0.02621519,0.7380999],[0.08371096,0.007007525,-0.01211224]],"colors":[[1,0,0,1]],"centers":[[0.8397665,0.7052078,5.140732],[0.2284242,0.05217763,1.023382],[0.8851086,0.7834173,5.603371],[0.9227855,0.8515332,6.599232],[0.4355152,0.1896735,2.161743],[0.1082561,0.01171938,0.6868128],[0.4713058,0.2221292,1.931896],[0.4302603,0.1851239,1.990135],[0.5800594,0.336469,2.586663],[0.4703158,0.221197,2.678872],[0.8585019,0.7370254,5.814704],[0.4867907,0.2369651,2.196172],[0.1009134,0.01018352,1.201233],[0.5776656,0.3336976,3.238163],[0.8741918,0.7642112,6.250999],[0.4564963,0.2083889,2.091289],[0.5779569,0.3340342,3.53288],[0.8049867,0.6480036,4.633402],[0.8139629,0.6625355,5.269917],[0.5023376,0.2523431,2.375024],[0.2429452,0.05902236,0.729432],[0.7146475,0.5107211,4.271526],[0.7879834,0.6209179,5.123603],[0.2906366,0.08446964,1.285422],[0.2936804,0.08624818,1.147003],[0.2370727,0.05620346,0.2403809],[0.7452475,0.5553939,4.622567],[0.3240979,0.1050395,1.943704],[0.2048145,0.04194897,0.6890714],[0.7414766,0.5497876,4.176999],[0.09707925,0.00942438,0.3688321],[0.5736447,0.3290682,2.824929],[0.03009684,0.0009058198,0.4929458],[0.6605286,0.436298,3.644022],[0.05620262,0.003158734,0.5669982],[0.7732865,0.5979719,4.906526],[0.06045797,0.003655166,0.2033258],[0.5829539,0.3398353,3.812376],[0.9528599,0.9079419,6.523142],[0.5762609,0.3320766,3.104197],[0.9062315,0.8212556,5.912539],[0.2916188,0.08504152,0.8550432],[0.27361,0.07486241,0.9233162],[0.1828003,0.03341595,0.9835135],[0.1736785,0.03016421,0.9465897],[0.5537604,0.3066506,2.656907],[0.6014789,0.3617768,3.252203],[0.816665,0.6669417,4.715398],[0.3904147,0.1524236,1.215384],[0.9094192,0.8270432,6.12576],[0.2670626,0.07132243,1.106645],[0.3376175,0.1139855,1.350134],[0.9452911,0.8935752,6.897296],[0.418204,0.1748946,1.745697],[0.5131808,0.2633545,2.966808],[0.03214211,0.001033116,0.1536527],[0.440395,0.1939478,1.966855],[0.5998822,0.3598586,3.086706],[0.2234557,0.04993246,0.8345151],[0.8133298,0.6615054,4.908097],[0.7644365,0.5843632,5.161893],[0.6331432,0.4008703,4.127993],[0.5326775,0.2837453,2.563154],[0.3890525,0.1513618,2.582082],[0.9912454,0.9825675,6.639333],[0.1396624,0.01950559,0.5638688],[0.7829224,0.6129675,4.65436],[0.1367597,0.01870323,0.4258581],[0.9776253,0.9557512,7.414464],[0.425617,0.1811499,2.303255],[0.4263583,0.1817814,2.036983],[0.4062117,0.1650079,2.082872],[0.6945658,0.4824216,4.133536],[0.4305338,0.1853593,2.165594],[0.1904996,0.03629011,0.4930468],[0.8388267,0.7036301,5.705868],[0.2500319,0.06251594,0.9539216],[0.1641759,0.02695372,-0.09668939],[0.1303018,0.01697857,0.9344074],[0.965629,0.9324393,7.142746],[0.2732956,0.07469048,1.4872],[0.3250588,0.1056632,1.268385],[0.1818216,0.03305908,0.7353843],[0.8700904,0.7570572,6.380338],[0.6061129,0.3673728,3.265011],[0.05462998,0.002984435,0.602837],[0.9834432,0.9671605,7.189126],[0.9480615,0.8988205,6.513563],[0.9243242,0.8543752,6.105085],[0.2735427,0.07482562,1.565122],[0.007860089,6.1781e-05,0.3801819],[0.4972031,0.2472109,2.214641],[0.6785587,0.4604419,3.804083],[0.007203906,5.189626e-05,0.3325222],[0.8552006,0.7313681,5.714032],[0.1462756,0.02139654,0.3928683],[0.404933,0.1639707,1.990123],[0.3415836,0.1166793,1.934461],[0.1619111,0.02621519,0.7380999],[0.08371096,0.007007525,-0.01211224]],"ignoreExtent":false,"flags":4096},"5":{"id":5,"reuse":"unnamed_chunk_11div"},"6":{"id":6,"reuse":"unnamed_chunk_11div"},"27":{"id":27,"type":"bboxdeco","material":{"front":"lines","back":"lines"},"vertices":[[0,"NA","NA"],[0.2,"NA","NA"],[0.4,"NA","NA"],[0.6,"NA","NA"],[0.8,"NA","NA"],[1,"NA","NA"],["NA",0,"NA"],["NA",0.2,"NA"],["NA",0.4,"NA"],["NA",0.6,"NA"],["NA",0.8,"NA"],["NA",1,"NA"],["NA","NA",0],["NA","NA",2],["NA","NA",4],["NA","NA",6]],"colors":[[0,0,0,1]],"draw_front":true,"newIds":[39,40,41,42,43,44,45]},"1":{"id":1,"type":"subscene","par3d":{"antialias":16,"FOV":30,"ignoreExtent":false,"listeners":1,"mouseMode":{"left":"trackball","right":"zoom","middle":"fov","wheel":"pull"},"observer":[0,0,17.91062],"modelMatrix":[[4.123106,0,0,-2.061553],[0,1.410185,0.5534931,-2.730261],[0,-3.874452,0.201455,-16.7105],[0,0,0,1]],"projMatrix":[[2.66575,0,0,0],[0,3.732051,0,0],[0,0,-3.863704,-64.56571],[0,0,-1,0]],"skipRedraw":false,"userMatrix":[[1,0,0,0],[0,0.3420201,0.9396926,0],[0,-0.9396926,0.3420201,0],[0,0,0,1]],"scale":[4.123106,4.123106,0.5890151],"viewport":{"x":0,"y":0,"width":1,"height":1},"zoom":1,"bbox":[0,1,0,1,-0.09668939,7.414464],"windowRect":[0,45,672,525],"family":"sans","font":1,"cex":1,"useFreeType":true,"fontname":"/Library/Frameworks/R.framework/Versions/3.5/Resources/library/rgl/fonts/FreeSans.ttf","maxClipPlanes":6,"glVersion":2.1},"embeddings":{"viewport":"replace","projection":"replace","model":"replace"},"objects":[6,27,26,28,29,30,31,5,39,40,41,42,43,44,45],"subscenes":[],"flags":6739},"39":{"id":39,"type":"lines","material":{"lit":false},"vertices":[[0,-0.015,-0.2093567],[1,-0.015,-0.2093567],[0,-0.015,-0.2093567],[0,-0.04075,-0.4027689],[0.2,-0.015,-0.2093567],[0.2,-0.04075,-0.4027689],[0.4,-0.015,-0.2093567],[0.4,-0.04075,-0.4027689],[0.6,-0.015,-0.2093567],[0.6,-0.04075,-0.4027689],[0.8,-0.015,-0.2093567],[0.8,-0.04075,-0.4027689],[1,-0.015,-0.2093567],[1,-0.04075,-0.4027689]],"colors":[[0,0,0,1]],"centers":[[0.5,-0.015,-0.2093567],[0,-0.027875,-0.3060628],[0.2,-0.027875,-0.3060628],[0.4,-0.027875,-0.3060628],[0.6,-0.027875,-0.3060628],[0.8,-0.027875,-0.3060628],[1,-0.027875,-0.3060628]],"ignoreExtent":true,"origId":27,"flags":64},"40":{"id":40,"type":"text","material":{"lit":false},"vertices":[[0,-0.09225,-0.7895933],[0.2,-0.09225,-0.7895933],[0.4,-0.09225,-0.7895933],[0.6,-0.09225,-0.7895933],[0.8,-0.09225,-0.7895933],[1,-0.09225,-0.7895933]],"colors":[[0,0,0,1]],"texts":[["0"],["0.2"],["0.4"],["0.6"],["0.8"],["1"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[0,-0.09225,-0.7895933],[0.2,-0.09225,-0.7895933],[0.4,-0.09225,-0.7895933],[0.6,-0.09225,-0.7895933],[0.8,-0.09225,-0.7895933],[1,-0.09225,-0.7895933]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":27,"flags":2064},"41":{"id":41,"type":"lines","material":{"lit":false},"vertices":[[-0.015,0,-0.2093567],[-0.015,1,-0.2093567],[-0.015,0,-0.2093567],[-0.04075,0,-0.4027689],[-0.015,0.2,-0.2093567],[-0.04075,0.2,-0.4027689],[-0.015,0.4,-0.2093567],[-0.04075,0.4,-0.4027689],[-0.015,0.6,-0.2093567],[-0.04075,0.6,-0.4027689],[-0.015,0.8,-0.2093567],[-0.04075,0.8,-0.4027689],[-0.015,1,-0.2093567],[-0.04075,1,-0.4027689]],"colors":[[0,0,0,1]],"centers":[[-0.015,0.5,-0.2093567],[-0.027875,0,-0.3060628],[-0.027875,0.2,-0.3060628],[-0.027875,0.4,-0.3060628],[-0.027875,0.6,-0.3060628],[-0.027875,0.8,-0.3060628],[-0.027875,1,-0.3060628]],"ignoreExtent":true,"origId":27,"flags":64},"42":{"id":42,"type":"text","material":{"lit":false},"vertices":[[-0.09225,0,-0.7895933],[-0.09225,0.2,-0.7895933],[-0.09225,0.4,-0.7895933],[-0.09225,0.6,-0.7895933],[-0.09225,0.8,-0.7895933],[-0.09225,1,-0.7895933]],"colors":[[0,0,0,1]],"texts":[["0"],["0.2"],["0.4"],["0.6"],["0.8"],["1"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.09225,0,-0.7895933],[-0.09225,0.2,-0.7895933],[-0.09225,0.4,-0.7895933],[-0.09225,0.6,-0.7895933],[-0.09225,0.8,-0.7895933],[-0.09225,1,-0.7895933]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":27,"flags":2064},"43":{"id":43,"type":"lines","material":{"lit":false},"vertices":[[-0.015,-0.015,0],[-0.015,-0.015,6],[-0.015,-0.015,0],[-0.04075,-0.04075,0],[-0.015,-0.015,2],[-0.04075,-0.04075,2],[-0.015,-0.015,4],[-0.04075,-0.04075,4],[-0.015,-0.015,6],[-0.04075,-0.04075,6]],"colors":[[0,0,0,1]],"centers":[[-0.015,-0.015,3],[-0.027875,-0.027875,0],[-0.027875,-0.027875,2],[-0.027875,-0.027875,4],[-0.027875,-0.027875,6]],"ignoreExtent":true,"origId":27,"flags":64},"44":{"id":44,"type":"text","material":{"lit":false},"vertices":[[-0.09225,-0.09225,0],[-0.09225,-0.09225,2],[-0.09225,-0.09225,4],[-0.09225,-0.09225,6]],"colors":[[0,0,0,1]],"texts":[["0"],["2"],["4"],["6"]],"cex":[[1]],"adj":[[0.5,0.5]],"centers":[[-0.09225,-0.09225,0],[-0.09225,-0.09225,2],[-0.09225,-0.09225,4],[-0.09225,-0.09225,6]],"family":[["sans"]],"font":[[1]],"ignoreExtent":true,"origId":27,"flags":2064},"45":{"id":45,"type":"lines","material":{"lit":false},"vertices":[[-0.015,-0.015,-0.2093567],[-0.015,1.015,-0.2093567],[-0.015,-0.015,7.527131],[-0.015,1.015,7.527131],[-0.015,-0.015,-0.2093567],[-0.015,-0.015,7.527131],[-0.015,1.015,-0.2093567],[-0.015,1.015,7.527131],[-0.015,-0.015,-0.2093567],[1.015,-0.015,-0.2093567],[-0.015,-0.015,7.527131],[1.015,-0.015,7.527131],[-0.015,1.015,-0.2093567],[1.015,1.015,-0.2093567],[-0.015,1.015,7.527131],[1.015,1.015,7.527131],[1.015,-0.015,-0.2093567],[1.015,1.015,-0.2093567],[1.015,-0.015,7.527131],[1.015,1.015,7.527131],[1.015,-0.015,-0.2093567],[1.015,-0.015,7.527131],[1.015,1.015,-0.2093567],[1.015,1.015,7.527131]],"colors":[[0,0,0,1]],"centers":[[-0.015,0.5,-0.2093567],[-0.015,0.5,7.527131],[-0.015,-0.015,3.658887],[-0.015,1.015,3.658887],[0.5,-0.015,-0.2093567],[0.5,-0.015,7.527131],[0.5,1.015,-0.2093567],[0.5,1.015,7.527131],[1.015,0.5,-0.2093567],[1.015,0.5,7.527131],[1.015,-0.015,3.658887],[1.015,1.015,3.658887]],"ignoreExtent":true,"origId":27,"flags":64}},"snapshot":"data:image/png;base64,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","width":673,"height":481,"sphereVerts":{"reuse":"unnamed_chunk_11div"},"context":{"shiny":false,"rmarkdown":"bookdown::gitbook"},"crosstalk":{"key":[],"group":[],"id":[],"options":[]}});
-unnamed_chunk_59rgl.prefix = "unnamed_chunk_59";
-</script>
-<p id="unnamed_chunk_59debug">
-You must enable Javascript to view this page properly.
-</p>
-<script>unnamed_chunk_59rgl.start();</script>
+<!-- ```{r results='hide',echo=FALSE, webgl=TRUE} -->
+<!-- # plot3d(x1, x1^2, y) -->
+<!-- x <- seq(0,1, by = 0.1) -->
+<!-- x2 <- x^2 -->
+<!-- f <- function(x,x2) { r <-  0.2 + 2 * x + 5 * x2 } -->
+<!-- z <- outer(x, x2, f) -->
+<!-- persp3d(x, x2, z,  col = "light blue", xlab = "X1", ylab = "X1^2", zlab = "Y") -->
+<!-- points3d(x1,x1^2,y,col="red") -->
+<!-- ``` -->
 <p>Link: <a href="http://www.rpubs.com/kdomijan/333155" class="uri">http://www.rpubs.com/kdomijan/333155</a></p>
 </div>
-<div id="example-4-nonlinear-relationships" class="section level3">
-<h3><span class="header-section-number">4.1.4</span> Example 4: Nonlinear relationships</h3>
+<div id="example-4-nonlinear-relationships" class="section level3" number="4.1.4">
+<h3>
+<span class="header-section-number">4.1.4</span> Example 4: Nonlinear relationships<a class="anchor" aria-label="anchor" href="#example-4-nonlinear-relationships"><i class="fas fa-link"></i></a>
+</h3>
 <p>For example,</p>
 <p><span class="math display">\[y = \alpha x_1 ^{\beta x_2} \epsilon.\]</span></p>
 <p>Nonlinear models can sometimes be linearized, for example:</p>
@@ -421,12 +252,28 @@ You must enable Javascript to view this page properly.
 <p>where <span class="math inline">\(f_j(x_1, x_2)\)</span> are known functions of explanatory variables.</p>
 <p>The extension to more than two explanatory variables is straightforward.</p>
 </div>
-<div id="cigarette-data-continued" class="section level3">
-<h3><span class="header-section-number">4.1.5</span> Cigarette Data continued</h3>
-<p>Data from <a href="SLR.html#cigarette">3.7.4</a>. Consider a second predictor (weight):</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="624" style="display: block; margin: auto;" /></p>
+<div id="diamonds-data" class="section level3" number="4.1.5">
+<h3>
+<span class="header-section-number">4.1.5</span> Diamonds data<a class="anchor" aria-label="anchor" href="#diamonds-data"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">diamonds</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">carat</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">price</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">color</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">clarity</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-81-1.png" width="672"></div>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># model.orig &lt;- lm(log(price) ~ poly(carat,2) + color + clarity +cut,  diamonds)</span></span>
+<span><span class="co"># summary(model.orig)</span></span></code></pre></div>
+</div>
+<div id="cigarette-data-continued" class="section level3" number="4.1.6">
+<h3>
+<span class="header-section-number">4.1.6</span> Cigarette Data continued<a class="anchor" aria-label="anchor" href="#cigarette-data-continued"><i class="fas fa-link"></i></a>
+</h3>
+<p>Data from <a href="SLR.html#cigarette">3.7.4</a>.
+Consider a second predictor (weight):</p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-82-1.png" width="624" style="display: block; margin: auto;"></div>
 <p>Regression (nicotine only)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit)</code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = carbon.monoxide ~ nicotine)
@@ -440,13 +287,14 @@ You must enable Javascript to view this page properly.
 ## (Intercept)   1.6647     0.9936   1.675    0.107    
 ## nicotine     12.3954     1.0542  11.759 3.31e-11 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 1.828 on 23 degrees of freedom
 ## Multiple R-squared:  0.8574, Adjusted R-squared:  0.8512 
 ## F-statistic: 138.3 on 1 and 23 DF,  p-value: 3.312e-11</code></pre>
 <p>Regression (weight only)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(fit2)</code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = carbon.monoxide ~ weight)
@@ -460,16 +308,17 @@ You must enable Javascript to view this page properly.
 ## (Intercept)  -11.795      9.722  -1.213   0.2373  
 ## weight        25.068      9.980   2.512   0.0195 *
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 4.289 on 23 degrees of freedom
 ## Multiple R-squared:  0.2153, Adjusted R-squared:  0.1811 
 ## F-statistic: 6.309 on 1 and 23 DF,  p-value: 0.01948</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="624" style="display: block; margin: auto;" /></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-85-1.png" width="624" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-86-1.png" width="576" style="display: block; margin: auto;"></div>
 <p>Regression (both predictors)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit3 &lt;-<span class="st"> </span><span class="kw">lm</span>(carbon.monoxide <span class="op">~</span><span class="st"> </span>weight <span class="op">+</span><span class="st"> </span>nicotine)
-<span class="kw">summary</span>(fit3)</code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">carbon.monoxide</span> <span class="op">~</span> <span class="va">weight</span> <span class="op">+</span> <span class="va">nicotine</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = carbon.monoxide ~ weight + nicotine)
@@ -484,15 +333,16 @@ You must enable Javascript to view this page properly.
 ## weight       0.05883    5.02395   0.012    0.991    
 ## nicotine    12.38812    1.24473   9.952 1.32e-09 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 1.87 on 22 degrees of freedom
 ## Multiple R-squared:  0.8574, Adjusted R-squared:  0.8444 
 ## F-statistic: 66.13 on 2 and 22 DF,  p-value: 4.966e-10</code></pre>
 <p>Regression (quadratic)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nicotine.sq &lt;-<span class="st"> </span>nicotine<span class="op">^</span><span class="dv">2</span>
-fit4 &lt;-<span class="st"> </span><span class="kw">lm</span>(carbon.monoxide <span class="op">~</span><span class="st"> </span>nicotine <span class="op">+</span><span class="st"> </span>nicotine.sq)
-<span class="kw">summary</span>(fit4)</code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nicotine.sq</span> <span class="op">&lt;-</span> <span class="va">nicotine</span><span class="op">^</span><span class="fl">2</span></span>
+<span><span class="va">fit4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">carbon.monoxide</span> <span class="op">~</span> <span class="va">nicotine</span> <span class="op">+</span> <span class="va">nicotine.sq</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit4</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = carbon.monoxide ~ nicotine + nicotine.sq)
@@ -507,16 +357,18 @@ fit4 &lt;-<span class="st"> </span><span class="kw">lm</span>(carbon.monoxide <s
 ## nicotine      20.111      2.775   7.248 2.92e-07 ***
 ## nicotine.sq   -3.730      1.267  -2.945  0.00749 ** 
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 1.583 on 22 degrees of freedom
 ## Multiple R-squared:  0.8977, Adjusted R-squared:  0.8884 
 ## F-statistic: 96.53 on 2 and 22 DF,  p-value: 1.284e-11</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="288" style="display: block; margin: auto;" /></p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-89-1.png" width="288" style="display: block; margin: auto;"></div>
 </div>
 </div>
-<div id="least-squares-estimation-for-multiple-regression" class="section level2">
-<h2><span class="header-section-number">4.2</span> Least squares estimation for multiple regression</h2>
+<div id="least-squares-estimation-for-multiple-regression" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Least squares estimation for multiple regression<a class="anchor" aria-label="anchor" href="#least-squares-estimation-for-multiple-regression"><i class="fas fa-link"></i></a>
+</h2>
 <p>Our model states that:</p>
 <p><span class="math display">\[y = \beta_0 + \beta_1x_{1} + \beta_2x_{2} + ... + \beta_kx_k + \epsilon,\]</span></p>
 <p>where <span class="math inline">\(k&lt;n\)</span>.</p>
@@ -578,26 +430,32 @@ y_{n}
 <p>or equivalently:</p>
 <p><span class="math display">\[\mathbf{X}^T(\mathbf{Y} - \mathbf{X}\hat{\boldsymbol{\beta}})= \mathbf{0}\]</span></p>
 <p>Therefore the OLS estimator <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> satisfies:</p>
-<span class="math display" id="eq:betah">\[\begin{align}
+<p><span class="math display" id="eq:betah">\[\begin{align}
 \mathbf{X}^T\mathbf{X}\hat{\boldsymbol{\beta}} &amp;= \mathbf{X}^T\mathbf{Y}\\
 \hat{\boldsymbol{\beta}} &amp;= (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T\mathbf{Y}.\tag{4.1}
-\end{align}\]</span>
-<p>Matrix <span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span> is non-singular (i.e has an inverse) iff <span class="math inline">\(rank(\mathbf{X}) =p\)</span>, i.e. <span class="math inline">\(\mathbf{X}\)</span> has full rank and the columns of <span class="math inline">\(\mathbf{X}\)</span> are linearly independent.</p>
+\end{align}\]</span></p>
+<p>Matrix <span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span> is non-singular (i.e has an inverse) iff <span class="math inline">\(rank(\mathbf{X}) =p\)</span>, i.e. <span class="math inline">\(\mathbf{X}\)</span> has full rank and the columns of <span class="math inline">\(\mathbf{X}\)</span> are linearly independent.</p>
 <!-- The maximum number of linearly independent vectors in a matrix is equal to the number of non-zero rows in its row echelon matrix. Therefore, to find the rank of a matrix, we simply transform the matrix to its row echelon form and count the number of non-zero rows. -->
 <!-- **NOTE**: collinearity (in general) is a relationship between the predictors $\mathbf{x}_k$ in which one or more are almost a linear combination of the others. This causes inflation in the variance of $\hat{\beta}_j$, or of linear combinations of $\hat{\beta}_j$.  -->
-<div id="estimation-of-sigma2-varepsilon" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> Estimation of <span class="math inline">\(\sigma^2\)</span> = Var<span class="math inline">\((\epsilon)\)</span></h3>
+<div id="estimation-of-sigma2-varepsilon" class="section level3" number="4.2.1">
+<h3>
+<span class="header-section-number">4.2.1</span> Estimation of <span class="math inline">\(\sigma^2\)</span> = Var<span class="math inline">\((\epsilon)\)</span><a class="anchor" aria-label="anchor" href="#estimation-of-sigma2-varepsilon"><i class="fas fa-link"></i></a>
+</h3>
 <p>A point estimate of <span class="math inline">\(\sigma^2\)</span> is the mean squared error:</p>
 <p><span class="math display">\[\hat{\sigma}^2 = \mbox{MSE} = \frac{\mbox{SSE}}{n-p} = \frac{\sum_{i=1}^n e_i^2}{n-p}.\]</span></p>
 </div>
-<div id="estimation-of-varhatbeta" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> Estimation of Var<span class="math inline">\((\hat{\beta})\)</span></h3>
+<div id="estimation-of-varhatbeta" class="section level3" number="4.2.2">
+<h3>
+<span class="header-section-number">4.2.2</span> Estimation of Var<span class="math inline">\((\hat{\beta})\)</span><a class="anchor" aria-label="anchor" href="#estimation-of-varhatbeta"><i class="fas fa-link"></i></a>
+</h3>
 <p><span class="math display">\[\mbox{Var}(\hat{\boldsymbol{\beta}}) = (\mathbf{X}^T\mathbf{X})^{-1} \sigma^2.\]</span></p>
 <p><span class="math display">\[\widehat{\mbox{Var}(\hat{\boldsymbol{\beta}})} = (\mathbf{X}^T\mathbf{X})^{-1} \hat{\sigma}^2.\]</span></p>
 </div>
 </div>
-<div id="prediction-from-multiple-linear-regression-model" class="section level2">
-<h2><span class="header-section-number">4.3</span> Prediction from multiple linear regression model</h2>
+<div id="prediction-from-multiple-linear-regression-model" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> Prediction from multiple linear regression model<a class="anchor" aria-label="anchor" href="#prediction-from-multiple-linear-regression-model"><i class="fas fa-link"></i></a>
+</h2>
 <p>As we have seen already, to predict from a multiple regression model we use:</p>
 <p><span class="math display">\[\hat{y}_i = \hat{\beta}_0+ \hat{\beta}_1x_{i1}+ \cdots+\hat{\beta}_kx_{ik}\]</span></p>
 <p>or <span class="math display">\[\hat{\mathbf{Y}} = \mathbf{X}\hat{\boldsymbol{\beta}}\]</span></p>
@@ -613,10 +471,14 @@ y_{n}
 <p><span class="math display">\[\mbox{S.E.}_{\mbox{pred}}(\hat{y}_0) = \hat{\sigma}\sqrt{1+ \mathbf{x}_0^T(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{x}_0}.\]</span></p>
 <p>Note: <span class="math display">\[\mbox{S.E.}_{\mbox{pred}}(\hat{y}_0)= \sqrt{\hat{\sigma}^2+\mbox{S.E.}_{\mbox{fit}}(\hat{y}_0)^2}\]</span></p>
 </div>
-<div id="regression-models-in-matrix-notation-examples" class="section level2">
-<h2><span class="header-section-number">4.4</span> Regression models in matrix notation: examples</h2>
-<div id="example-1-slr" class="section level3">
-<h3><span class="header-section-number">4.4.1</span> Example 1: SLR</h3>
+<div id="regression-models-in-matrix-notation-examples" class="section level2" number="4.4">
+<h2>
+<span class="header-section-number">4.4</span> Regression models in matrix notation: examples<a class="anchor" aria-label="anchor" href="#regression-models-in-matrix-notation-examples"><i class="fas fa-link"></i></a>
+</h2>
+<div id="example-1-slr" class="section level3" number="4.4.1">
+<h3>
+<span class="header-section-number">4.4.1</span> Example 1: SLR<a class="anchor" aria-label="anchor" href="#example-1-slr"><i class="fas fa-link"></i></a>
+</h3>
 <p>The <span class="math inline">\(\mathbf{X}\)</span> matrix is:</p>
 <p><span class="math display">\[\mathbf{X} = \begin{bmatrix}
 1 &amp; x_{1}\\
@@ -624,7 +486,7 @@ y_{n}
 1 &amp;x_{n}
 \end{bmatrix}\]</span></p>
 <p>To estimate the coefficients <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \mathbf{X}^T\mathbf{X} &amp;= \begin{bmatrix}
 n &amp; \sum x_{i}\\
 \sum x_{i}&amp; \sum x_{i}^2
@@ -653,27 +515,30 @@ n\bar{y}  \\
 \bar{y}\sum x_{i}^2 -\bar{x} \sum x_{i}y_i \\
 -n \bar{x} \bar{y} + \sum x_{i}y_i
 \end{bmatrix}
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>With some algebra, this gives:</p>
-<p><span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}}\]</span> and</p>
+<p><span class="math display">\[\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}}\]</span>
+and</p>
 <p><span class="math display">\[\hat{\beta}_0= \bar{y} - \hat{\beta}_1\bar{x}\]</span></p>
 <p>as before, and</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \mbox{Var}(\hat{\boldsymbol{\beta}})&amp; = (\mathbf{X}^T\mathbf{X})^{-1}\sigma^2\\
 &amp; = \frac{\sigma^2}{S_{xx}}
 \begin{bmatrix}
 \sum x_{i}^2/n&amp; -\bar{x} \\
 -\bar{x}&amp; 1
 \end{bmatrix}
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>which gives</p>
 <p><span class="math display">\[\mbox{Var}(\hat{\beta}_0) = \sigma^2\left(\frac{1}{n}+ \frac{\bar{x}^2}{S_{xx}}\right),\]</span></p>
 <p><span class="math display">\[\mbox{Var}(\hat{\beta}_1) = \frac{\sigma^2}{S_{xx}},\]</span></p>
 <p><span class="math display">\[\mbox{Cov}(\hat{\beta}_0, \hat{\beta}_1) = -\bar{x}\frac{\sigma^2}{S_{xx}}.\]</span></p>
 </div>
-<div id="example-2" class="section level3">
-<h3><span class="header-section-number">4.4.2</span> Example 2</h3>
-<p>Example from <span class="citation">Stapleton (<a href="#ref-stapleton09linear">2009</a>)</span>, Problem 3.1.1, pg 81.</p>
+<div id="example-2" class="section level3" number="4.4.2">
+<h3>
+<span class="header-section-number">4.4.2</span> Example 2<a class="anchor" aria-label="anchor" href="#example-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Example from <span class="citation">Stapleton (<a href="references.html#ref-stapleton09linear">2009</a>)</span>, Problem 3.1.1, pg 81.</p>
 <p>A scale has 2 pans. The measurement given by the scale is the difference between the weight in pan 1 and pan 2, plus a random error <span class="math inline">\(\epsilon\)</span>.</p>
 <p>Suppose that <span class="math inline">\(\mathbb{E}[\epsilon] = 0\)</span> and <span class="math inline">\(\mbox{Var}(\epsilon) = \sigma^2\)</span> and the <span class="math inline">\(\epsilon_i\)</span> are independent.</p>
 <p>Suppose also that two objects have weight <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> and that 4 measurements are taken:</p>
@@ -684,16 +549,34 @@ n\bar{y}  \\
 <li>Pan 1: object 1 and 2, Pan 2: empty</li>
 </ul>
 <p>Let <span class="math inline">\(y_1\)</span>, <span class="math inline">\(y_2\)</span>, <span class="math inline">\(y_3\)</span> and <span class="math inline">\(y_4\)</span> be the four observations. Then:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 y_1 &amp; = \beta_1 + \epsilon_1\\
 y_2 &amp; =- \beta_2 + \epsilon_2\\
 y_3 &amp; = \beta_1 - \beta_2 + \epsilon_3\\
 y_4 &amp; = \beta_1 + \beta_2 + \epsilon_4\\
-\end{align*}\]</span>
-<p><span class="math inline">\(\mathbf{X} = \begin{bmatrix} 1 &amp;0 \\ 0 &amp; -1 \\ 1 &amp; -1 \\ 1 &amp; 1 \end{bmatrix}\)</span></p>
-<p><span class="math inline">\(\mathbf{Y} = \begin{bmatrix} y_1 \\ y_2 \\ y_3 \\ y_4 \end{bmatrix}\)</span></p>
-<p><span class="math inline">\(\boldsymbol{\beta} = \begin{bmatrix} \beta_1 \\ \beta_2 \end{bmatrix}\)</span></p>
-<p><span class="math inline">\(\boldsymbol{\epsilon} = \begin{bmatrix} \epsilon_1 \\ \epsilon_2 \\ \epsilon_3 \\ \epsilon_4 \end{bmatrix}\)</span></p>
+\end{align*}\]</span></p>
+<p><span class="math inline">\(\mathbf{X} = \begin{bmatrix}
+1 &amp;0  \\
+0 &amp; -1  \\
+1 &amp; -1  \\
+1 &amp;  1
+\end{bmatrix}\)</span></p>
+<p><span class="math inline">\(\mathbf{Y} = \begin{bmatrix}
+y_1 \\
+y_2 \\
+y_3  \\
+y_4
+\end{bmatrix}\)</span></p>
+<p><span class="math inline">\(\boldsymbol{\beta} = \begin{bmatrix}
+\beta_1 \\
+\beta_2
+\end{bmatrix}\)</span></p>
+<p><span class="math inline">\(\boldsymbol{\epsilon} = \begin{bmatrix}
+\epsilon_1 \\
+\epsilon_2 \\
+\epsilon_3  \\
+\epsilon_4
+\end{bmatrix}\)</span></p>
 <p>The model is:</p>
 <p><span class="math display">\[\mathbf{Y} = \begin{bmatrix}
 1 &amp;0  \\
@@ -706,7 +589,7 @@ y_4 &amp; = \beta_1 + \beta_2 + \epsilon_4\\
 \end{bmatrix} +  \boldsymbol{\epsilon} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\epsilon}\]</span></p>
 <p>The OLS estimates of <span class="math inline">\(\boldsymbol{\beta}\)</span> are given by:</p>
 <p><span class="math display">\[\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T\mathbf{Y}.\]</span></p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \mathbf{X}^T\mathbf{X} &amp; = \begin{bmatrix}
 1 &amp;  0  &amp;  1 &amp; 1\\
 0 &amp; -1  &amp; -1 &amp; 1\\
@@ -745,26 +628,44 @@ y_1 + y_3 + y_4\\
 1 &amp;  0 \\
 0 &amp;  1 \\
 \end{bmatrix}  \sigma^2.\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>Can we improve the experiment so that the 4 measurements yield estimates of <span class="math inline">\(\boldsymbol{\beta}\)</span> with smaller variance?</p>
 <ul>
 <li><p>present design: <span class="math inline">\(\mbox{Var}(\hat{\beta}_i) = \frac{\sigma^2}{3}\)</span></p></li>
-<li><p>Let <span class="math inline">\(\mathbf{X} = \begin{bmatrix} 1 &amp; -1 \\ 1 &amp; -1 \\ 1 &amp; 1 \\ 1 &amp; 1 \end{bmatrix}\)</span>,</p></li>
+<li><p>Let <span class="math inline">\(\mathbf{X} = \begin{bmatrix}
+1 &amp; -1  \\
+1 &amp; -1  \\
+1 &amp;  1  \\
+1 &amp;  1
+\end{bmatrix}\)</span>,</p></li>
 </ul>
 <p><span class="math inline">\(\mbox{Var}(\hat{\beta}_i) = \frac{\sigma^2}{4}\)</span></p>
 <ul>
-<li>Let <span class="math inline">\(\mathbf{X} = \begin{bmatrix} 1 &amp; 0 \\ 1 &amp; 0 \\ 0 &amp; 1 \\ 0 &amp; 1 \end{bmatrix}\)</span>,</li>
+<li>Let <span class="math inline">\(\mathbf{X} = \begin{bmatrix}
+1 &amp;  0  \\
+1 &amp;  0  \\
+0 &amp;  1  \\
+0 &amp;  1
+\end{bmatrix}\)</span>,</li>
 </ul>
 <p><span class="math inline">\(\mbox{Var}(\hat{\beta}_i) = \frac{\sigma^2}{2}\)</span>.</p>
 </div>
 </div>
-<div id="the-formal-multiple-regression-model-and-properties" class="section level2">
-<h2><span class="header-section-number">4.5</span> The formal multiple regression model and properties</h2>
-<div id="concepts-random-vectors-covariance-matrix-multivariate-normal-distribution-mvn." class="section level3">
-<h3><span class="header-section-number">4.5.1</span> Concepts: random vectors, covariance matrix, multivariate normal distribution (MVN).</h3>
+<div id="the-formal-multiple-regression-model-and-properties" class="section level2" number="4.5">
+<h2>
+<span class="header-section-number">4.5</span> The formal multiple regression model and properties<a class="anchor" aria-label="anchor" href="#the-formal-multiple-regression-model-and-properties"><i class="fas fa-link"></i></a>
+</h2>
+<div id="concepts-random-vectors-covariance-matrix-multivariate-normal-distribution-mvn." class="section level3" number="4.5.1">
+<h3>
+<span class="header-section-number">4.5.1</span> Concepts: random vectors, covariance matrix, multivariate normal distribution (MVN).<a class="anchor" aria-label="anchor" href="#concepts-random-vectors-covariance-matrix-multivariate-normal-distribution-mvn."><i class="fas fa-link"></i></a>
+</h3>
 <p>Let <span class="math inline">\(Y_1,...,Y_n\)</span> be r.v.s defined on a common probability space.</p>
 <p>Then <span class="math inline">\(\mathbf{Y}\)</span> is a <strong>random vector</strong>.</p>
-<p>Let <span class="math inline">\(\mu_i = \mathbb{E}[y_i]\)</span> and <span class="math inline">\(\boldsymbol{\mu} = \begin{bmatrix} \mu_1 \\ \vdots \\ \mu_n \end{bmatrix}\)</span>.</p>
+<p>Let <span class="math inline">\(\mu_i = \mathbb{E}[y_i]\)</span> and <span class="math inline">\(\boldsymbol{\mu} = \begin{bmatrix}
+\mu_1 \\
+\vdots \\
+\mu_n
+\end{bmatrix}\)</span>.</p>
 <p>Then <span class="math inline">\(\boldsymbol{\mu}\)</span> is a <strong>mean vector</strong> and we write:</p>
 <p><span class="math display">\[\mathbb{E}[\mathbf{Y}] = \boldsymbol{\mu}.\]</span></p>
 <p>Let <span class="math inline">\(\sigma_{ij} = Cov(y_i, y_j)\)</span>. Then <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is the <strong>covariance matrix</strong> of <span class="math inline">\(\mathbf{Y}\)</span>, where <span class="math inline">\(\boldsymbol{\Sigma}_{ij} = [\sigma_{ij}].\)</span></p>
@@ -779,7 +680,9 @@ y_1 + y_3 + y_4\\
 <p><span class="math display">\[\mathbb{E}[\mathbf{C}\mathbf{Y} + \mathbf{b}] = \mathbf{C}\boldsymbol{\mu} + \mathbf{b}\]</span></p>
 <p>and</p>
 <p><span class="math display">\[\mbox{Var}( \mathbf{C}\mathbf{Y} + \mathbf{b} ) = \mathbf{C}\boldsymbol{\Sigma} \mathbf{C}^T.\]</span></p>
-<p><strong>Defn:</strong> A random <span class="math inline">\(n\)</span> - dim vector <span class="math inline">\(\mathbf{Y}\)</span> is said to have a MVN distribution if <span class="math inline">\(\mathbf{Y}\)</span> can be written as <span class="math display">\[\mathbf{Y} = \mathbf{A}\mathbf{Z} + \boldsymbol{\mu}\]</span> where:</p>
+<p><strong>Defn:</strong> A random <span class="math inline">\(n\)</span> - dim vector <span class="math inline">\(\mathbf{Y}\)</span> is said to have a MVN distribution if <span class="math inline">\(\mathbf{Y}\)</span> can be written as
+<span class="math display">\[\mathbf{Y} = \mathbf{A}\mathbf{Z} + \boldsymbol{\mu}\]</span>
+where:</p>
 <ul>
 <li><p><span class="math inline">\(Z_1, Z_2, ..., Z_p\)</span> are iid N(0,1),</p></li>
 <li><p><span class="math inline">\(\mathbf{A}\)</span> is an <span class="math inline">\(n \times p\)</span> matrix of constants and</p></li>
@@ -788,14 +691,16 @@ y_1 + y_3 + y_4\\
 <p><strong>Notes</strong>:</p>
 <ul>
 <li><p>Random vector <span class="math inline">\(\mathbf{Z}\)</span> is multivariate normal with mean <span class="math inline">\(\mathbf{0}\)</span> and covariance <span class="math inline">\(\mathbf{I}_p\)</span> since <span class="math inline">\(Z_i\)</span>s are independent so their covariances are 0. We write: <span class="math display">\[\mathbf{Z} \sim N_p(\mathbf{0}, \mathbf{I}_p).\]</span></p></li>
-<li><p><span class="math inline">\(\mathbb{E}[\mathbf{Y}] = \mathbb{E}[\mathbf{A}\mathbf{Z} + \boldsymbol{\mu}] = \boldsymbol{\mu}\)</span>,</p></li>
+<li><p><span class="math inline">\(\mathbb{E}[\mathbf{Y}] =  \mathbb{E}[\mathbf{A}\mathbf{Z} + \boldsymbol{\mu}] = \boldsymbol{\mu}\)</span>,</p></li>
 <li><p><span class="math inline">\(\mbox{Var}(\mathbf{Y}) = \mathbf{A}\mathbf{A}^T\)</span>,</p></li>
 <li><p><span class="math inline">\(\mathbf{Y} \sim N_n (\boldsymbol{\mu}, \mathbf{A}\mathbf{A}^T)\)</span>.</p></li>
 </ul>
 <!-- %item[] We can write $\mathbf{Y} \sim N_n (\boldsymbol{\mu}, \mathbf{A}\mathbf{A}^T)$. -->
 </div>
-<div id="multiple-regression-model" class="section level3">
-<h3><span class="header-section-number">4.5.2</span> Multiple regression model</h3>
+<div id="multiple-regression-model" class="section level3" number="4.5.2">
+<h3>
+<span class="header-section-number">4.5.2</span> Multiple regression model<a class="anchor" aria-label="anchor" href="#multiple-regression-model"><i class="fas fa-link"></i></a>
+</h3>
 <p><span class="math display">\[\mathbf{Y}=\mathbf{X}\boldsymbol{\beta} + \boldsymbol{\epsilon}.\]</span></p>
 <p><span class="math inline">\(\mathbf{Y}=\)</span> <span class="math inline">\(n\)</span> - dimensional response random vector.</p>
 <p><span class="math inline">\(\boldsymbol{\beta}=\)</span> unknown <span class="math inline">\(p\)</span> - dimensional parameter vector.</p>
@@ -808,39 +713,42 @@ y_1 + y_3 + y_4\\
 <li><p><strong>MVN distribution:</strong> <span class="math inline">\(\boldsymbol{\epsilon} \sim N_n(\mathbf{0},\sigma^2 I_n )\)</span> and <span class="math inline">\(\mathbf{Y} \sim N_n(\mathbf{X}\boldsymbol{\beta},\sigma^2 I_n )\)</span></p></li>
 </ul>
 <p>Notes: When the off diagonal entries of the covariance matrix of a MVN distribution are 0, the <span class="math inline">\(Y_1, ..., Y_n\)</span> are independent.</p>
-
 <div class="theorem">
-<p><span id="thm:unnamed-chunk-68" class="theorem"><strong>Theorem 4.1  </strong></span> Let <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> be the OLS estimator of <span class="math inline">\(\boldsymbol{\beta}\)</span>. When the model assumptions hold:</p>
-<span class="math display">\[\hat{\boldsymbol{\beta}} \sim N_p(\boldsymbol{\beta}, (\mathbf{X}^T\mathbf{X})^{-1}\sigma^2)\]</span>
+<p><span id="thm:unnamed-chunk-90" class="theorem"><strong>Theorem 4.1  </strong></span>Let <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> be the OLS estimator of <span class="math inline">\(\boldsymbol{\beta}\)</span>. When the model assumptions hold:</p>
+<p><span class="math display">\[\hat{\boldsymbol{\beta}} \sim N_p(\boldsymbol{\beta}, (\mathbf{X}^T\mathbf{X})^{-1}\sigma^2)\]</span></p>
 </div>
-
 <p><strong>Corollary</strong>: <span class="math inline">\(\hat{\beta}_j \sim N(\beta_j, c_{jj}\sigma^2)\)</span>, where <span class="math inline">\(c_{jj}\)</span> is the <span class="math inline">\(jj\)</span> entry of <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\)</span> for <span class="math inline">\(j = 0, ..., k\)</span>.</p>
-
 <div class="theorem">
-<p><span id="thm:unnamed-chunk-69" class="theorem"><strong>Theorem 4.2  </strong></span>Let <span class="math inline">\(\hat{\sigma}^2 = \frac{\mbox{SSE}}{n-p}\)</span>. When the model assumptions hold:</p>
-<span class="math display">\[(n-p)\frac{\hat{\sigma}^2}{\sigma^2} \sim \chi ^2_{(n-p)}\]</span>
+<p><span id="thm:unnamed-chunk-91" class="theorem"><strong>Theorem 4.2  </strong></span>Let <span class="math inline">\(\hat{\sigma}^2 = \frac{\mbox{SSE}}{n-p}\)</span>. When the model assumptions hold:</p>
+<p><span class="math display">\[(n-p)\frac{\hat{\sigma}^2}{\sigma^2} \sim \chi ^2_{(n-p)}\]</span></p>
 </div>
-
 <p>and</p>
 <p><span class="math display">\[\mathbb{E}[\hat{\sigma}^2] =\sigma^2\]</span></p>
 <p>The distribution of <span class="math inline">\(\hat{\sigma}^2\)</span> is independent of <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>.</p>
 <p><strong>Corollary</strong>:</p>
-<p><span class="math display">\[\frac{\hat{\beta}_j - \beta_j }{\hat{\sigma} \sqrt{c_{jj}}} \sim t_{n-p}\]</span> So we can do tests and obtain CIs for <span class="math inline">\(\beta_j\)</span></p>
+<p><span class="math display">\[\frac{\hat{\beta}_j - \beta_j }{\hat{\sigma} \sqrt{c_{jj}}} \sim t_{n-p}\]</span>
+So we can do tests and obtain CIs for <span class="math inline">\(\beta_j\)</span></p>
 </div>
 </div>
-<div id="the-hat-matrix" class="section level2">
-<h2><span class="header-section-number">4.6</span> The hat matrix</h2>
+<div id="the-hat-matrix" class="section level2" number="4.6">
+<h2>
+<span class="header-section-number">4.6</span> The hat matrix<a class="anchor" aria-label="anchor" href="#the-hat-matrix"><i class="fas fa-link"></i></a>
+</h2>
 <p>The vector of fitted values:</p>
 <p><span class="math display">\[\hat{\mathbf{Y}} = \mathbf{X}\hat{\boldsymbol{\beta}} = \mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T \mathbf{Y} = \mathbf{H}\mathbf{Y}.\]</span></p>
 <p>The hat matrix (also known as the projection matrix):</p>
 <p><span class="math display">\[\mathbf{H} = \mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T\]</span></p>
-<p>has dimension <span class="math inline">\(n \times n\)</span> is symmetric (<span class="math inline">\(\mathbf{H}^T = \mathbf{H}\)</span>) and is idempotent (<span class="math inline">\(\mathbf{H}^2 = \mathbf{H}\mathbf{H} = \mathbf{H}\)</span>).</p>
+<p>has dimension <span class="math inline">\(n \times n\)</span>
+is symmetric (<span class="math inline">\(\mathbf{H}^T = \mathbf{H}\)</span>) and
+is idempotent (<span class="math inline">\(\mathbf{H}^2 = \mathbf{H}\mathbf{H} = \mathbf{H}\)</span>).</p>
 <p>We have</p>
 <p><span class="math display">\[\hat{\mathbf{Y}}= \mathbf{H}\mathbf{Y}\]</span></p>
 <p><span class="math display">\[\mathbf{e}= \mathbf{Y} - \hat{\mathbf{Y}} =\mathbf{Y} - \mathbf{H}\mathbf{Y} = (\mathbf{I} - \mathbf{H})\mathbf{Y}\]</span></p>
 <p><span class="math display">\[\mbox{SSE} = \mathbf{e}^T\mathbf{e} = \mathbf{Y}^T (\mathbf{I} - \mathbf{H})\mathbf{Y}\]</span></p>
-<div id="the-qr-decomposition-of-a-matrix" class="section level3">
-<h3><span class="header-section-number">4.6.1</span> The QR Decomposition of a matrix</h3>
+<div id="the-qr-decomposition-of-a-matrix" class="section level3" number="4.6.1">
+<h3>
+<span class="header-section-number">4.6.1</span> The QR Decomposition of a matrix<a class="anchor" aria-label="anchor" href="#the-qr-decomposition-of-a-matrix"><i class="fas fa-link"></i></a>
+</h3>
 <p>We have seen that OLS estimates for <span class="math inline">\(\boldsymbol{\beta}\)</span> can be found by using:</p>
 <p><span class="math display">\[\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T\mathbf{Y}.\]</span></p>
 <p>Inverting the <span class="math inline">\(\mathbf{X}^T\mathbf{X}\)</span> matrix can sometimes introduce significant rounding errors into the calculations and most software packages use QR decomposition of the design matrix <span class="math inline">\(\mathbf{X}\)</span> to compute the parameter estimates. E.g. take a look at the documentation for the lm method in R.</p>
@@ -849,69 +757,86 @@ y_1 + y_3 + y_4\\
 <p><span class="math display">\[\mathbf{X}=\mathbf{Q}\mathbf{R}\]</span></p>
 <p>and</p>
 <ul>
-<li><p><span class="math inline">\(\mathbf{Q}\)</span> has orthonormal columns, i.e. <span class="math inline">\(\mathbf{Q}^T\mathbf{Q} = \mathbf{I}_p\)</span></p></li>
+<li><p><span class="math inline">\(\mathbf{Q}\)</span> has orthonormal columns, i.e. <span class="math inline">\(\mathbf{Q}^T\mathbf{Q} = \mathbf{I}_p\)</span></p></li>
 <li><p><span class="math inline">\(\mathbf{R}\)</span> is an upper triangular matrix.</p></li>
 </ul>
 <p>There are several methods for computing the <span class="math inline">\(\mathbf{Q}\mathbf{R}\)</span> factorization (we won’t study them, but high quality code for the computation exists in publicly available Lapack package {<a href="http://www.netlib.org/lapack/lug/" class="uri">http://www.netlib.org/lapack/lug/</a>}).</p>
 <p>We can show that:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \mathbf{X} &amp;=\mathbf{Q}\mathbf{R} \\
 \mathbf{X}^T\mathbf{X} &amp;=(\mathbf{Q}\mathbf{R})^T(\mathbf{Q}\mathbf{R}) = \mathbf{R}^T\mathbf{R}\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <!-- (\mathbf{X}^T\mathbf{X})^{-1} &= (mathbf{R}^T\mathbf{R})^{-1} = mathbf{R}^{-1}(\mathbf{R}^T)^{-1}\\ -->
 <!-- Note $\mathbf{R}$ is a square matrix.  -->
 <p>Then:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 (\mathbf{X}^T\mathbf{X})\hat{\boldsymbol{\beta}} &amp; =\mathbf{X}^T\mathbf{Y}\\
 (\mathbf{R}^T\mathbf{R})\hat{\boldsymbol{\beta}} &amp; =\mathbf{R}^T\mathbf{Q}^T\mathbf{Y}\\
 \mathbf{R}\hat{\boldsymbol{\beta}} &amp; = \mathbf{Q}^T\mathbf{Y}\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>Since <span class="math inline">\(\mathbf{R}\)</span> is a triangular matrix we can use backsolving and this is an easy equation to solve.</p>
 <p>We can also show that the hat matrix becomes:</p>
-<p><span class="math display">\[\mathbf{H} = \mathbf{Q}\mathbf{Q}^T\]</span></p>
+<p><span class="math display">\[\mathbf{H} = \mathbf{Q}\mathbf{Q}^T\]</span>
+<!-- ## Confidence Interval for the Mean Response --></p>
+<!-- Suppose we want to estimate $\mu=\mathbb{E}[y]$ at a particular value of $\mathbf{x}_0 = (1, x_{01}, x_{02}, ..., x_{0k})^T$. -->
+<!-- The estimate is $$\mu_0 = \hat{y}_0 = \mathbf{x}_0^T \hat{\boldsymbol{\beta}}$$ -->
+<!-- A $95\%$ C.I. for $\mu_0$ is given by -->
+<!--  \begin{align*} -->
+<!--  \mbox{Est} &\pm t_{n-(k+1)}(\alpha/2) \times \mbox{S.E.(Est)}\\ -->
+<!--  \hat{y}_0 &\pm t_{n-(k+1)}(\alpha/2) \times \mbox{S.E.}_{\mbox{fit}}(\hat{y}_0) -->
+<!--  \end{align*} -->
+<!-- where -->
+<!-- $$\mbox{S.E.}_{\mbox{fit}}(\hat{y}_0) = \sqrt{\sigma^2\mathbf{x}_0^T(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{x}_0}$$ -->
+<!-- ## Prediction Interval for a New Response -->
+<!-- For a new observation: $\mathbf{x}_0 = (1, x_{01}, x_{02}, ..., x_{0k})^T$, the estimate is: -->
+<!-- $$\hat{y}_0 = \mathbf{x}_0^T \hat{\boldsymbol{\beta}}$$ -->
+<!-- Prediction interval is : -->
+<!-- $$\hat{y}_0 &\pm t_{n-(k+1)}(\alpha/2) \times \mbox{S.E.}_{\mbox{pred}}(\hat{y}_0)$$ -->
+<!-- where: -->
+<!-- $$\mbox{S.E.}_{\mbox{pred}}(\hat{y}_0) = \sqrt{\sigma^2+\sigma^2\mathbf{x}_0^T(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{x}_0}$$ -->
 </div>
 </div>
-<div id="anova-for-multiple-regression" class="section level2">
-<h2><span class="header-section-number">4.7</span> ANOVA for multiple regression</h2>
+<div id="anova-for-multiple-regression" class="section level2" number="4.7">
+<h2>
+<span class="header-section-number">4.7</span> ANOVA for multiple regression<a class="anchor" aria-label="anchor" href="#anova-for-multiple-regression"><i class="fas fa-link"></i></a>
+</h2>
 <p><strong>Recap</strong>: ANOVA decomposition</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \mbox{SSR} &amp; = \sum_{i=1}^n(\hat{y}_i - \bar{y})^2 = \sum_{i=1}^n \hat{y}_i ^2- n\bar{y}^2 \\
 \mbox{SSE} &amp; = \sum_{i=1}^n(y_i - \hat{y}_i)^2 = \sum_{i=1}^n e_i^2\\
 \mbox{SST} &amp; = \sum_{i=1}^n(y_i - \bar{y})^2 = \sum_{i=1}^n y_i ^2- n\bar{y}^2 \\
-\end{align*}\]</span>
-
+\end{align*}\]</span></p>
 <div class="theorem">
-<span id="thm:unnamed-chunk-70" class="theorem"><strong>Theorem 4.3  </strong></span><span class="math inline">\(\mbox{SST} = \mbox{SSR} + \mbox{SSE}\)</span>
+<p><span id="thm:unnamed-chunk-92" class="theorem"><strong>Theorem 4.3  </strong></span><span class="math inline">\(\mbox{SST} = \mbox{SSR} + \mbox{SSE}\)</span></p>
 </div>
-
 <p><strong>Proof</strong>: this follows from the decomposition of response = fit + residual.</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \mathbf{Y} &amp; = \hat{\mathbf{Y}}  + \mathbf{e}\\
 \mathbf{Y}^T\mathbf{Y} &amp; = (\hat{\mathbf{Y}} + \mathbf{e})^T (\hat{\mathbf{Y}} + \mathbf{e})\\
 &amp; = \hat{\mathbf{Y}}^T\hat{\mathbf{Y}} + \mathbf{e}^T\mathbf{e}+ 2\hat{\mathbf{Y}}^T\mathbf{e} \\
-\end{align*}\]</span>
-<p>But <span class="math inline">\(\hat{\mathbf{Y}}^T = \hat{\boldsymbol{\beta}}^T\mathbf{X}^T\)</span> and <span class="math inline">\(\mathbf{X}^T\mathbf{e} = 0\)</span>, from normal equations, so <span class="math inline">\(\hat{\mathbf{Y}}^T\mathbf{e} = 0\)</span>.</p>
-<p>Alternatively: <span class="math inline">\(\hat{\mathbf{Y}} = \mathbf{H}\mathbf{Y}\)</span>, <span class="math inline">\(\mathbf{e} = (\mathbf{I} - \mathbf{H})\mathbf{Y}\)</span>, so <span class="math inline">\(\hat{\mathbf{Y}}^T\mathbf{e} = \mathbf{Y}^T\mathbf{H}(\mathbf{I} - \mathbf{H})\mathbf{Y} = 0\)</span>, since <span class="math inline">\(\mathbf{H}^2=\mathbf{H}\)</span>.</p>
+\end{align*}\]</span></p>
+<p>But <span class="math inline">\(\hat{\mathbf{Y}}^T = \hat{\boldsymbol{\beta}}^T\mathbf{X}^T\)</span> and <span class="math inline">\(\mathbf{X}^T\mathbf{e} = 0\)</span>, from normal equations, so
+<span class="math inline">\(\hat{\mathbf{Y}}^T\mathbf{e} = 0\)</span>.</p>
+<p>Alternatively: <span class="math inline">\(\hat{\mathbf{Y}} = \mathbf{H}\mathbf{Y}\)</span>, <span class="math inline">\(\mathbf{e} = (\mathbf{I} - \mathbf{H})\mathbf{Y}\)</span>, so
+<span class="math inline">\(\hat{\mathbf{Y}}^T\mathbf{e} = \mathbf{Y}^T\mathbf{H}(\mathbf{I} - \mathbf{H})\mathbf{Y} = 0\)</span>, since <span class="math inline">\(\mathbf{H}^2=\mathbf{H}\)</span>.</p>
 <p>Therefore,</p>
 <p><span class="math display">\[\mathbf{Y}^T\mathbf{Y}  = \hat{\mathbf{Y}}^T\hat{\mathbf{Y}} + \mathbf{e}^T\mathbf{e}\]</span></p>
 <p><span class="math display">\[\sum_{i=1}^n y_i^2 =\sum_{i=1}^n \hat{y}_i^2 + \sum_{i=1}^n e_i^2\]</span></p>
 <p>and substracting <span class="math inline">\(n\bar{y}^2\)</span> from both sides completes the proof.</p>
 <p><strong>ANOVA table</strong>:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \mbox{SSR} &amp; = \sum_{i=1}^n(\hat{y}_i - \bar{y})^2, \;\;\;\; df =p-1 \\
 \mbox{SSE} &amp; = \sum_{i=1}^n(y_i - \hat{y}_i)^2, \;\;\;\; df = n-p \\
 \mbox{SST} &amp; = \sum_{i=1}^n(y_i - \bar{y})^2, \;\;\;\; df =n-1.
-\end{align*}\]</span>
-<table>
-<thead>
-<tr class="header">
+\end{align*}\]</span></p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
 <th align="left">SOURCE</th>
 <th align="left">df</th>
 <th align="left">SS</th>
 <th align="left">MS</th>
 <th align="left">F</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">Regression</td>
@@ -935,13 +860,13 @@ y_1 + y_3 + y_4\\
 <td align="left"></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>If <span class="math inline">\(\beta_1 = \beta_2 = ... = \beta_k = 0\)</span> then <span class="math inline">\(\hat{\beta}_j \approx 0\)</span> for <span class="math inline">\(j = 1,...,k\)</span> and <span class="math inline">\(\hat{y}_i \approx \bar{y}\)</span>.</p>
 <p>Then, <span class="math inline">\(\mbox{SSE} \approx \mbox{SST}\)</span> and <span class="math inline">\(\mbox{SSR} \approx 0\)</span>. Small values of <span class="math inline">\(\mbox{SSR}\)</span> relative to <span class="math inline">\(\mbox{SSE}\)</span> provide indication that <span class="math inline">\(\beta_1 = \beta_2 = ... = \beta_k = 0\)</span>.</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 &amp;H_0: \beta_1 = \beta_2 = ... = \beta_k = 0\\
 &amp;H_A: \mbox{ not all }\beta_j = 0 \mbox{ for }j = 1,...,k
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>Under <span class="math inline">\(H_0\)</span>:</p>
 <p><span class="math display">\[F= \frac{\mbox{SSR}/(p-1)}{\mbox{SSE}/(n-p)} \sim F_{(p-1, n-p)}\]</span></p>
 <p>P-value is <span class="math inline">\(P( F_{(p-1, n-p)} \geq F_{obs})\)</span>, where <span class="math inline">\(F_{obs}\)</span> is the observed <span class="math inline">\(F\)</span>-value.</p>
@@ -950,12 +875,23 @@ y_1 + y_3 + y_4\\
 <p>Adjusted <span class="math inline">\(R^2\)</span> is the modified version of <span class="math inline">\(R^2\)</span> adjusted for the number of predictors in the model. R uses:</p>
 <p><span class="math display">\[R^2_{Adj} = 1-(1- R^2)\frac{n-1}{n-p-1}.\]</span></p>
 <!-- %  -->
-<p><!-- % % NOT what you'd expect --> <!-- %```{r echo = TRUE, fig.align='center'} --> <!-- % fit3 <- lm(carbon.monoxide ~ weight + nicotine) --> <!-- % anova(fit3) # not one F test, but for each coefficient. Plus they are sequential SS(type 1) --> <!-- % #library(car) --> <!-- % Anova(fit3, type= 2) #Type-II tests are calculated according to the principle of marginality, testing each term after all others, except ignoring the term's higher-order relatives - same as MTB, but no one overall test.  --> <!-- %``` --> <!-- % } --></p>
+<p><!-- % % NOT what you'd expect -->
+<!-- %```{r echo = TRUE, fig.align='center'} -->
+<!-- % fit3 <- lm(carbon.monoxide ~ weight + nicotine) -->
+<!-- % anova(fit3) # not one F test, but for each coefficient. Plus they are sequential SS(type 1) -->
+<!-- % #library(car) -->
+<!-- % Anova(fit3, type= 2) #Type-II tests are calculated according to the principle of marginality, testing each term after all others, except ignoring the term's higher-order relatives - same as MTB, but no one overall test.  -->
+<!-- %``` -->
+<!-- % } --></p>
 </div>
-<div id="way-anova-model" class="section level2">
-<h2><span class="header-section-number">4.8</span> 1-way ANOVA model</h2>
-<div id="example" class="section level3">
-<h3><span class="header-section-number">4.8.1</span> Example:</h3>
+<div id="way-anova-model" class="section level2" number="4.8">
+<h2>
+<span class="header-section-number">4.8</span> 1-way ANOVA model<a class="anchor" aria-label="anchor" href="#way-anova-model"><i class="fas fa-link"></i></a>
+</h2>
+<div id="example" class="section level3" number="4.8.1">
+<h3>
+<span class="header-section-number">4.8.1</span> Example:<a class="anchor" aria-label="anchor" href="#example"><i class="fas fa-link"></i></a>
+</h3>
 <p>A study was carried out to examine the effects of caffeine. Thirty students were randomly assigned to one of:</p>
 <ul>
 <li>control, no caffeine</li>
@@ -963,52 +899,53 @@ y_1 + y_3 + y_4\\
 <li>low dose caffeine plus sugar</li>
 </ul>
 <p>The response <span class="math inline">\(y\)</span> is an index measuring unrest 2 hrs later.</p>
-<p>(Example from <span class="citation">Draper and Smith (<a href="#ref-draper66applied">1966</a>)</span>.)</p>
+<p>(Example from <span class="citation">Draper and Smith (<a href="references.html#ref-draper66applied">1966</a>)</span>.)</p>
 <p>Let <span class="math inline">\(y_{ij}\)</span> be the response for the <span class="math inline">\(j^{th}\)</span> person in the <span class="math inline">\(i^{th}\)</span> group, <span class="math inline">\(j=1,...,10\)</span>, <span class="math inline">\(i=1,2,3\)</span>.</p>
 <p>Let <span class="math inline">\(n_i\)</span> be the number assigned to group <span class="math inline">\(i\)</span>.</p>
 <p>Model:</p>
 <ul>
-<li><span class="math inline">\(y_{ij} = \mu_{i} + \epsilon_{ij}\)</span>, <span class="math inline">\(\quad\)</span> <span class="math inline">\(\epsilon_{ij}\)</span> iid <span class="math inline">\(N(0, \sigma^2)\)</span>, where <span class="math inline">\(\mu_i\)</span> is the population mean for those at dose <span class="math inline">\(i\)</span>.</li>
+<li>
+<span class="math inline">\(y_{ij} = \mu_{i} + \epsilon_{ij}\)</span>, <span class="math inline">\(\quad\)</span> <span class="math inline">\(\epsilon_{ij}\)</span> iid <span class="math inline">\(N(0, \sigma^2)\)</span>,
+where <span class="math inline">\(\mu_i\)</span> is the population mean for those at dose <span class="math inline">\(i\)</span>.</li>
 </ul>
 <p>Or equivalently:</p>
 <ul>
-<li><span class="math inline">\(y_{ij} = \mu + \alpha_{i} + \epsilon_{ij}\)</span>, <span class="math inline">\(\quad\)</span> <span class="math inline">\(\epsilon_{ij}\)</span> iid <span class="math inline">\(N(0, \sigma^2)\)</span>, where <span class="math inline">\(\mu\)</span> is the overall population mean and <span class="math inline">\(\alpha_i\)</span> is the effect of receiving treatment <span class="math inline">\(i\)</span>.</li>
+<li>
+<span class="math inline">\(y_{ij} = \mu + \alpha_{i} + \epsilon_{ij}\)</span>, <span class="math inline">\(\quad\)</span> <span class="math inline">\(\epsilon_{ij}\)</span> iid <span class="math inline">\(N(0, \sigma^2)\)</span>, where <span class="math inline">\(\mu\)</span> is the overall population mean and <span class="math inline">\(\alpha_i\)</span> is the effect of receiving treatment <span class="math inline">\(i\)</span>.</li>
 </ul>
 <p>O.L.S estimates for Model 1 are:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 S(\mu_1, ..., \mu_g)&amp; =\sum_{i=1}^g\sum_{j=1}^{n_i}\epsilon_{ij}^2 = \sum_{i=1}^g\sum_{j=1}^{n_i}(y_{ij}-\mu_i)^2,\\
 \frac{\delta S(\mu_1, ..., \mu_g)}{\delta \mu_i}&amp; = -2\sum_{j=1}^{n_i}(y_{ij}-\mu_i), \quad  \forall i = 1,...,g \\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>Setting these equal to 0 and evaluating at <span class="math inline">\(\hat{\mu}_i\)</span> gives:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \sum_{j=1}^{n_i}(y_{ij}-\hat{\mu}_i) &amp; =0.\\
 \sum_{j=1}^{n_i}y_{ij}-n_i\hat{\mu}_i &amp; =0.\\
 \hat{\mu}_i =\sum_{j=1}^{n_i}y_{ij}/n_i &amp; =\bar{y}_{i.}\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>NOTE: <span class="math inline">\(\bar{y}_{i.}\)</span> is the average of responses at level <span class="math inline">\(i\)</span> of <span class="math inline">\(X\)</span>.</p>
 <p>Model 1 has <span class="math inline">\(g=3\)</span> parameters but model 2 has 4 parameters and is over-parameterised (<span class="math inline">\(\mu_i = \mu + \alpha_{i}\)</span>).</p>
 <p>Usually the constraint <span class="math inline">\(\sum \alpha_i = 0\)</span> or <span class="math inline">\(\alpha_3 = 0\)</span> is imposed.</p>
 <p>The hypothesis of interest in this model is:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 &amp; H_0: \mu_1=\mu_2 = ...= \mu_g\\
 &amp; H_A: \mbox{not all } \mu_i \mbox{ are the same.}\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>Equivalently:</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 &amp; H_0: \alpha_i=0, \hspace{1cm}\forall i = 1,...,g\\
 &amp; H_A: \mbox{not all } \alpha_i = 0.\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>Calculations can be summarised in the ANOVA table:</p>
-<table>
-<thead>
-<tr class="header">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
 <th align="left">SOURCE</th>
 <th align="left">df</th>
 <th align="left">SS</th>
 <th align="left">MS</th>
 <th align="left">F</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">Group</td>
@@ -1032,30 +969,23 @@ S(\mu_1, ..., \mu_g)&amp; =\sum_{i=1}^g\sum_{j=1}^{n_i}\epsilon_{ij}^2 = \sum_{i
 <td align="left"></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>where:</p>
 <ul>
 <li><p><span class="math inline">\(\mbox{SSG} = \sum_{i = 1}^gn_{i}(\bar{y}_{i.} - \bar{y}_{..})^{2}\)</span></p></li>
 <li><p><span class="math inline">\(\mbox{SSE} = \sum_{i=1}^g\sum_{j = 1}^{n_i}(y_{ij} - \bar{y}_{i.})^{2}\)</span></p></li>
 <li><p><span class="math inline">\(\mbox{SST} = \sum_{i=1}^g\sum_{j = 1}^{n_i}(y_{ij} - \bar{y}_{..})^{2}\)</span></p></li>
 </ul>
-<!-- \begin{tabular}{l | c c c c} -->
-<!-- Source & df & SS & MS & F \\ \hline -->
-<!-- &&&& \\ -->
-<!-- Group & $g-1$ & $\mbox{SSG} = \sum_{i = 1}^gn_{i}(\bar{y}_{i.} - \bar{y}_{..})^{2}$ & $\mbox{MSG} = \mbox{SSG}/(g-1)$& $\mbox{MSG}/\mbox{MSE}$ \\ -->
-<!-- &&&& \\ -->
-<!-- Error & $n-g$ & \mbox{SSE} = $\sum_{i=1}^g\sum_{j = 1}^{n_i}(y_{ij} - \bar{y}_{i.})^{2}$ & $\mbox{MSE} = \mbox{SSE}/(n-g)$&\\ \hline -->
-<!-- &&&& \\ -->
-<!-- Total & $n-1$ & $\mbox{SST} = \sum_{i=1}^g\sum_{j = 1}^{n_i}(y_{ij} - \bar{y}_{..})^{2}$ && -->
-<!-- \end{tabular} -->
-<p>Under <span class="math inline">\(H_{0}\)</span>: <span class="math display">\[F_{obs} = \frac{\mbox{MSG}}{\mbox{MSE}} \sim F_{g-1, n-g}.\]</span></p>
+<!-- \begin{tabular}{l | c c c c} --><!-- Source & df & SS & MS & F \\ \hline --><!-- &&&& \\ --><!-- Group & $g-1$ & $\mbox{SSG} = \sum_{i = 1}^gn_{i}(\bar{y}_{i.} - \bar{y}_{..})^{2}$ & $\mbox{MSG} = \mbox{SSG}/(g-1)$& $\mbox{MSG}/\mbox{MSE}$ \\ --><!-- &&&& \\ --><!-- Error & $n-g$ & \mbox{SSE} = $\sum_{i=1}^g\sum_{j = 1}^{n_i}(y_{ij} - \bar{y}_{i.})^{2}$ & $\mbox{MSE} = \mbox{SSE}/(n-g)$&\\ \hline --><!-- &&&& \\ --><!-- Total & $n-1$ & $\mbox{SST} = \sum_{i=1}^g\sum_{j = 1}^{n_i}(y_{ij} - \bar{y}_{..})^{2}$ && --><!-- \end{tabular} --><p>Under <span class="math inline">\(H_{0}\)</span>: <span class="math display">\[F_{obs} = \frac{\mbox{MSG}}{\mbox{MSE}} \sim F_{g-1, n-g}.\]</span></p>
 <p>We reject <span class="math inline">\(H_{0}\)</span> for large values of <span class="math inline">\(F_{obs}\)</span>.</p>
 </div>
 </div>
-<div id="one-way-anova-in-regression-notation" class="section level2">
-<h2><span class="header-section-number">4.9</span> One way ANOVA in regression notation</h2>
+<div id="one-way-anova-in-regression-notation" class="section level2" number="4.9">
+<h2>
+<span class="header-section-number">4.9</span> One way ANOVA in regression notation<a class="anchor" aria-label="anchor" href="#one-way-anova-in-regression-notation"><i class="fas fa-link"></i></a>
+</h2>
 <p>First we have to set up <strong>dummy variables</strong>:</p>
-<p><span class="math display">\[X_i=  \{ 
+<p><span class="math display">\[X_i=  \{
 \begin{array}{ll}
 1 &amp; \quad\mbox{if observation in gp }i\\
 0 &amp; \quad\mbox{ow}\end{array}\]</span></p>
@@ -1069,7 +999,7 @@ S(\mu_1, ..., \mu_g)&amp; =\sum_{i=1}^g\sum_{j=1}^{n_i}\epsilon_{ij}^2 = \sum_{i
 \alpha_{1}   \\
 \alpha_{2}  \\
 \alpha_{3}
-\end{bmatrix} \quad \quad \quad \mathbf{X} = 
+\end{bmatrix} \quad \quad \quad \mathbf{X} =
 \begin{bmatrix}
 1 &amp; 1 &amp; 0 &amp; 0 \\
 \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
@@ -1091,7 +1021,7 @@ S(\mu_1, ..., \mu_g)&amp; =\sum_{i=1}^g\sum_{j=1}^{n_i}\epsilon_{ij}^2 = \sum_{i
 \mu_{1} \\
 \mu_{2}\\
 \mu_{3}
-\end{bmatrix}\quad \quad \quad 
+\end{bmatrix}\quad \quad \quad
 \mathbf{X} = \begin{bmatrix}
 1 &amp; 0 &amp; 0 \\
 \vdots &amp; \vdots &amp; \vdots \\
@@ -1104,7 +1034,7 @@ S(\mu_1, ..., \mu_g)&amp; =\sum_{i=1}^g\sum_{j=1}^{n_i}\epsilon_{ij}^2 = \sum_{i
 0 &amp; 0 &amp; 1
 \end{bmatrix}\]</span></p>
 <p>This is the means model <span class="math inline">\(y_{ij} = \mu_i + \epsilon_{ij}\)</span>.</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \hat{\boldsymbol{\beta}} &amp; = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}\\
 &amp; = \begin{bmatrix}
 10 &amp; 0 &amp; 0 \\
@@ -1130,32 +1060,311 @@ y_{3.}
 \hat{\mu}_{2}\\
 \hat{\mu}_{3}
 \end{bmatrix}
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>The fitted values are then:</p>
 <p><span class="math display">\[\hat{Y} = \hat{\mu}_1X_1 + \hat{\mu}_2X_2 + \hat{\mu}_3X_3\]</span></p>
 <p>or</p>
 <p><span class="math display">\[\hat{Y} = \hat{\mu}_i = \bar{y}_{i.}\]</span></p>
 <p>if <span class="math inline">\(Y\)</span> comes from group <span class="math inline">\(i\)</span>.</p>
-<div id="fitting-the-model-in-mtb-and-r" class="section level3">
-<h3><span class="header-section-number">4.9.1</span> Fitting the model in MTB and R</h3>
+<div id="fitting-the-model-in-r" class="section level3" number="4.9.1">
+<h3>
+<span class="header-section-number">4.9.1</span> Fitting the model in R<a class="anchor" aria-label="anchor" href="#fitting-the-model-in-r"><i class="fas fa-link"></i></a>
+</h3>
+<div id="example-caffeine-in-r" class="section level4" number="4.9.1.1">
+<h4>
+<span class="header-section-number">4.9.1.1</span> Example: Caffeine in R<a class="anchor" aria-label="anchor" href="#example-caffeine-in-r"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">coffee.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/coffee.csv"</span><span class="op">)</span></span>
+<span><span class="va">coffee.data</span> <span class="op">|&gt;</span> <span class="fu">glimpse</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#Tell R this is a categorical variable</span></span>
+<span><span class="va">coffee.data</span><span class="op">$</span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">coffee.data</span><span class="op">$</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="va">coffee.data</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-95-1.png" width="288" style="display: block; margin: auto;"></div>
 <ol style="list-style-type: decimal">
-<li><p>One way anova, <span class="math inline">\(Y\)</span> is response <span class="math inline">\(X\)</span> is group.</p></li>
-<li><p>Using regression, make dummy variables <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, <span class="math inline">\(X_3\)</span> and:</p></li>
+<li>Using <code>aov</code>, <span class="math inline">\(Y\)</span> is response, <span class="math inline">\(X\)</span> is group.</li>
 </ol>
-<ul>
-<li>use predictors <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, <span class="math inline">\(X_3\)</span> with no intercept, or</li>
-<li>use predictors <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span> with intercept.</li>
-</ul>
-<p>The second regression on dummy variables gives the same ANOVA table as the one way ANOVA table.</p>
-<p>When the model does not include an intercept, the ANOVA table shows the uncorrected SS, i.e. <span class="math inline">\(\bar{y}\)</span> not substracted:</p>
-<table>
-<thead>
-<tr class="header">
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit.oneway.anova</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x</span>, data <span class="op">=</span> <span class="va">coffee.data</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit.oneway.anova</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+## x            2   61.4  30.700   6.181 0.00616 **
+## Residuals   27  134.1   4.967                   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit.oneway.anova</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: y
+##           Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+## x          2   61.4 30.7000  6.1812 0.006163 **
+## Residuals 27  134.1  4.9667                    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/model.tables.html">model.tables</a></span><span class="op">(</span><span class="va">fit.oneway.anova</span>, <span class="st">"means"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Tables of means
+## Grand mean
+##       
+## 246.5 
+## 
+##  x 
+## x
+##     1     2     3 
+## 244.8 246.4 248.3</code></pre>
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># plot(fit.oneway.anova) #diagnostic plots</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coefficients</a></span><span class="op">(</span><span class="va">fit.oneway.anova</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## (Intercept)          x2          x3 
+##       244.8         1.6         3.5</code></pre>
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="va">fit.oneway.anova</span>, <span class="st">"x"</span>, ordered <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+##     factor levels have been ordered
+## 
+## Fit: aov(formula = y ~ x, data = coffee.data)
+## 
+## $x
+##     diff        lwr      upr     p adj
+## 2-1  1.6 -0.8711391 4.071139 0.2606999
+## 3-1  3.5  1.0288609 5.971139 0.0043753
+## 3-2  1.9 -0.5711391 4.371139 0.1562593</code></pre>
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/TukeyHSD.html">TukeyHSD</a></span><span class="op">(</span><span class="va">fit.oneway.anova</span>, <span class="st">"x"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-96-1.png" width="672"></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Using <code>lm</code>
+</li>
+</ol>
+<div class="sourceCode" id="cb139"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit.coffee</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x</span>, data <span class="op">=</span> <span class="va">coffee.data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit.coffee</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x, data = coffee.data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -3.400 -2.075 -0.300  1.675  3.700 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 244.8000     0.7047 347.359  &lt; 2e-16 ***
+## x2            1.6000     0.9967   1.605  0.12005    
+## x3            3.5000     0.9967   3.512  0.00158 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.229 on 27 degrees of freedom
+## Multiple R-squared:  0.3141, Adjusted R-squared:  0.2633 
+## F-statistic: 6.181 on 2 and 27 DF,  p-value: 0.006163</code></pre>
+<div class="sourceCode" id="cb141"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit.coffee</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: y
+##           Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+## x          2   61.4 30.7000  6.1812 0.006163 **
+## Residuals 27  134.1  4.9667                    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode" id="cb143"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="va">fit.coffee</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    (Intercept) x2 x3
+## 1            1  0  0
+## 2            1  0  0
+## 3            1  0  0
+## 4            1  0  0
+## 5            1  0  0
+## 6            1  0  0
+## 7            1  0  0
+## 8            1  0  0
+## 9            1  0  0
+## 10           1  0  0
+## 11           1  1  0
+## 12           1  1  0
+## 13           1  1  0
+## 14           1  1  0
+## 15           1  1  0
+## 16           1  1  0
+## 17           1  1  0
+## 18           1  1  0
+## 19           1  1  0
+## 20           1  1  0
+## 21           1  0  1
+## 22           1  0  1
+## 23           1  0  1
+## 24           1  0  1
+## 25           1  0  1
+## 26           1  0  1
+## 27           1  0  1
+## 28           1  0  1
+## 29           1  0  1
+## 30           1  0  1
+## attr(,"assign")
+## [1] 0 1 1
+## attr(,"contrasts")
+## attr(,"contrasts")$x
+## [1] "contr.treatment"</code></pre>
+<p><span class="math inline">\(X_1\)</span> is dropped. Compare ANOVA table with the 1-way ANOVA results.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Using <code>lm</code> with the constrain on the sum of effects equals 0.</li>
+</ol>
+<div class="sourceCode" id="cb145"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>contrasts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'contr.sum'</span>, <span class="st">'contr.sum'</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fit.coffee</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span><span class="op">~</span><span class="va">x</span>, data <span class="op">=</span> <span class="va">coffee.data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit.coffee</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x, data = coffee.data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -3.400 -2.075 -0.300  1.675  3.700 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 246.5000     0.4069 605.822  &lt; 2e-16 ***
+## x1           -1.7000     0.5754  -2.954  0.00642 ** 
+## x2           -0.1000     0.5754  -0.174  0.86333    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.229 on 27 degrees of freedom
+## Multiple R-squared:  0.3141, Adjusted R-squared:  0.2633 
+## F-statistic: 6.181 on 2 and 27 DF,  p-value: 0.006163</code></pre>
+<div class="sourceCode" id="cb147"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit.coffee</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: y
+##           Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+## x          2   61.4 30.7000  6.1812 0.006163 **
+## Residuals 27  134.1  4.9667                    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode" id="cb149"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="va">fit.coffee</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    (Intercept) x1 x2
+## 1            1  1  0
+## 2            1  1  0
+## 3            1  1  0
+## 4            1  1  0
+## 5            1  1  0
+## 6            1  1  0
+## 7            1  1  0
+## 8            1  1  0
+## 9            1  1  0
+## 10           1  1  0
+## 11           1  0  1
+## 12           1  0  1
+## 13           1  0  1
+## 14           1  0  1
+## 15           1  0  1
+## 16           1  0  1
+## 17           1  0  1
+## 18           1  0  1
+## 19           1  0  1
+## 20           1  0  1
+## 21           1 -1 -1
+## 22           1 -1 -1
+## 23           1 -1 -1
+## 24           1 -1 -1
+## 25           1 -1 -1
+## 26           1 -1 -1
+## 27           1 -1 -1
+## 28           1 -1 -1
+## 29           1 -1 -1
+## 30           1 -1 -1
+## attr(,"assign")
+## [1] 0 1 1
+## attr(,"contrasts")
+## attr(,"contrasts")$x
+## [1] "contr.sum"</code></pre>
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>contrasts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'contr.treatment'</span>, <span class="st">'contr.treatment'</span><span class="op">)</span><span class="op">)</span> <span class="co"># to reset</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Using <code>lm</code>, without intercept (this is the <strong>means</strong> model):</li>
+</ol>
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit.coffee</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span> <span class="op">-</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">coffee.data</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit.coffee</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x - 1, data = coffee.data)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -3.400 -2.075 -0.300  1.675  3.700 
+## 
+## Coefficients:
+##    Estimate Std. Error t value Pr(&gt;|t|)    
+## x1 244.8000     0.7047   347.4   &lt;2e-16 ***
+## x2 246.4000     0.7047   349.6   &lt;2e-16 ***
+## x3 248.3000     0.7047   352.3   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.229 on 27 degrees of freedom
+## Multiple R-squared:  0.9999, Adjusted R-squared:  0.9999 
+## F-statistic: 1.223e+05 on 3 and 27 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">fit.coffee</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: y
+##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## x          3 1822929  607643  122344 &lt; 2.2e-16 ***
+## Residuals 27     134       5                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html">model.matrix</a></span><span class="op">(</span><span class="va">fit.coffee</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##    x1 x2 x3
+## 1   1  0  0
+## 2   1  0  0
+## 3   1  0  0
+## 4   1  0  0
+## 5   1  0  0
+## 6   1  0  0
+## 7   1  0  0
+## 8   1  0  0
+## 9   1  0  0
+## 10  1  0  0
+## 11  0  1  0
+## 12  0  1  0
+## 13  0  1  0
+## 14  0  1  0
+## 15  0  1  0
+## 16  0  1  0
+## 17  0  1  0
+## 18  0  1  0
+## 19  0  1  0
+## 20  0  1  0
+## 21  0  0  1
+## 22  0  0  1
+## 23  0  0  1
+## 24  0  0  1
+## 25  0  0  1
+## 26  0  0  1
+## 27  0  0  1
+## 28  0  0  1
+## 29  0  0  1
+## 30  0  0  1
+## attr(,"assign")
+## [1] 1 1 1
+## attr(,"contrasts")
+## attr(,"contrasts")$x
+## [1] "contr.treatment"</code></pre>
+<p>1), 2) and 3) give the same ANOVA table. In 4), when the model does not include an intercept, the ANOVA table shows the uncorrected SS, i.e. <span class="math inline">\(\bar{y}\)</span> not substracted:</p>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
 <th align="left">SOURCE</th>
 <th align="left">df</th>
 <th align="left">SS</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">Regression</td>
@@ -1173,225 +1382,31 @@ y_{3.}
 <td align="left">SST</td>
 </tr>
 </tbody>
-</table>
-<p>Where <span class="math inline">\(SSR = \sum \hat{y}^2\)</span>, <span class="math inline">\(SSE = \sum(y - \hat{y})^{2}\)</span> and <span class="math inline">\(SST = \sum y^{2}\)</span>. <!-- \begin{tabular}{l c c} --> <!-- Source & df & SS \\ \hline --> <!-- && \\ --> <!-- Regression & $p$ & $\sum \hat{y}^2$ \\ --> <!-- && \\ --> <!-- Error & $n-p$ &  $\sum(y - \hat{y})^{2}$  \\ --> <!-- && \\ --> <!-- Total & $n$ & $\sum y^{2}$ \\ --> <!-- \end{tabular} --></p>
-<div id="example-caffeine-in-mtb" class="section level4">
-<h4><span class="header-section-number">4.9.1.1</span> Example: Caffeine in MTB</h4>
-<p>In this example x is a factor, not a continuous variable, x1, x2 and x3 are the dummy variables that identify the groups in x.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="288" style="display: block; margin: auto;" /></p>
-<pre><code>One-way ANOVA: y versus x
-
-Analysis of Variance
-
-  Source  DF  Adj SS  Adj MS  F-Value  P-Value
-  x        2   61.40  30.700  6.18     0.006
-  Error   27  134.10   4.967
-  Total   29  195.50
-  
-  
-  Model Summary
-  
-  S        R-sq    R-sq(adj)  R-sq(pred)
-  2.22860  31.41%  26.33%     15.32%
-  
-  
-  Means
-  
-  x   N  Mean     StDev   95% CI
-  1  10  244.800  2.394  (243.354, 246.246)
-  2  10  246.400  2.066  (244.954, 247.846)
-  3  10  248.300  2.214  (246.854, 249.746)
-  
-  Pooled StDev = 2.22860
-  </code></pre>
-<!-- %    -->
-<!-- % -->
-<!-- %   -->
-<!--   % ``` -->
-<!--   % -->
-<!--   % Regression Analysis: y versus x -->
-<!--   % -->
-<!--   % Analysis of Variance -->
-<!--   % -->
-<!--   % Source DF   Adj SS   Adj MS  F-Value  P-Value -->
-<!--   % Regression  1   61.250  61.250012.770.001 -->
-<!--   %   x 1   61.250  61.250012.770.001 -->
-<!--   % Error  28  134.250   4.7946 -->
-<!--   %   Lack-of-Fit   10.150   0.1500 0.030.863 -->
-<!--   %   Pure Error   27  134.100   4.9667 -->
-<!--   % Total  29  195.500 -->
-<!--   % -->
-<!--   % -->
-<!--   % Model Summary -->
-<!--   % -->
-<!--   %   SR-sq  R-sq(adj)  R-sq(pred) -->
-<!--   % 2.18967  31.33% 28.88%  20.64% -->
-<!-- % -->
-<!--   % -->
-<!--   % Coefficients -->
-<!--   % -->
-<!--   % TermCoef  SE Coef  T-Value  P-Value   VIF -->
-<!--   % Constant  243.00 1.06   229.740.000 -->
-<!--   % x  1.7500.490 3.570.001  1.00 -->
-<!--   % -->
-<!--   % -->
-<!--   % Regression Equation -->
-<!--   % -->
-<!--   % y = 243.00 + 1.750 x -->
-<!--   % -->
-<!--   % ``` -->
-<!-- % -->
-<pre><code>
-Regression Analysis: y versus x1, x2, x3
-
-The following terms cannot be estimated and were removed:
-  x3
-
-
-Analysis of Variance
-
-Source        DF  Seq SS Seq MS  F-Value  P-Value
-Regression    2   61.40  30.700  6.18     0.006
-x1            1   43.35  43.350  8.73     0.006
-x2            1   18.05  18.050  3.63     0.067
-Error        27  134.10   4.967
-Total        29  195.50
-
-
-Model Summary
-
-S        R-sq    R-sq(adj)  R-sq(pred)
-2.22860  31.41%  26.33%     15.32%
-
-
-Coefficients
-
-Term      Coef      SE Coef    T-Value    P-Value   
-Constant  248.3      0.705     352.33      0.000
-x1         -3.50     0.997      -3.51      0.002  
-x2         -1.90     0.997      -1.91      0.067  
-
-
-Regression Equation
-
-y = 248.300 - 3.500 x1 - 1.900 x2
-</code></pre>
-<p><span class="math inline">\(X_3\)</span> is dropped. Compare ANOVA table with the 1-way ANOVA results. It is also possible to fit the model without explicitly specifying the dummy variables, but specifing that <span class="math inline">\(x\)</span> is a categorical variable. The same model is fitted, but <span class="math inline">\(X_1\)</span> is dropped.</p>
-<pre><code>  
-  Regression Analysis: y versus x1, x2, x3
-  
-  Analysis of Variance
-  
-  Source        DF  Seq SS    Seq MS  F-Value     P-Value
-  Regression    3  1822929    607643  122344.22   0.000
-  x1            1   599270    599270  120658.47   0.000
-  x2            1   607130    607130  122240.86   0.000
-  x3            1   616529    616529  124133.34   0.000
-  Error        27      134         5
-  Total        30  1823063
-  
-  
-  Model Summary
-  
-  S         R-sq R-sq(adj)  R-sq(pred)
-  2.22860  99.99% 99.99%  99.99%
-  
-  
-  Coefficients
-  
-  Term  Coef    SE Coef  T-Value  P-Value   VIF
-  x1    244.800   0.705   347.36  0.000    1.00
-  x2    246.400   0.705   349.63  0.000    1.00
-  x3    248.300   0.705   352.33  0.000    1.00
-  
-  
-  Regression Equation
-  
-  y = 244.800 x1 + 246.400 x2 + 248.300 x3
-  </code></pre>
-<p>Model with intercept = 0.</p>
-<!-- %  -->
-<!-- %  -->
-<!-- % #fit.coffee.aov <- aov(y~x, data = coffee.data) -->
-<!-- % #summary(fit.coffee.aov) -->
-</div>
-<div id="example-caffeine-in-r" class="section level4">
-<h4><span class="header-section-number">4.9.1.2</span> Example: Caffeine in R</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Tell R this is a categorical variable</span>
-coffee.data<span class="op">$</span>x &lt;-<span class="st"> </span><span class="kw">as.factor</span>(coffee.data<span class="op">$</span>x)
-
-fit.oneway.anova &lt;-<span class="st"> </span><span class="kw">aov</span>(y<span class="op">~</span>x, <span class="dt">data =</span> coffee.data) 
-<span class="kw">summary</span>(fit.oneway.anova)</code></pre></div>
-<pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
-## x            2   61.4  30.700   6.181 0.00616 **
-## Residuals   27  134.1   4.967                   
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fit.oneway.anova)</code></pre></div>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: y
-##           Df Sum Sq Mean Sq F value   Pr(&gt;F)   
-## x          2   61.4 30.7000  6.1812 0.006163 **
-## Residuals 27  134.1  4.9667                    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">model.tables</span>(fit.oneway.anova, <span class="st">&quot;means&quot;</span>)</code></pre></div>
-<pre><code>## Tables of means
-## Grand mean
-##       
-## 246.5 
-## 
-##  x 
-## x
-##     1     2     3 
-## 244.8 246.4 248.3</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot(fit.oneway.anova) #diagnostic plots</span>
-<span class="kw">coefficients</span>(fit.oneway.anova)</code></pre></div>
-<pre><code>## (Intercept)          x2          x3 
-##       244.8         1.6         3.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#TukeyHSD(fit.oneway.anova, &quot;x&quot;, ordered = TRUE)</span>
-<span class="co">#plot(TukeyHSD(fit.oneway.anova, &quot;x&quot;))</span>
-
-
-fit.coffee &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x, <span class="dt">data =</span> coffee.data)
-<span class="kw">summary</span>(fit.coffee)</code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = y ~ x, data = coffee.data)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -3.400 -2.075 -0.300  1.675  3.700 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 244.8000     0.7047 347.359  &lt; 2e-16 ***
-## x2            1.6000     0.9967   1.605  0.12005    
-## x3            3.5000     0.9967   3.512  0.00158 ** 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 2.229 on 27 degrees of freedom
-## Multiple R-squared:  0.3141, Adjusted R-squared:  0.2633 
-## F-statistic: 6.181 on 2 and 27 DF,  p-value: 0.006163</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(fit.coffee)</code></pre></div>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: y
-##           Df Sum Sq Mean Sq F value   Pr(&gt;F)   
-## x          2   61.4 30.7000  6.1812 0.006163 **
-## Residuals 27  134.1  4.9667                    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># or using dummy variables</span>
-
-d1 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(coffee.data<span class="op">$</span>x <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)
-d2 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(coffee.data<span class="op">$</span>x <span class="op">==</span><span class="st"> </span><span class="dv">2</span>)
-d3 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(coffee.data<span class="op">$</span>x <span class="op">==</span><span class="st"> </span><span class="dv">3</span>)
-
-fit.coffee.dummy &lt;-<span class="st"> </span><span class="kw">lm</span>(coffee.data<span class="op">$</span>y <span class="op">~</span><span class="st"> </span>d1 <span class="op">+</span>d2)
-<span class="kw">summary</span>(fit.coffee.dummy)</code></pre></div>
+</table></div>
+<p>Where <span class="math inline">\(SSR = \sum \hat{y}^2\)</span>, <span class="math inline">\(SSE = \sum(y - \hat{y})^{2}\)</span> and <span class="math inline">\(SST = \sum y^{2}\)</span>.</p>
+<!-- \begin{tabular}{l c c} -->
+<!-- Source & df & SS \\ \hline -->
+<!-- && \\ -->
+<!-- Regression & $p$ & $\sum \hat{y}^2$ \\ -->
+<!-- && \\ -->
+<!-- Error & $n-p$ &  $\sum(y - \hat{y})^{2}$  \\ -->
+<!-- && \\ -->
+<!-- Total & $n$ & $\sum y^{2}$ \\ -->
+<!-- \end{tabular} -->
+<!-- In this example x is a factor, not a continuous variable, x1, x2 and x3 are the dummy variables that identify the groups in x. -->
+<!-- make dummy variables $X_1$, $X_2$, $X_3$ and: -->
+<!-- * use predictors $X_1$, $X_2$, $X_3$ with no intercept, or -->
+<!-- * use predictors $X_1$, $X_2$ with intercept. -->
+<p>It is also possible to fit the model by explicitly specifying the dummy variables.</p>
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># or using dummy variables</span></span>
+<span></span>
+<span><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">coffee.data</span><span class="op">$</span><span class="va">x</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">d2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">coffee.data</span><span class="op">$</span><span class="va">x</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">d3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">coffee.data</span><span class="op">$</span><span class="va">x</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">fit.coffee.dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">coffee.data</span><span class="op">$</span><span class="va">y</span> <span class="op">~</span> <span class="va">d1</span> <span class="op">+</span><span class="va">d2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit.coffee.dummy</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = coffee.data$y ~ d1 + d2)
@@ -1406,14 +1421,15 @@ fit.coffee.dummy &lt;-<span class="st"> </span><span class="kw">lm</span>(coffee
 ## d1           -3.5000     0.9967  -3.512  0.00158 ** 
 ## d2           -1.9000     0.9967  -1.906  0.06730 .  
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 2.229 on 27 degrees of freedom
 ## Multiple R-squared:  0.3141, Adjusted R-squared:  0.2633 
 ## F-statistic: 6.181 on 2 and 27 DF,  p-value: 0.006163</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#no intercept</span>
-fit.coffee.dummy2 &lt;-<span class="st"> </span><span class="kw">lm</span>(coffee.data<span class="op">$</span>y <span class="op">~</span><span class="st"> </span>d1 <span class="op">+</span>d2 <span class="op">+</span>d3 <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)
-<span class="kw">summary</span>(fit.coffee.dummy2)</code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#no intercept</span></span>
+<span><span class="va">fit.coffee.dummy2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">coffee.data</span><span class="op">$</span><span class="va">y</span> <span class="op">~</span> <span class="va">d1</span> <span class="op">+</span><span class="va">d2</span> <span class="op">+</span><span class="va">d3</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit.coffee.dummy2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = coffee.data$y ~ d1 + d2 + d3 - 1)
@@ -1428,7 +1444,7 @@ fit.coffee.dummy2 &lt;-<span class="st"> </span><span class="kw">lm</span>(coffe
 ## d2 246.4000     0.7047   349.6   &lt;2e-16 ***
 ## d3 248.3000     0.7047   352.3   &lt;2e-16 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 2.229 on 27 degrees of freedom
 ## Multiple R-squared:  0.9999, Adjusted R-squared:  0.9999 
@@ -1436,8 +1452,10 @@ fit.coffee.dummy2 &lt;-<span class="st"> </span><span class="kw">lm</span>(coffe
 </div>
 </div>
 </div>
-<div id="confidence-intervals-and-hypothesis-tests-for-linear-combinations-of-boldsymbolbeta" class="section level2">
-<h2><span class="header-section-number">4.10</span> Confidence intervals and hypothesis tests for linear combinations of <span class="math inline">\(\boldsymbol{\beta}\)</span></h2>
+<div id="confidence-intervals-and-hypothesis-tests-for-linear-combinations-of-boldsymbolbeta" class="section level2" number="4.10">
+<h2>
+<span class="header-section-number">4.10</span> Confidence intervals and hypothesis tests for linear combinations of <span class="math inline">\(\boldsymbol{\beta}\)</span><a class="anchor" aria-label="anchor" href="#confidence-intervals-and-hypothesis-tests-for-linear-combinations-of-boldsymbolbeta"><i class="fas fa-link"></i></a>
+</h2>
 <p>From the theory of OLS:</p>
 <p><span class="math display">\[\hat{\boldsymbol{\beta}} \sim N(\boldsymbol{\beta},(\mathbf{X}^T\mathbf{X})^{-1}\sigma^2)\]</span></p>
 <p>and</p>
@@ -1458,86 +1476,110 @@ fit.coffee.dummy2 &lt;-<span class="st"> </span><span class="kw">lm</span>(coffe
 <p>So, the <span class="math inline">\(100 \times (1- \alpha) \%\)</span>CI is:</p>
 <p><span class="math display">\[\mathbf{c}^T\hat{\boldsymbol{\beta}} \pm t_{27}(\alpha/2) \sqrt{\frac{3}{20}\hat{\sigma}^2}\]</span></p>
 <p>The df is: <span class="math inline">\(n-g = 30-3 = 27\)</span>.</p>
-<p>We could also test hypotheses e.g. <span class="math inline">\(H_o: \mathbf{c}^T\boldsymbol{\beta} = 0\)</span>. The test statistic:</p>
+<p>We could also test hypotheses e.g. <span class="math inline">\(H_o: \mathbf{c}^T\boldsymbol{\beta} = 0\)</span>. The test statistic:</p>
 <p><span class="math display">\[\frac{\mathbf{c}^T\hat{\boldsymbol{\beta}}}{\sqrt{\frac{3}{20}\hat{\sigma}^2}} \sim t_{27}.\]</span></p>
 
 </div>
 </div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-bowerman1990linear">
-<p>Bowerman, Bruce L., and Daniel Schafer. 1990. <em>Linear Statistical Models</em>. 2nd ed. Thomson Wadsworth.</p>
-</div>
-<div id="ref-cryer1991statistics">
-<p>Cryer, J.D., and R.B. Miller. 1991. <em>Statistics for Business: Data Analysis and Modelling</em>. Business Statistics. PWS-Kent.</p>
-</div>
-<div id="ref-stapleton09linear">
-<p>Stapleton, James H. 2009. <em>Linear Statistical Models</em>. 2nd ed. Wiley Series in Probability and Statistics. Wiley.</p>
-</div>
-<div id="ref-draper66applied">
-<p>Draper, Norman Richard, and Harry Smith. 1966. <em>Applied Regression Analysis</em>. Wiley Series in Probability and Mathematical Statistics. Wiley.</p>
-</div>
-</div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="SLR.html"><span class="header-section-number">3</span> Simple Linear regression</a></div>
+<div class="next"><a href="model-comparisons-and-testing-for-lack-of-fit.html"><span class="header-section-number">5</span> Model comparisons and testing for lack of fit</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#multiple-regression"><span class="header-section-number">4</span> Multiple regression</a></li>
+<li>
+<a class="nav-link" href="#introductory-examples-1"><span class="header-section-number">4.1</span> Introductory examples</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#example-1-fuel-use"><span class="header-section-number">4.1.1</span> Example 1: Fuel Use</a></li>
+<li><a class="nav-link" href="#example-2-categorical-predictors"><span class="header-section-number">4.1.2</span> Example 2: Categorical predictors</a></li>
+<li><a class="nav-link" href="#example-3-polynomials"><span class="header-section-number">4.1.3</span> Example 3: Polynomials</a></li>
+<li><a class="nav-link" href="#example-4-nonlinear-relationships"><span class="header-section-number">4.1.4</span> Example 4: Nonlinear relationships</a></li>
+<li><a class="nav-link" href="#diamonds-data"><span class="header-section-number">4.1.5</span> Diamonds data</a></li>
+<li><a class="nav-link" href="#cigarette-data-continued"><span class="header-section-number">4.1.6</span> Cigarette Data continued</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#least-squares-estimation-for-multiple-regression"><span class="header-section-number">4.2</span> Least squares estimation for multiple regression</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#estimation-of-sigma2-varepsilon"><span class="header-section-number">4.2.1</span> Estimation of \(\sigma^2\) = Var\((\epsilon)\)</a></li>
+<li><a class="nav-link" href="#estimation-of-varhatbeta"><span class="header-section-number">4.2.2</span> Estimation of Var\((\hat{\beta})\)</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#prediction-from-multiple-linear-regression-model"><span class="header-section-number">4.3</span> Prediction from multiple linear regression model</a></li>
+<li>
+<a class="nav-link" href="#regression-models-in-matrix-notation-examples"><span class="header-section-number">4.4</span> Regression models in matrix notation: examples</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#example-1-slr"><span class="header-section-number">4.4.1</span> Example 1: SLR</a></li>
+<li><a class="nav-link" href="#example-2"><span class="header-section-number">4.4.2</span> Example 2</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#the-formal-multiple-regression-model-and-properties"><span class="header-section-number">4.5</span> The formal multiple regression model and properties</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#concepts-random-vectors-covariance-matrix-multivariate-normal-distribution-mvn."><span class="header-section-number">4.5.1</span> Concepts: random vectors, covariance matrix, multivariate normal distribution (MVN).</a></li>
+<li><a class="nav-link" href="#multiple-regression-model"><span class="header-section-number">4.5.2</span> Multiple regression model</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#the-hat-matrix"><span class="header-section-number">4.6</span> The hat matrix</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#the-qr-decomposition-of-a-matrix"><span class="header-section-number">4.6.1</span> The QR Decomposition of a matrix</a></li></ul>
+</li>
+<li><a class="nav-link" href="#anova-for-multiple-regression"><span class="header-section-number">4.7</span> ANOVA for multiple regression</a></li>
+<li>
+<a class="nav-link" href="#way-anova-model"><span class="header-section-number">4.8</span> 1-way ANOVA model</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#example"><span class="header-section-number">4.8.1</span> Example:</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#one-way-anova-in-regression-notation"><span class="header-section-number">4.9</span> One way ANOVA in regression notation</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#fitting-the-model-in-r"><span class="header-section-number">4.9.1</span> Fitting the model in R</a></li></ul>
+</li>
+<li><a class="nav-link" href="#confidence-intervals-and-hypothesis-tests-for-linear-combinations-of-boldsymbolbeta"><span class="header-section-number">4.10</span> Confidence intervals and hypothesis tests for linear combinations of \(\boldsymbol{\beta}\)</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="SLR.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="model-comparisons-and-testing-for-lack-of-fit.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Linear Models Lecture Notes</strong>" was written by Katarina Domijan. It was last built on 2025-12-16.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
-"linkedin": false,
-"weibo": false,
-"instapper": false,
-"vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"download": null,
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>

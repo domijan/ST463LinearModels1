@@ -1,268 +1,98 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="en">
 <head>
-
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Notes for ST463/ST683 Linear Models 1</title>
-  <meta name="description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
-
-  <meta property="og:title" content="Notes for ST463/ST683 Linear Models 1" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook." />
-  <meta name="github-repo" content="domijank/ST463" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Notes for ST463/ST683 Linear Models 1" />
-  
-  <meta name="twitter:description" content="These are the notes for ST463/ST683 Linear Models 1 module at Maynooth University. The output format for this example is bookdown::gitbook." />
-  
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 5 Model comparisons and testing for lack of fit | Linear Models Lecture Notes</title>
 <meta name="author" content="Katarina Domijan">
-
-
-<meta name="date" content="2018-11-12">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  
-  
-<link rel="prev" href="multiple-regression.html">
-<link rel="next" href="diagnostic-methods-in-more-details.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
+<meta name="description" content="5.1 F-tests for comparing two models  5.1.1 Example: Model A: \(\mathbb{E}[y] = \beta_0 + \beta_1 x_1\) Model B: \(\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3\) i.e. in Model...">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Chapter 5 Model comparisons and testing for lack of fit | Linear Models Lecture Notes">
+<meta property="og:type" content="book">
+<meta property="og:description" content="5.1 F-tests for comparing two models  5.1.1 Example: Model A: \(\mathbb{E}[y] = \beta_0 + \beta_1 x_1\) Model B: \(\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3\) i.e. in Model...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 5 Model comparisons and testing for lack of fit | Linear Models Lecture Notes">
+<meta name="twitter:description" content="5.1 F-tests for comparing two models  5.1.1 Example: Model A: \(\mathbb{E}[y] = \beta_0 + \beta_1 x_1\) Model B: \(\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3\) i.e. in Model...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
-
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 0em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Module Preliminaries</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#recommended-texts"><i class="fa fa-check"></i><b>1.1</b> Recommended texts</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#software"><i class="fa fa-check"></i><b>1.2</b> Software</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-scripts"><i class="fa fa-check"></i><b>1.3</b> R Scripts</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#introductory-examples"><i class="fa fa-check"></i><b>2.1</b> Introductory Examples</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#mother-and-daughter-heights"><i class="fa fa-check"></i><b>2.1.1</b> Mother and daughter heights</a></li>
-<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#bacterial-count-and-storage-temperature"><i class="fa fa-check"></i><b>2.1.2</b> Bacterial count and storage temperature</a></li>
-<li class="chapter" data-level="2.1.3" data-path="intro.html"><a href="intro.html#yield-and-rainfall"><i class="fa fa-check"></i><b>2.1.3</b> Yield and Rainfall</a></li>
-<li class="chapter" data-level="2.1.4" data-path="intro.html"><a href="intro.html#driving"><i class="fa fa-check"></i><b>2.1.4</b> Driving</a></li>
-<li class="chapter" data-level="2.1.5" data-path="intro.html"><a href="intro.html#fuel"><i class="fa fa-check"></i><b>2.1.5</b> Fuel Consumption</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="SLR.html"><a href="SLR.html"><i class="fa fa-check"></i><b>3</b> Simple Linear regression</a><ul>
-<li class="chapter" data-level="3.1" data-path="SLR.html"><a href="SLR.html#OLS"><i class="fa fa-check"></i><b>3.1</b> Ordinary least squares</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="SLR.html"><a href="SLR.html#residuals"><i class="fa fa-check"></i><b>3.1.1</b> Residuals</a></li>
-<li class="chapter" data-level="3.1.2" data-path="SLR.html"><a href="SLR.html#some-algebraic-implications-of-the-ols-fit"><i class="fa fa-check"></i><b>3.1.2</b> Some algebraic implications of the OLS fit</a></li>
-<li class="chapter" data-level="3.1.3" data-path="SLR.html"><a href="SLR.html#ols-estimates-for-the-fuel-consumption-example"><i class="fa fa-check"></i><b>3.1.3</b> OLS Estimates for the Fuel Consumption Example</a></li>
-<li class="chapter" data-level="3.1.4" data-path="SLR.html"><a href="SLR.html#interpretation-of-the-fitted-simple-linear-regression-line-parameter-estimates"><i class="fa fa-check"></i><b>3.1.4</b> Interpretation of the fitted simple linear regression line: Parameter estimates</a></li>
-<li class="chapter" data-level="3.1.5" data-path="SLR.html"><a href="SLR.html#predicting"><i class="fa fa-check"></i><b>3.1.5</b> Predicting</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="SLR.html"><a href="SLR.html#the-formal-simple-linear-regression-model"><i class="fa fa-check"></i><b>3.2</b> The formal simple linear regression model</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="SLR.html"><a href="SLR.html#model"><i class="fa fa-check"></i><b>3.2.1</b> Model</a></li>
-<li class="chapter" data-level="3.2.2" data-path="SLR.html"><a href="SLR.html#assumptions"><i class="fa fa-check"></i><b>3.2.2</b> Assumptions</a></li>
-<li class="chapter" data-level="3.2.3" data-path="SLR.html"><a href="SLR.html#estimation-of-sigma2"><i class="fa fa-check"></i><b>3.2.3</b> Estimation of <span class="math inline">\(\sigma^2\)</span></a></li>
-<li class="chapter" data-level="3.2.4" data-path="SLR.html"><a href="SLR.html#review-of-some-probability-results"><i class="fa fa-check"></i><b>3.2.4</b> Review of some probability results</a></li>
-<li class="chapter" data-level="3.2.5" data-path="SLR.html"><a href="SLR.html#prop"><i class="fa fa-check"></i><b>3.2.5</b> Properties of the estimates</a></li>
-<li class="chapter" data-level="3.2.6" data-path="SLR.html"><a href="SLR.html#special-cases"><i class="fa fa-check"></i><b>3.2.6</b> Special cases</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="SLR.html"><a href="SLR.html#simple-linear-regression-models-in-r-and-minitab"><i class="fa fa-check"></i><b>3.3</b> Simple linear regression models in R and Minitab</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="SLR.html"><a href="SLR.html#minitab"><i class="fa fa-check"></i><b>3.3.1</b> Minitab</a></li>
-<li class="chapter" data-level="3.3.2" data-path="SLR.html"><a href="SLR.html#r"><i class="fa fa-check"></i><b>3.3.2</b> R</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="SLR.html"><a href="SLR.html#statistical-inference"><i class="fa fa-check"></i><b>3.4</b> Statistical inference</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="SLR.html"><a href="SLR.html#r-simulation-paraminference.r"><i class="fa fa-check"></i><b>3.4.1</b> R simulation: ParamInference.R</a></li>
-<li class="chapter" data-level="3.4.2" data-path="SLR.html"><a href="SLR.html#inference-for-beta_1"><i class="fa fa-check"></i><b>3.4.2</b> Inference for <span class="math inline">\(\beta_1\)</span></a></li>
-<li class="chapter" data-level="3.4.3" data-path="SLR.html"><a href="SLR.html#inference-for-beta_0"><i class="fa fa-check"></i><b>3.4.3</b> Inference for <span class="math inline">\(\beta_0\)</span></a></li>
-<li class="chapter" data-level="3.4.4" data-path="SLR.html"><a href="SLR.html#inference-for-mean-response"><i class="fa fa-check"></i><b>3.4.4</b> Inference for mean response</a></li>
-<li class="chapter" data-level="3.4.5" data-path="SLR.html"><a href="SLR.html#inference-for-prediction"><i class="fa fa-check"></i><b>3.4.5</b> Inference for prediction</a></li>
-</ul></li>
-<li class="chapter" data-level="3.5" data-path="SLR.html"><a href="SLR.html#analysis-of-variance-for-s.l.r."><i class="fa fa-check"></i><b>3.5</b> Analysis of variance (for s.l.r.)</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="SLR.html"><a href="SLR.html#anova-decomposition"><i class="fa fa-check"></i><b>3.5.1</b> ANOVA decomposition</a></li>
-<li class="chapter" data-level="3.5.2" data-path="SLR.html"><a href="SLR.html#anova-table"><i class="fa fa-check"></i><b>3.5.2</b> ANOVA table</a></li>
-<li class="chapter" data-level="3.5.3" data-path="SLR.html"><a href="SLR.html#special-cases-1"><i class="fa fa-check"></i><b>3.5.3</b> Special cases</a></li>
-<li class="chapter" data-level="3.5.4" data-path="SLR.html"><a href="SLR.html#does-regression-on-x-explain-y"><i class="fa fa-check"></i><b>3.5.4</b> Does regression on x explain y?</a></li>
-<li class="chapter" data-level="3.5.5" data-path="SLR.html"><a href="SLR.html#notes-on-the-anova-table"><i class="fa fa-check"></i><b>3.5.5</b> Notes on the ANOVA table</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="SLR.html"><a href="SLR.html#sample-correlation"><i class="fa fa-check"></i><b>3.6</b> Sample correlation</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="SLR.html"><a href="SLR.html#examples-of-correlation"><i class="fa fa-check"></i><b>3.6.1</b> Examples of correlation</a></li>
-<li class="chapter" data-level="3.6.2" data-path="SLR.html"><a href="SLR.html#comparison-of-the-correlation-and-coefficient-of-determination-for-two-data-sets."><i class="fa fa-check"></i><b>3.6.2</b> Comparison of the correlation and coefficient of determination for two data sets.</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="SLR.html"><a href="SLR.html#assessing-the-simple-linear-regression-model-assumptions"><i class="fa fa-check"></i><b>3.7</b> Assessing the simple linear regression model assumptions</a><ul>
-<li class="chapter" data-level="3.7.1" data-path="SLR.html"><a href="SLR.html#assumptions-1"><i class="fa fa-check"></i><b>3.7.1</b> Assumptions</a></li>
-<li class="chapter" data-level="3.7.2" data-path="SLR.html"><a href="SLR.html#violations-and-consequences"><i class="fa fa-check"></i><b>3.7.2</b> Violations and consequences</a></li>
-<li class="chapter" data-level="3.7.3" data-path="SLR.html"><a href="SLR.html#graphical-tools-for-assessment"><i class="fa fa-check"></i><b>3.7.3</b> Graphical tools for assessment</a></li>
-<li class="chapter" data-level="3.7.4" data-path="SLR.html"><a href="SLR.html#cigarette"><i class="fa fa-check"></i><b>3.7.4</b> Cigarette Data</a></li>
-</ul></li>
-<li class="chapter" data-level="3.8" data-path="SLR.html"><a href="SLR.html#a-note-on-the-galton-paradox"><i class="fa fa-check"></i><b>3.8</b> A note on the Galton paradox</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="SLR.html"><a href="SLR.html#the-galton-paradox"><i class="fa fa-check"></i><b>3.8.1</b> The Galton paradox</a></li>
-<li class="chapter" data-level="3.8.2" data-path="SLR.html"><a href="SLR.html#two-regressions"><i class="fa fa-check"></i><b>3.8.2</b> Two regressions</a></li>
-<li class="chapter" data-level="3.8.3" data-path="SLR.html"><a href="SLR.html#regression-vs-orthogonal-regression"><i class="fa fa-check"></i><b>3.8.3</b> Regression vs orthogonal regression</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>4</b> Multiple regression</a><ul>
-<li class="chapter" data-level="4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#introductory-examples-1"><i class="fa fa-check"></i><b>4.1</b> Introductory examples</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example-1-fuel-use"><i class="fa fa-check"></i><b>4.1.1</b> Example 1: Fuel Use</a></li>
-<li class="chapter" data-level="4.1.2" data-path="multiple-regression.html"><a href="multiple-regression.html#example-2-categorical-predictors"><i class="fa fa-check"></i><b>4.1.2</b> Example 2: Categorical predictors</a></li>
-<li class="chapter" data-level="4.1.3" data-path="multiple-regression.html"><a href="multiple-regression.html#example-3-polynomials"><i class="fa fa-check"></i><b>4.1.3</b> Example 3: Polynomials</a></li>
-<li class="chapter" data-level="4.1.4" data-path="multiple-regression.html"><a href="multiple-regression.html#example-4-nonlinear-relationships"><i class="fa fa-check"></i><b>4.1.4</b> Example 4: Nonlinear relationships</a></li>
-<li class="chapter" data-level="4.1.5" data-path="multiple-regression.html"><a href="multiple-regression.html#cigarette-data-continued"><i class="fa fa-check"></i><b>4.1.5</b> Cigarette Data continued</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#least-squares-estimation-for-multiple-regression"><i class="fa fa-check"></i><b>4.2</b> Least squares estimation for multiple regression</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="multiple-regression.html"><a href="multiple-regression.html#estimation-of-sigma2-varepsilon"><i class="fa fa-check"></i><b>4.2.1</b> Estimation of <span class="math inline">\(\sigma^2\)</span> = Var<span class="math inline">\((\epsilon)\)</span></a></li>
-<li class="chapter" data-level="4.2.2" data-path="multiple-regression.html"><a href="multiple-regression.html#estimation-of-varhatbeta"><i class="fa fa-check"></i><b>4.2.2</b> Estimation of Var<span class="math inline">\((\hat{\beta})\)</span></a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="multiple-regression.html"><a href="multiple-regression.html#prediction-from-multiple-linear-regression-model"><i class="fa fa-check"></i><b>4.3</b> Prediction from multiple linear regression model</a></li>
-<li class="chapter" data-level="4.4" data-path="multiple-regression.html"><a href="multiple-regression.html#regression-models-in-matrix-notation-examples"><i class="fa fa-check"></i><b>4.4</b> Regression models in matrix notation: examples</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example-1-slr"><i class="fa fa-check"></i><b>4.4.1</b> Example 1: SLR</a></li>
-<li class="chapter" data-level="4.4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#example-2"><i class="fa fa-check"></i><b>4.4.2</b> Example 2</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="multiple-regression.html"><a href="multiple-regression.html#the-formal-multiple-regression-model-and-properties"><i class="fa fa-check"></i><b>4.5</b> The formal multiple regression model and properties</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="multiple-regression.html"><a href="multiple-regression.html#concepts-random-vectors-covariance-matrix-multivariate-normal-distribution-mvn."><i class="fa fa-check"></i><b>4.5.1</b> Concepts: random vectors, covariance matrix, multivariate normal distribution (MVN).</a></li>
-<li class="chapter" data-level="4.5.2" data-path="multiple-regression.html"><a href="multiple-regression.html#multiple-regression-model"><i class="fa fa-check"></i><b>4.5.2</b> Multiple regression model</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="multiple-regression.html"><a href="multiple-regression.html#the-hat-matrix"><i class="fa fa-check"></i><b>4.6</b> The hat matrix</a><ul>
-<li class="chapter" data-level="4.6.1" data-path="multiple-regression.html"><a href="multiple-regression.html#the-qr-decomposition-of-a-matrix"><i class="fa fa-check"></i><b>4.6.1</b> The QR Decomposition of a matrix</a></li>
-</ul></li>
-<li class="chapter" data-level="4.7" data-path="multiple-regression.html"><a href="multiple-regression.html#anova-for-multiple-regression"><i class="fa fa-check"></i><b>4.7</b> ANOVA for multiple regression</a></li>
-<li class="chapter" data-level="4.8" data-path="multiple-regression.html"><a href="multiple-regression.html#way-anova-model"><i class="fa fa-check"></i><b>4.8</b> 1-way ANOVA model</a><ul>
-<li class="chapter" data-level="4.8.1" data-path="multiple-regression.html"><a href="multiple-regression.html#example"><i class="fa fa-check"></i><b>4.8.1</b> Example:</a></li>
-</ul></li>
-<li class="chapter" data-level="4.9" data-path="multiple-regression.html"><a href="multiple-regression.html#one-way-anova-in-regression-notation"><i class="fa fa-check"></i><b>4.9</b> One way ANOVA in regression notation</a><ul>
-<li class="chapter" data-level="4.9.1" data-path="multiple-regression.html"><a href="multiple-regression.html#fitting-the-model-in-mtb-and-r"><i class="fa fa-check"></i><b>4.9.1</b> Fitting the model in MTB and R</a></li>
-</ul></li>
-<li class="chapter" data-level="4.10" data-path="multiple-regression.html"><a href="multiple-regression.html#confidence-intervals-and-hypothesis-tests-for-linear-combinations-of-boldsymbolbeta"><i class="fa fa-check"></i><b>4.10</b> Confidence intervals and hypothesis tests for linear combinations of <span class="math inline">\(\boldsymbol{\beta}\)</span></a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html"><i class="fa fa-check"></i><b>5</b> Model comparisons and testing for lack of fit</a><ul>
-<li class="chapter" data-level="5.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#f-tests-for-comparing-two-models"><i class="fa fa-check"></i><b>5.1</b> F-tests for comparing two models</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-1"><i class="fa fa-check"></i><b>5.1.1</b> Example:</a></li>
-<li class="chapter" data-level="5.1.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#f-test-to-compare-models"><i class="fa fa-check"></i><b>5.1.2</b> F-test to compare models:</a></li>
-<li class="chapter" data-level="5.1.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data"><i class="fa fa-check"></i><b>5.1.3</b> Example: Steam data</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#sequential-sums-of-squares"><i class="fa fa-check"></i><b>5.2</b> Sequential sums of squares</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-3"><i class="fa fa-check"></i><b>5.2.1</b> Example:</a></li>
-<li class="chapter" data-level="5.2.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data-1"><i class="fa fa-check"></i><b>5.2.2</b> Example: Steam data</a></li>
-<li class="chapter" data-level="5.2.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-contd-in-mtb"><i class="fa fa-check"></i><b>5.2.3</b> Example: Steam cont’d in MTB</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#testing-for-lack-of-fit"><i class="fa fa-check"></i><b>5.3</b> Testing for lack of fit</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-voltage"><i class="fa fa-check"></i><b>5.3.1</b> Example: Voltage</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#added-variable-plots"><i class="fa fa-check"></i><b>5.4</b> Added variable plots</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-vs.temp-inv-prod"><i class="fa fa-check"></i><b>5.4.1</b> Example: STEAM vs. TEMP, INV, PROD</a></li>
-<li class="chapter" data-level="5.4.2" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-added-variable-plot-for-prod."><i class="fa fa-check"></i><b>5.4.2</b> Example: Added variable plot for PROD.</a></li>
-<li class="chapter" data-level="5.4.3" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#example-steam-data-contd"><i class="fa fa-check"></i><b>5.4.3</b> Example: Steam data cont’d</a></li>
-<li class="chapter" data-level="5.4.4" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#properties-of-avps"><i class="fa fa-check"></i><b>5.4.4</b> Properties of AVPs:</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="model-comparisons-and-testing-for-lack-of-fit.html"><a href="model-comparisons-and-testing-for-lack-of-fit.html#visualising-models-in-hdim-added-variable-plots-for-the-bodyfat-data."><i class="fa fa-check"></i><b>5.5</b> Visualising Models in Hdim: added variable plots for the bodyfat data.</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html"><i class="fa fa-check"></i><b>6</b> Diagnostic methods (in more details)</a><ul>
-<li class="chapter" data-level="6.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#model-assumptions"><i class="fa fa-check"></i><b>6.1</b> Model assumptions</a></li>
-<li class="chapter" data-level="6.2" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#residuals-1"><i class="fa fa-check"></i><b>6.2</b> Residuals</a></li>
-<li class="chapter" data-level="6.3" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#leverage-values"><i class="fa fa-check"></i><b>6.3</b> Leverage values</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#properties-of-h_ii"><i class="fa fa-check"></i><b>6.3.1</b> Properties of <span class="math inline">\(h_{ii}\)</span>:</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#standardised-residuals"><i class="fa fa-check"></i><b>6.4</b> Standardised residuals</a></li>
-<li class="chapter" data-level="6.5" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#leave-one-out-methods"><i class="fa fa-check"></i><b>6.5</b> Leave-one-out methods</a></li>
-<li class="chapter" data-level="6.6" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#other-influence-measures"><i class="fa fa-check"></i><b>6.6</b> Other influence measures</a></li>
-<li class="chapter" data-level="6.7" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#testing-outliers"><i class="fa fa-check"></i><b>6.7</b> Testing outliers</a></li>
-<li class="chapter" data-level="6.8" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#diagnostics-examples-two-case-studies"><i class="fa fa-check"></i><b>6.8</b> Diagnostics examples (two case studies)</a><ul>
-<li class="chapter" data-level="6.8.1" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#example-1-brain-size-versus-body-gestation-period-and-litter"><i class="fa fa-check"></i><b>6.8.1</b> Example 1: Brain size versus body gestation period and litter</a></li>
-<li class="chapter" data-level="6.8.2" data-path="diagnostic-methods-in-more-details.html"><a href="diagnostic-methods-in-more-details.html#example-2-rat-data"><i class="fa fa-check"></i><b>6.8.2</b> Example 2: Rat data</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html"><i class="fa fa-check"></i><b>7</b> Special cases of multiple regression</a><ul>
-<li class="chapter" data-level="7.1" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#categorical-and-continuous-predictors-binary-categories"><i class="fa fa-check"></i><b>7.1</b> Categorical and continuous predictors (binary categories)</a></li>
-<li class="chapter" data-level="7.2" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#categorical-and-continuous-predictors-more-than-two-categories"><i class="fa fa-check"></i><b>7.2</b> Categorical and continuous predictors (more than two categories)</a></li>
-<li class="chapter" data-level="7.3" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#quadratic-terms-and-interactions"><i class="fa fa-check"></i><b>7.3</b> Quadratic terms and interactions</a></li>
-<li class="chapter" data-level="7.4" data-path="special-cases-of-multiple-regression.html"><a href="special-cases-of-multiple-regression.html#an-example-with-two-continuous-and-two-categorical-predictors"><i class="fa fa-check"></i><b>7.4</b> An example with two continuous and two categorical predictors</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Linear Models Lecture Notes</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notes for ST463/ST683 Linear Models 1</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Module Preliminaries</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Introduction</a></li>
+<li><a class="" href="SLR.html"><span class="header-section-number">3</span> Simple Linear regression</a></li>
+<li><a class="" href="multiple-regression.html"><span class="header-section-number">4</span> Multiple regression</a></li>
+<li><a class="active" href="model-comparisons-and-testing-for-lack-of-fit.html"><span class="header-section-number">5</span> Model comparisons and testing for lack of fit</a></li>
+<li><a class="" href="diagnostic-methods-in-more-details.html"><span class="header-section-number">6</span> Diagnostic methods (in more details)</a></li>
+<li><a class="" href="special-cases-of-multiple-regression.html"><span class="header-section-number">7</span> Special cases of multiple regression</a></li>
+<li><a class="" href="about.html"><span class="header-section-number">8</span> About</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="model-comparisons-and-testing-for-lack-of-fit" class="section level1">
-<h1><span class="header-section-number">5</span> Model comparisons and testing for lack of fit</h1>
-<div id="f-tests-for-comparing-two-models" class="section level2">
-<h2><span class="header-section-number">5.1</span> F-tests for comparing two models</h2>
-<div id="example-1" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Example:</h3>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="model-comparisons-and-testing-for-lack-of-fit" class="section level1" number="5">
+<h1>
+<span class="header-section-number">5</span> Model comparisons and testing for lack of fit<a class="anchor" aria-label="anchor" href="#model-comparisons-and-testing-for-lack-of-fit"><i class="fas fa-link"></i></a>
+</h1>
+<div id="f-tests-for-comparing-two-models" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> F-tests for comparing two models<a class="anchor" aria-label="anchor" href="#f-tests-for-comparing-two-models"><i class="fas fa-link"></i></a>
+</h2>
+<div id="example-1" class="section level3" number="5.1.1">
+<h3>
+<span class="header-section-number">5.1.1</span> Example:<a class="anchor" aria-label="anchor" href="#example-1"><i class="fas fa-link"></i></a>
+</h3>
 <p>Model A: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1\)</span></p>
 <p>Model B: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3\)</span></p>
 <p>i.e. in Model A, <span class="math inline">\(\beta_2=\beta_3=0\)</span>.</p>
@@ -276,8 +106,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Note:</p>
 <p><span class="math display">\[\mbox{SSE}(A)-\mbox{SSE}(B)=\mbox{SSR}(B)-\mbox{SSR}(A)\]</span></p>
 </div>
-<div id="f-test-to-compare-models" class="section level3">
-<h3><span class="header-section-number">5.1.2</span> F-test to compare models:</h3>
+<div id="f-test-to-compare-models" class="section level3" number="5.1.2">
+<h3>
+<span class="header-section-number">5.1.2</span> F-test to compare models:<a class="anchor" aria-label="anchor" href="#f-test-to-compare-models"><i class="fas fa-link"></i></a>
+</h3>
 <p>Model A: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + ... + \beta_q x_q\)</span></p>
 <p>Model B: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + ... + \beta_k x_k\)</span></p>
 <p>where <span class="math inline">\(q&lt;k\)</span> and Model A is <strong>nested</strong> within Model B.</p>
@@ -289,9 +121,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><span class="math display">\[F =\frac{(\mbox{SSR}(B)-\mbox{SSR}(A))/(k-q)}{\mbox{SSE}(B)/(n-p)}.\]</span></p>
 <p>Note: Models A and B must be <strong>hierarchical</strong> for the F-test to be valid.</p>
 </div>
-<div id="example-steam-data" class="section level3">
-<h3><span class="header-section-number">5.1.3</span> Example: Steam data</h3>
-<p>This data is from a study undertaken to understand the factors that caused energy consumption in detergent manufacturing over a 25 month period. Example from <span class="citation">Draper and Smith (<a href="#ref-draper66applied">1966</a>)</span>.</p>
+<div id="example-steam-data" class="section level3" number="5.1.3">
+<h3>
+<span class="header-section-number">5.1.3</span> Example: Steam data<a class="anchor" aria-label="anchor" href="#example-steam-data"><i class="fas fa-link"></i></a>
+</h3>
+<p>This data is from a study undertaken to understand the factors that caused energy consumption in detergent manufacturing over a 25 month period. Example from <span class="citation">Draper and Smith (<a href="references.html#ref-draper66applied">1966</a>)</span>.</p>
 <p>The data variables are:</p>
 <p>y = STEAM Pounds of steam used monthly.</p>
 <p>x1 = TEMP Average atmospheric temperature (<span class="math inline">\(^o\)</span>F).</p>
@@ -303,16 +137,38 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>x7 = FDAY Days below <span class="math inline">\(32^o\)</span>F.</p>
 <p>x8 = WIND2 Average wind velocity squared.</p>
 <p>x9 = STARTS Number of production start-ups during the month.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="va">steamdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"data/Steam.csv"</span><span class="op">)</span></span>
+<span><span class="va">steamdata</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Rows: 25
+## Columns: 10
+## $ STEAM  &lt;dbl&gt; 10.98, 11.13, 12.51, 8.40, 9.27, 8.73, 6.36, 8.50, 7.82, 9.14, …
+## $ TEMP   &lt;dbl&gt; 35.3, 29.7, 30.8, 58.8, 61.4, 71.3, 74.4, 76.7, 70.7, 57.5, 46.…
+## $ INV    &lt;dbl&gt; 5.20, 5.12, 6.19, 3.89, 6.28, 5.76, 3.45, 6.57, 5.69, 6.14, 4.8…
+## $ PROD   &lt;dbl&gt; 0.61, 0.64, 0.78, 0.49, 0.84, 0.74, 0.42, 0.87, 0.75, 0.76, 0.6…
+## $ WIND   &lt;dbl&gt; 7.4, 8.0, 7.4, 7.5, 5.5, 8.9, 4.1, 4.1, 4.1, 4.5, 10.3, 6.9, 6.…
+## $ CDAY   &lt;int&gt; 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 31, 28, 31, 30,…
+## $ OPDAY  &lt;int&gt; 20, 20, 23, 20, 21, 22, 11, 23, 21, 20, 20, 21, 21, 19, 23, 20,…
+## $ FDAY   &lt;int&gt; 22, 25, 17, 22, 0, 0, 0, 0, 0, 0, 11, 12, 25, 18, 5, 7, 0, 0, 0…
+## $ WIND2  &lt;dbl&gt; 54.8, 64.0, 54.8, 56.3, 30.3, 79.2, 16.8, 16.8, 16.8, 20.3, 106…
+## $ STARTS &lt;int&gt; 4, 5, 4, 4, 5, 4, 2, 5, 4, 5, 4, 4, 5, 5, 4, 4, 6, 4, 3, 4, 4, …</code></pre>
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">steamdata</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">STEAM</span>, <span class="va">TEMP</span>, <span class="va">INV</span>, <span class="va">PROD</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-102-1.png" width="480" style="display: block; margin: auto;"></div>
 <p>Model A: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1\)</span></p>
 <p>Model B: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3\)</span></p>
 <p>where <span class="math inline">\(x_1\)</span> = TEMP, <span class="math inline">\(x_2\)</span> = INV, <span class="math inline">\(x_3\)</span> = PROD.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelA &lt;-<span class="st"> </span><span class="kw">lm</span>(STEAM <span class="op">~</span><span class="st"> </span>TEMP)
-modelB &lt;-<span class="st"> </span><span class="kw">lm</span>(STEAM <span class="op">~</span><span class="st"> </span>TEMP <span class="op">+</span><span class="st"> </span>INV <span class="op">+</span><span class="st"> </span>PROD)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(modelA)</code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">modelA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">STEAM</span> <span class="op">~</span> <span class="va">TEMP</span>, <span class="va">steamdata</span><span class="op">)</span></span>
+<span><span class="va">modelB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">STEAM</span> <span class="op">~</span> <span class="va">TEMP</span> <span class="op">+</span> <span class="va">INV</span> <span class="op">+</span> <span class="va">PROD</span>, <span class="va">steamdata</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">modelA</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = STEAM ~ TEMP)
+## lm(formula = STEAM ~ TEMP, data = steamdata)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -323,15 +179,16 @@ modelB &lt;-<span class="st"> </span><span class="kw">lm</span>(STEAM <span clas
 ## (Intercept) 13.62299    0.58146  23.429  &lt; 2e-16 ***
 ## TEMP        -0.07983    0.01052  -7.586 1.05e-07 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 0.8901 on 23 degrees of freedom
 ## Multiple R-squared:  0.7144, Adjusted R-squared:  0.702 
 ## F-statistic: 57.54 on 1 and 23 DF,  p-value: 1.055e-07</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(modelB)</code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">modelB</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = STEAM ~ TEMP + INV + PROD)
+## lm(formula = STEAM ~ TEMP + INV + PROD, data = steamdata)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -344,12 +201,13 @@ modelB &lt;-<span class="st"> </span><span class="kw">lm</span>(STEAM <span clas
 ## INV          0.713592   0.502297   1.421     0.17    
 ## PROD         0.330497   3.267694   0.101     0.92    
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 0.652 on 21 degrees of freedom
 ## Multiple R-squared:  0.8601, Adjusted R-squared:  0.8401 
 ## F-statistic: 43.04 on 3 and 21 DF,  p-value: 3.794e-09</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(modelA)</code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">modelA</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: STEAM
@@ -357,8 +215,9 @@ modelB &lt;-<span class="st"> </span><span class="kw">lm</span>(STEAM <span clas
 ## TEMP       1 45.592  45.592  57.543 1.055e-07 ***
 ## Residuals 23 18.223   0.792                      
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(modelB)</code></pre></div>
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">modelB</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: STEAM
@@ -368,16 +227,17 @@ modelB &lt;-<span class="st"> </span><span class="kw">lm</span>(STEAM <span clas
 ## PROD       1  0.004   0.004   0.0102 0.9203982    
 ## Residuals 21  8.927   0.425                       
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_2 = \beta_3 = 0\)</span></p>
 <p><span class="math inline">\(H_A\)</span>: At least one <span class="math inline">\(\beta_2, \beta_3 \neq 0\)</span></p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 F_{obs} &amp; =  \frac{(\mbox{SSE}(A)-\mbox{SSE}(B))/(k-q)}{\mbox{SSE}(B)/(n-p)}\\
 &amp; = \frac{(18.223-8.927)/(3-1)}{8.927/(25-4)}=10.93.\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p><span class="math inline">\(F_{(0.05,2,21)} = 3.467\)</span>, <span class="math inline">\(F_{(0.01,2,21)} = 5.780\)</span></p>
 <p>P-value <span class="math inline">\(&lt;0.01\)</span>, we reject <span class="math inline">\(H_0\)</span> and conclude that at least one of <span class="math inline">\(\beta_2\)</span>, <span class="math inline">\(\beta_3\)</span> differ from 0.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(modelA, modelB)</code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">modelA</span>, <span class="va">modelB</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: STEAM ~ TEMP
@@ -386,42 +246,47 @@ F_{obs} &amp; =  \frac{(\mbox{SSE}(A)-\mbox{SSE}(B))/(k-q)}{\mbox{SSE}(B)/(n-p)}
 ## 1     23 18.223                                  
 ## 2     21  8.927  2    9.2964 10.934 0.0005569 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<div id="sequential-sums-of-squares" class="section level2">
-<h2><span class="header-section-number">5.2</span> Sequential sums of squares</h2>
-<div id="example-3" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Example:</h3>
+<div id="sequential-sums-of-squares" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Sequential sums of squares<a class="anchor" aria-label="anchor" href="#sequential-sums-of-squares"><i class="fas fa-link"></i></a>
+</h2>
+<div id="example-3" class="section level3" number="5.2.1">
+<h3>
+<span class="header-section-number">5.2.1</span> Example:<a class="anchor" aria-label="anchor" href="#example-3"><i class="fas fa-link"></i></a>
+</h3>
 <p>Model A: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1\)</span></p>
 <p>Model B: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2+ \beta_3 x_3\)</span></p>
-<p>As noted earlier, the reduction in <span class="math inline">\(\mbox{SSE}\)</span> going from Model A to B, is equivalent to the increase in <span class="math inline">\(\mbox{SSR}\)</span>, i.e. <span class="math display">\[\mbox{SSE}(A)-\mbox{SSE}(B)=\mbox{SSR}(B)-\mbox{SSR}(A).\]</span></p>
+<p>As noted earlier, the reduction in <span class="math inline">\(\mbox{SSE}\)</span> going from Model A to B, is equivalent to the increase in <span class="math inline">\(\mbox{SSR}\)</span>, i.e. <span class="math display">\[\mbox{SSE}(A)-\mbox{SSE}(B)=\mbox{SSR}(B)-\mbox{SSR}(A).\]</span></p>
 <p>We can denote: <span class="math display">\[\mbox{SSR}(B|A)=\mbox{SSR}(B)-\mbox{SSR}(A).\]</span></p>
-These are the <strong>sequential sums of squares</strong>. We can write:
+<p>These are the <strong>sequential sums of squares</strong>.
+We can write:
 <span class="math display">\[\begin{align*}
 \mbox{SST} &amp; = \mbox{SSR}(B) + \mbox{SSE}(B)\\
 &amp; = \mbox{SSR}(A) +\mbox{SSR}(B) - \mbox{SSR}(A) + \mbox{SSE}(B)\\
 &amp; = \mbox{SSR}(A) + \mbox{SSR}(B|A) + \mbox{SSE}(B).\\
 \mbox{SST} -  \mbox{SSE}(B) &amp;= \mbox{SSR}(A) + \mbox{SSR}(B|A)\\
 \mbox{SSR}(B) &amp;= \mbox{SSR}(A) + \mbox{SSR}(B|A).\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>If model A is appropriate, <span class="math inline">\(\mbox{SSR}(B|A)\)</span> should be small.</p>
 </div>
-<div id="example-steam-data-1" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Example: Steam data</h3>
+<div id="example-steam-data-1" class="section level3" number="5.2.2">
+<h3>
+<span class="header-section-number">5.2.2</span> Example: Steam data<a class="anchor" aria-label="anchor" href="#example-steam-data-1"><i class="fas fa-link"></i></a>
+</h3>
 <p>Model A: <span class="math inline">\(\mathbb{E}[y] = \beta_0\)</span></p>
 <p>Model B: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1\)</span></p>
 <p>Model C: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2\)</span></p>
 <p>Model D: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3\)</span></p>
-<table>
-<thead>
-<tr class="header">
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
 <th align="left">SOURCE</th>
 <th align="left">df</th>
 <th align="left">seqSS</th>
 <th align="left">Notation</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">TEMP</td>
@@ -442,21 +307,12 @@ These are the <strong>sequential sums of squares</strong>. We can write:
 <td align="left">SSR(D|C)</td>
 </tr>
 </tbody>
-</table>
-<!-- \begin{tabular}{l | r l l} -->
-<!-- Source & df & Seq SS & Notation \\ \hline -->
-<!-- &&& \\ -->
-<!-- TEMP & $1$ &45.592 & $\mbox{SSR}(B|A)$\\ -->
-<!-- &&&\\ -->
-<!-- INV & $1$ & 9.292& $\mbox{SSR}(C|B)$ \\ -->
-<!-- &&&\\ -->
-<!-- PROD & $1$ & 0.004 &$\mbox{SSR}(D|C)$\\ -->
-<!-- \end{tabular} -->
-<p>From the ANOVA table,</p>
-<span class="math display">\[\begin{align*}
+</table></div>
+<!-- \begin{tabular}{l | r l l} --><!-- Source & df & Seq SS & Notation \\ \hline --><!-- &&& \\ --><!-- TEMP & $1$ &45.592 & $\mbox{SSR}(B|A)$\\ --><!-- &&&\\ --><!-- INV & $1$ & 9.292& $\mbox{SSR}(C|B)$ \\ --><!-- &&&\\ --><!-- PROD & $1$ & 0.004 &$\mbox{SSR}(D|C)$\\ --><!-- \end{tabular} --><p>From the ANOVA table,</p>
+<p><span class="math display">\[\begin{align*}
 \mbox{SSR}(D)&amp; =54.889\\
 &amp; = \mbox{SSR}(B|A) + \mbox{SSR}(C|B) + \mbox{SSR}(D|C)\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>We can use the F-test for comparing two models to test Seq SS.</p>
 <p>1):</p>
 <p>Model A: <span class="math inline">\(\mathbb{E}[y] = \beta_0\)</span></p>
@@ -475,142 +331,15 @@ These are the <strong>sequential sums of squares</strong>. We can write:
 <p><span class="math inline">\(\mbox{SSR}(D|C) = 0.004\)</span></p>
 <p><span class="math display">\[F_{obs} = \frac{\mbox{SSR}(D|C)/(k-q)}{\mbox{SSE}(D)/(n-p)} = \frac{0.004/1}{8.927/21} = 0.01\]</span></p>
 <p><span class="math inline">\(F_{(0.1,1,21)} = 2.96096\)</span>, so P-value <span class="math inline">\(&gt;0.05\)</span>.</p>
-<p>We fail to reject <span class="math inline">\(H_0\)</span> and conclude there is no evidence <span class="math inline">\(\beta_3 \neq 0\)</span>, i.e. <span class="math inline">\(x_3\)</span> is not needed in the model.</p>
-<p>This F-test is equivalent to a t-test for <span class="math inline">\(\beta_3\)</span>: <span class="math display">\[T = 0.1\]</span> <span class="math display">\[F = (0.1)(0.1) = 0.01\]</span></p>
+<p>We fail to reject <span class="math inline">\(H_0\)</span> and conclude there is no evidence <span class="math inline">\(\beta_3 \neq 0\)</span>, i.e. <span class="math inline">\(x_3\)</span> is not needed in the model.</p>
+<p>This F-test is equivalent to a t-test for <span class="math inline">\(\beta_3\)</span>:
+<span class="math display">\[T = 0.1\]</span>
+<span class="math display">\[F = (0.1)(0.1) = 0.01\]</span></p>
 <p>The p-value for both tests <span class="math inline">\(= 0.92\)</span>.</p>
 <p>Note: The Seq SS values depend on the order in which the variables are added to the model (unless the variables are uncorrelated).</p>
 <!-- Note to Kat: Compare SeqSS for TEMP INV PROD vs PROD INV TEMP. Sum is constant but individual values change. -->
-</div>
-<div id="example-steam-contd-in-mtb" class="section level3">
-<h3><span class="header-section-number">5.2.3</span> Example: Steam cont’d in MTB</h3>
-<pre><code>Regression Analysis: STEAM versus TEMP
-
-Analysis of Variance
-  
-  Source         DF   Adj SS   Adj MS  F-Value  P-Value
-  Regression      1  45.5924  45.5924    57.54    0.000
-  TEMP            1  45.5924  45.5924    57.54    0.000
-  Error          23  18.2234   0.7923
-  Lack-of-Fit    22  17.4042   0.7911     0.97    0.680
-  Pure Error      1   0.8192   0.8192
-  Total          24  63.8158
-  
-  
-  Model Summary
-  
-  S         R-sq       R-sq(adj)   R-sq(pred)
-  0.890125  71.44%     70.20%      66.32%
-  
-  
-  Coefficients
-  
-  Term         Coef  SE Coef  T-Value  P-Value   VIF
-  Constant   13.623    0.581    23.43    0.000
-  TEMP      -0.0798   0.0105    -7.59    0.000  1.00
-  
-  
-  Regression Equation
-  
-  STEAM = 13.623 -0.0798TEMP</code></pre>
-<pre><code>  Regression Analysis: STEAM versus TEMP, INV, PROD
-  
-  Analysis of Variance
-  
-  Source      DF   Adj SS   Adj MS  F-Value  P-Value
-  Regression   3  54.8888  18.2963    43.04    0.000
-  TEMP         1  43.6895  43.6895   102.78    0.000
-  INV          1   0.8580   0.8580     2.02    0.170
-  PROD         1   0.0043   0.0043     0.01    0.920
-  Error       21   8.9270   0.4251
-  Total       24  63.8158
-  
-  
-  Model Summary
-  
-  S         R-sq       R-sq(adj)   R-sq(pred)
-  0.651993  86.01%     84.01%      79.77%
-  
-  
-  Coefficients
-  
-  Term          Coef  SE Coef  T-Value  P-Value   VIF
-  Constant      9.51     1.06     8.95    0.000
-  TEMP      -0.07993  0.00788   -10.14    0.000  1.05
-  INV          0.714    0.502     1.42    0.170  9.51
-  PROD          0.33     3.27     0.10    0.920  9.55
-  
-  
-  Regression Equation
-  
-  STEAM = 9.51 -0.07993TEMP +0.714INV +0.33PROD
-  
-  </code></pre>
-<p>Regression <span class="math inline">\(&gt;\)</span> Options <span class="math inline">\(&gt;\)</span> sum of squares tests <span class="math inline">\(&gt;\)</span> sequential</p>
-<pre><code>  
-  Regression Analysis: STEAM versus TEMP, INV, PROD
-  
-  Analysis of Variance
-  
-  Source      DF   Seq SS   Seq MS  F-Value  P-Value
-  Regression   3  54.8888  18.2963    43.04    0.000
-  TEMP         1  45.5924  45.5924   107.25    0.000
-  INV          1   9.2921   9.2921    21.86    0.000
-  PROD         1   0.0043   0.0043     0.01    0.920
-  Error       21   8.9270   0.4251
-  Total       24  63.8158
-  
-  
-  Model Summary
-  
-  S         R-sq       R-sq(adj)   R-sq(pred)
-  0.651993  86.01%     84.01%      79.77%
-  
-  
-  Coefficients
-  
-  Term          Coef  SE Coef  T-Value  P-Value   VIF
-  Constant      9.51     1.06     8.95    0.000
-  TEMP      -0.07993  0.00788   -10.14    0.000  1.05
-  INV          0.714    0.502     1.42    0.170  9.51
-  PROD          0.33     3.27     0.10    0.920  9.55
-  
-  
-  Regression Equation
-  
-  STEAM = 9.51 - 0.07993TEMP + 0.714INV + 0.33PROD</code></pre>
-<p>Regression <span class="math inline">\(&gt;\)</span> Options <span class="math inline">\(&gt;\)</span> sum of squares tests <span class="math inline">\(&gt;\)</span> sequential, but change the order in which the predictors are input in MTB. Output below is MTB17, MTB18 rearranges them in the order TEMP INV PROD.</p>
-<pre><code>  Regression Analysis: STEAM versus PROD, INV, TEMP
-  
-  Analysis of Variance
-  
-  Source      DF  Seq SS   Seq MS  F-Value  P-Value
-  Regression   3  54.889  18.2963    43.04    0.000
-  PROD         1   5.958   5.9577    14.02    0.001
-  INV          1   5.242   5.2415    12.33    0.002
-  TEMP         1  43.690  43.6895   102.78    0.000
-  Error       21   8.927   0.4251
-  Total       24  63.816
-  
-  
-  Model Summary
-  
-  S         R-sq       R-sq(adj)   R-sq(pred)
-  0.651993  86.01%     84.01%      79.77%
-  
-  
-  Coefficients
-  
-  Term          Coef  SE Coef  T-Value  P-Value   VIF
-  Constant      9.51     1.06     8.95    0.000
-  PROD          0.33     3.27     0.10    0.920  9.55
-  INV          0.714    0.502     1.42    0.170  9.51
-  TEMP      -0.07993  0.00788   -10.14    0.000  1.05
-  
-  
-  Regression Equation
-  
-  STEAM = 9.51 + 0.33PROD + 0.714INV - 0.07993TEMP</code></pre>
-<p>The anova and aov functions in R implement a sequential sum of squares (type I). Function Anova(, type= 2) in library(car) gives the adjusted SS (type II)</p>
+<p>The anova and aov functions in R implement a sequential sum of squares (type I).
+Function Anova(, type= 2) in library(car) gives the adjusted SS (type II)</p>
 <!-- % drop1(modelB, test = "F")   type 3? -->
 <!--   % -->
 <!-- % -->
@@ -627,9 +356,10 @@ Analysis of Variance
 <!-- %         SS(B $|$ A) for factor B. -->
 <!-- % -->
 <!-- %         SS(AB $|$ B, A) for interaction AB. -->
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelB &lt;-<span class="st"> </span><span class="kw">lm</span>(STEAM <span class="op">~</span><span class="st"> </span>TEMP <span class="op">+</span><span class="st"> </span>INV <span class="op">+</span><span class="st"> </span>PROD)
-
-<span class="kw">anova</span>(modelB)</code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">modelB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">STEAM</span> <span class="op">~</span> <span class="va">TEMP</span> <span class="op">+</span> <span class="va">INV</span> <span class="op">+</span> <span class="va">PROD</span>, <span class="va">steamdata</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">modelB</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: STEAM
@@ -639,8 +369,9 @@ Analysis of Variance
 ## PROD       1  0.004   0.004   0.0102 0.9203982    
 ## Residuals 21  8.927   0.425                       
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(<span class="kw">lm</span>(STEAM <span class="op">~</span><span class="st"> </span>PROD  <span class="op">+</span><span class="st"> </span>INV <span class="op">+</span><span class="st"> </span>TEMP))</code></pre></div>
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">STEAM</span> <span class="op">~</span> <span class="va">PROD</span>  <span class="op">+</span> <span class="va">INV</span> <span class="op">+</span> <span class="va">TEMP</span>, <span class="va">steamdata</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: STEAM
@@ -650,9 +381,10 @@ Analysis of Variance
 ## TEMP       1 43.690  43.690 102.776 1.524e-09 ***
 ## Residuals 21  8.927   0.425                      
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#library(car)</span>
-<span class="kw">Anova</span>(modelB, <span class="dt">type=</span> <span class="dv">2</span>)</code></pre></div>
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/car/man/Anova.html">Anova</a></span><span class="op">(</span><span class="va">modelB</span>, type<span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Anova Table (Type II tests)
 ## 
 ## Response: STEAM
@@ -662,22 +394,24 @@ Analysis of Variance
 ## PROD       0.004  1   0.0102    0.9204    
 ## Residuals  8.927 21                       
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<div id="testing-for-lack-of-fit" class="section level2">
-<h2><span class="header-section-number">5.3</span> Testing for lack of fit</h2>
+<div id="testing-for-lack-of-fit" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> Testing for lack of fit<a class="anchor" aria-label="anchor" href="#testing-for-lack-of-fit"><i class="fas fa-link"></i></a>
+</h2>
 <p>When replicate values of response are available at some or all of the <span class="math inline">\(X\)</span> values, a formal test of model adequacy is available.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-83-1.png" width="288" style="display: block; margin: auto;" /></p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-109-1.png" width="288" style="display: block; margin: auto;"></div>
 <p>The test is based on comparing the fitted value to the average response for that level of <span class="math inline">\(X\)</span>.</p>
 <p><strong>NOTATION</strong>: Suppose there are <span class="math inline">\(g\)</span> different values of <span class="math inline">\(X\)</span> and at the <span class="math inline">\(i^{th}\)</span> of these, there are <span class="math inline">\(n_i\)</span> observations of <span class="math inline">\(Y\)</span>.</p>
 <p>Let <span class="math inline">\(\bar{y}_{i.}=\frac{1}{n_i}\sum_{j=1}^{n_i} y_{ij}\)</span>, <span class="math inline">\(\quad i=1, ..., g.\)</span></p>
 <p>Note: this is the estimate of the group means in the 1-way ANOVA model (means model): <span class="math inline">\(y_{ij} = \mu_{i} + \epsilon_{ij}\)</span>, where <span class="math inline">\(\epsilon_{ij}\)</span> iid <span class="math inline">\(N(0, \sigma^2)\)</span>.</p>
 <p>Then the <strong>pure error sums of squares</strong>,</p>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 \mbox{SS}_{\mbox{PE}}&amp; =\sum_{i=1}^g \sum_{j=1}^{n_i} (y_{ij}- \bar{y}_{i.})^2\\
 df_{PE} &amp; = \sum_{i=1}^g (n_i-1)=n-g, \hspace{1cm} \mbox{where } n=n_1+...+n_g.\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <p>Therefore</p>
 <p><span class="math display">\[\frac{\sum_{i=1}^g \sum_{j=1}^{n_i} (y_{ij}- \bar{y}_{i.})^2}{n-g}\]</span></p>
 <p>is an estimator of <span class="math inline">\(\sigma^2\)</span>.</p>
@@ -691,7 +425,7 @@ df_{PE} &amp; = \sum_{i=1}^g (n_i-1)=n-g, \hspace{1cm} \mbox{where } n=n_1+...+n
 <li><p><span class="math inline">\(df_{PE} = n-g\)</span>,</p></li>
 <li><p><span class="math inline">\(df_{SLR} = n-2\)</span>.</p></li>
 </ul>
-<p>The SLR model has a residual SS which is <span class="math inline">\(\geq\)</span> residual SS from the means model, i.e. <span class="math inline">\(\mbox{SSE} \geq \mbox{SS}_{\mbox{PE}}\)</span>.</p>
+<p>The SLR model has a residual SS which is <span class="math inline">\(\geq\)</span> residual SS from the means model, i.e. <span class="math inline">\(\mbox{SSE} \geq \mbox{SS}_{\mbox{PE}}\)</span>.</p>
 <p>A large difference <span class="math inline">\(\mbox{SSE} - \mbox{SS}_{\mbox{PE}}\)</span> indicates lack of fit of the regression line.</p>
 <p><span class="math inline">\(\mbox{SS}(\mbox{lack of fit})= \mbox{SSE} - \mbox{SS}_{\mbox{PE}} = \sum_{i,j} (\hat{y}_{i,j} - \bar{y}_i)^2\)</span>, the sum of squared distances of between the SLR estimate and the means model estimate of <span class="math inline">\(\mathbb{E}(Y_{i,j})\)</span>.</p>
 <p>Lack of fit is tested by the statistic:</p>
@@ -701,71 +435,24 @@ df_{PE} &amp; = \sum_{i=1}^g (n_i-1)=n-g, \hspace{1cm} \mbox{where } n=n_1+...+n
 <p>Under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(F_{obs} \sim F_{g-2,n-g}\)</span>.</p>
 <p>Note: This generalises to multiple predictors - the pure error estimate of <span class="math inline">\(\sigma^2\)</span> is based on SS between <span class="math inline">\(y_i\)</span> for cases with the same values on all predictors. <span class="math inline">\(df_{SLR} = p\)</span> instead of 2.</p>
 <p>Reject for large values of <span class="math inline">\(F_{obs}\)</span>.</p>
-<div id="example-voltage" class="section level3">
-<h3><span class="header-section-number">5.3.1</span> Example: Voltage</h3>
-<p>Example from <span class="citation">Ramsey and Schafer (<a href="#ref-ramsey2002statistical">2002</a>)</span> (case0802 in library(Sleuth3)).</p>
+<div id="example-voltage" class="section level3" number="5.3.1">
+<h3>
+<span class="header-section-number">5.3.1</span> Example: Voltage<a class="anchor" aria-label="anchor" href="#example-voltage"><i class="fas fa-link"></i></a>
+</h3>
+<p>Example from <span class="citation">Ramsey and Schafer (<a href="references.html#ref-ramsey2002statistical">2002</a>)</span> (case0802 in library(Sleuth3)).</p>
 <p>Batches of electrical fluids were subjected to constant voltages until the insulating properties of the fluid broke down.</p>
 <p><span class="math inline">\(Y\)</span>: time to breakdown</p>
 <p><span class="math inline">\(X\)</span>: Voltage</p>
-<p>The scatterplot of <span class="math inline">\(Y\)</span> vs. <span class="math inline">\(X\)</span> shows evidence of non-linearity and non-constant variance. The response was log transformed to resolve this.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="576" style="display: block; margin: auto;" /></p>
-<!-- %' -->
-<!-- %'  -->
-<p><!-- %```{r , fig.align='center'} --> <!-- %' anova(lm((TIME)~VOLTAGE)) --> <!-- %' anova(lm((TIME)~as.factor(CODE))) --> <!-- %'``` --> <!-- %} --></p>
+<p>The scatterplot of <span class="math inline">\(Y\)</span> vs. <span class="math inline">\(X\)</span> shows evidence of non-linearity and non-constant variance. The response was log transformed to resolve this.</p>
+<p><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-110-1.png" width="576" style="display: block; margin: auto;"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-110-2.png" width="576" style="display: block; margin: auto;"></p>
 <ol style="list-style-type: decimal">
-<li></li>
+<li>
 </ol>
 <p><span class="math inline">\(H_0: \beta_1=0\)</span></p>
 <p><span class="math inline">\(H_A: \beta_1 \neq 0\)</span></p>
 <p><span class="math inline">\(F = 78.4\)</span>, <span class="math inline">\(p&lt;0.001\)</span>. We reject <span class="math inline">\(H_0\)</span> and conclude that <span class="math inline">\(\beta_1 \neq 0\)</span>.</p>
-<ol start="2" style="list-style-type: decimal">
-<li></li>
-</ol>
-<p><span class="math inline">\(H_0:\)</span> S.L.R model is appropriate/correct model</p>
-<p><span class="math inline">\(H_A:\)</span> S.L.R model has lack of fit.</p>
-<p><span class="math display">\[F=\frac{(180.07-173.75)/(7-2)}{173.75/(76-7)}=0.5\]</span></p>
-<p><span class="math inline">\(F=0.50, p=0.773\)</span>. We conclude that there is no evidence of lack of fit.</p>
-<pre><code>One-way ANOVA: LOG_TIME versus CODE
-
-Analysis of Variance
-
-Source  DF  Adj SS  Adj MS  F-Value  P-Value
-CODE     6   196.5  32.746    13.00    0.000
-Error   69   173.7   2.518
-Total   75   370.2
-
-
-Model Summary
-
-S        R-sq       R-sq(adj)   R-sq(pred)
-1.58685  53.07%     48.99%      38.72%
-
-</code></pre>
-<pre><code>Regression Analysis: LOG_TIME versus VOLTAGE
-
-Analysis of Variance
-
-Source         DF   Adj SS   Adj MS  F-Value  P-Value
-Regression      1  190.151  190.151    78.14    0.000
-VOLTAGE         1  190.151  190.151    78.14    0.000
-Error          74  180.075    2.433
-Lack-of-Fit     5    6.326    1.265     0.50    0.773
-Pure Error     69  173.749    2.518
-Total          75  370.226
-
-
-Model Summary
-
-S        R-sq       R-sq(adj)   R-sq(pred)
-1.55995  51.36%     50.70%      48.50%
-
-
-
-Regression Equation
-
-LOG_TIME = 18.96 - 0.5074 VOLTAGE</code></pre>
-<p>R code</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(<span class="kw">lm</span>(<span class="kw">log</span>(TIME)<span class="op">~</span>VOLTAGE))</code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">TIME</span><span class="op">)</span><span class="op">~</span><span class="va">VOLTAGE</span>, <span class="va">data.voltage</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: log(TIME)
@@ -773,8 +460,14 @@ LOG_TIME = 18.96 - 0.5074 VOLTAGE</code></pre>
 ## VOLTAGE    1 190.15 190.151  78.141 3.34e-13 ***
 ## Residuals 74 180.07   2.433                     
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">anova</span>(<span class="kw">lm</span>(<span class="kw">log</span>(TIME)<span class="op">~</span><span class="kw">as.factor</span>(VOLTAGE)))</code></pre></div>
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>
+</ol>
+<p><span class="math inline">\(H_0:\)</span> S.L.R model is appropriate/correct model</p>
+<p><span class="math inline">\(H_A:\)</span> S.L.R model has lack of fit.</p>
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">TIME</span><span class="op">)</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">VOLTAGE</span><span class="op">)</span> ,<span class="va">data.voltage</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: log(TIME)
@@ -782,28 +475,36 @@ LOG_TIME = 18.96 - 0.5074 VOLTAGE</code></pre>
 ## as.factor(VOLTAGE)  6 196.48  32.746  13.004 8.871e-10 ***
 ## Residuals          69 173.75   2.518                      
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="576" style="display: block; margin: auto;" /></p>
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<p><span class="math display">\[F=\frac{(180.07-173.75)/(7-2)}{173.75/(76-7)}=0.5\]</span></p>
+<p><span class="math inline">\(F=0.50, p=0.773\)</span>. We conclude that there is no evidence of lack of fit.</p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-113-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
 </div>
-<div id="added-variable-plots" class="section level2">
-<h2><span class="header-section-number">5.4</span> Added variable plots</h2>
+<div id="added-variable-plots" class="section level2" number="5.4">
+<h2>
+<span class="header-section-number">5.4</span> Added variable plots<a class="anchor" aria-label="anchor" href="#added-variable-plots"><i class="fas fa-link"></i></a>
+</h2>
 <p>In simple linear regression we can assess the importance of a predictor by:</p>
 <ul>
 <li>t-statistic</li>
 <li><span class="math inline">\(\mbox{SSR}\)</span></li>
 <li><span class="math inline">\(R^2\)</span></li>
-<li><span class="math inline">\(Y\)</span>-<span class="math inline">\(X\)</span> plot.</li>
+<li>
+<span class="math inline">\(Y\)</span>-<span class="math inline">\(X\)</span> plot.</li>
 </ul>
 <p>The analogues in multiple regression for assessing the importance of a predictor in the presence of other predictors are:</p>
 <ul>
 <li>t-statistic</li>
 <li>Seq/Extra SS</li>
-<li>partial <span class="math inline">\(R^2\)</span></li>
+<li>partial <span class="math inline">\(R^2\)</span>
+</li>
 <li>added variable plot.</li>
 </ul>
-<div id="example-steam-vs.temp-inv-prod" class="section level3">
-<h3><span class="header-section-number">5.4.1</span> Example: STEAM vs. TEMP, INV, PROD</h3>
+<div id="example-steam-vs.-temp-inv-prod" class="section level3" number="5.4.1">
+<h3>
+<span class="header-section-number">5.4.1</span> Example: STEAM vs. TEMP, INV, PROD<a class="anchor" aria-label="anchor" href="#example-steam-vs.-temp-inv-prod"><i class="fas fa-link"></i></a>
+</h3>
 <p>Model A: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1+ \beta_2 x_2\)</span></p>
 <p>Model B: <span class="math inline">\(\mathbb{E}[y] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3\)</span></p>
 <p>where <span class="math inline">\(x_1\)</span> = TEMP, <span class="math inline">\(x_2\)</span> = INV, <span class="math inline">\(x_3\)</span> = PROD.</p>
@@ -812,31 +513,37 @@ LOG_TIME = 18.96 - 0.5074 VOLTAGE</code></pre>
 <li><p><span class="math inline">\(\mbox{SSR}(B|A) = 0.004\)</span> is also small.</p></li>
 <li><p>The partial <span class="math inline">\(R^2\)</span> for PROD is the proportion of variability in the response unexplained by TEMP and INV that is explained by PROD</p></li>
 </ul>
-<span class="math display">\[\begin{align*}
+<p><span class="math display">\[\begin{align*}
 R^2(\mbox{PROD|TEMP, INV})&amp; =\frac{\mbox{SSR}(B|A)}{\mbox{SSE}(A)}
 &amp; = \frac{0.004}{8.931} = 0.00045=0.045\%\\
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <ul>
 <li>The added variable plot shows the relationship between a response and a predictor, adjusting for other predictors in the model.</li>
 </ul>
 <p>‘Adjusting’ <span class="math inline">\(Y\)</span> for predictors <span class="math inline">\(X_1,...,X_k\)</span> is achieved by computing the residuals from the regression of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X_1,...,X_k\)</span>. The resulting residuals can be thought of as <span class="math inline">\(Y\)</span> with the effect of <span class="math inline">\(X_1,...,X_k\)</span> removed.</p>
 </div>
-<div id="example-added-variable-plot-for-prod." class="section level3">
-<h3><span class="header-section-number">5.4.2</span> Example: Added variable plot for PROD.</h3>
+<div id="example-added-variable-plot-for-prod." class="section level3" number="5.4.2">
+<h3>
+<span class="header-section-number">5.4.2</span> Example: Added variable plot for PROD.<a class="anchor" aria-label="anchor" href="#example-added-variable-plot-for-prod."><i class="fas fa-link"></i></a>
+</h3>
 <p>i.e. should we add PROD to the model containing the predictors TEMP and INV? (Response is STEAM).</p>
 <ul>
 <li>Compute <span class="math inline">\(e\)</span>(STEAM<span class="math inline">\(|\)</span> TEMP, INV), i.e. the residuals from regression of STEAM on TEMP and INV.</li>
 <li>Compute <span class="math inline">\(e\)</span>(PROD<span class="math inline">\(|\)</span> TEMP, INV), i.e. the residuals from regression of PROD on TEMP and INV.</li>
-<li>AVP for PROD: Plot <span class="math inline">\(e\)</span>(STEAM<span class="math inline">\(|\)</span> TEMP, INV) vs. <span class="math inline">\(e\)</span>(PROD<span class="math inline">\(|\)</span> TEMP, INV).</li>
+<li>AVP for PROD: Plot <span class="math inline">\(e\)</span>(STEAM<span class="math inline">\(|\)</span> TEMP, INV) vs. <span class="math inline">\(e\)</span>(PROD<span class="math inline">\(|\)</span> TEMP, INV).</li>
 </ul>
 <p>We can also do:</p>
-<p>AVP INV: Plot <span class="math inline">\(e\)</span>(STEAM<span class="math inline">\(|\)</span> TEMP, PROD) vs. <span class="math inline">\(e\)</span>(INV<span class="math inline">\(|\)</span> TEMP, PROD) AVP TEMP: Plot <span class="math inline">\(e\)</span>(STEAM<span class="math inline">\(|\)</span> INV, PROD) vs. <span class="math inline">\(e\)</span>(TEMP<span class="math inline">\(|\)</span> INV, PROD)</p>
+<p>AVP INV: Plot <span class="math inline">\(e\)</span>(STEAM<span class="math inline">\(|\)</span> TEMP, PROD) vs. <span class="math inline">\(e\)</span>(INV<span class="math inline">\(|\)</span> TEMP, PROD)
+AVP TEMP: Plot <span class="math inline">\(e\)</span>(STEAM<span class="math inline">\(|\)</span> INV, PROD) vs. <span class="math inline">\(e\)</span>(TEMP<span class="math inline">\(|\)</span> INV, PROD)</p>
 </div>
-<div id="example-steam-data-contd" class="section level3">
-<h3><span class="header-section-number">5.4.3</span> Example: Steam data cont’d</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(STEAM <span class="op">~</span><span class="st"> </span>TEMP <span class="op">+</span><span class="st"> </span>INV)
-fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(PROD <span class="op">~</span><span class="st"> </span>TEMP <span class="op">+</span><span class="st"> </span>INV)
-<span class="kw">summary</span>(<span class="kw">lm</span>(<span class="kw">resid</span>(fit1)<span class="op">~</span><span class="st"> </span><span class="kw">resid</span>(fit2)))</code></pre></div>
+<div id="example-steam-data-contd" class="section level3" number="5.4.3">
+<h3>
+<span class="header-section-number">5.4.3</span> Example: Steam data cont’d<a class="anchor" aria-label="anchor" href="#example-steam-data-contd"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">STEAM</span> <span class="op">~</span> <span class="va">TEMP</span> <span class="op">+</span> <span class="va">INV</span>, <span class="va">steamdata</span><span class="op">)</span></span>
+<span><span class="va">fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">PROD</span> <span class="op">~</span> <span class="va">TEMP</span> <span class="op">+</span> <span class="va">INV</span>, <span class="va">steamdata</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">resid</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span><span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">resid</a></span><span class="op">(</span><span class="va">fit2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = resid(fit1) ~ resid(fit2))
@@ -847,105 +554,120 @@ fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(PROD <span class="
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept) 4.487e-17  1.246e-01   0.000    1.000
+## (Intercept) 4.716e-18  1.246e-01   0.000    1.000
 ## resid(fit2) 3.305e-01  3.122e+00   0.106    0.917
 ## 
 ## Residual standard error: 0.623 on 23 degrees of freedom
 ## Multiple R-squared:  0.0004869,  Adjusted R-squared:  -0.04297 
 ## F-statistic: 0.0112 on 1 and 23 DF,  p-value: 0.9166</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-88-1.png" width="384" style="display: block; margin: auto;" /></p>
-<p>Alternatively you can use the avPlots function in the library(car). In minitab use STORAGE option to save the residuals of both models and make a scatterplot.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-115-1.png" width="384" style="display: block; margin: auto;"></div>
+<p>Alternatively you can use the avPlots function in the library(car).</p>
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-forge.r-project.org/projects/car/">car</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/car/man/avPlots.html">avPlots</a></span><span class="op">(</span><span class="va">modelB</span><span class="op">)</span> <span class="co"># in library(car)</span></span></code></pre></div>
+<div class="inline-figure"><img src="ST303-Lecture-Notes_files/figure-html/unnamed-chunk-116-1.png" width="576" style="display: block; margin: auto;"></div>
 </div>
-<div id="properties-of-avps" class="section level3">
-<h3><span class="header-section-number">5.4.4</span> Properties of AVPs:</h3>
+<div id="properties-of-avps" class="section level3" number="5.4.4">
+<h3>
+<span class="header-section-number">5.4.4</span> Properties of AVPs:<a class="anchor" aria-label="anchor" href="#properties-of-avps"><i class="fas fa-link"></i></a>
+</h3>
 <ul>
 <li><p>Estimated intercept is 0.</p></li>
 <li><p>Slope of the line in AVP for PROD equals <span class="math inline">\(\hat{\beta}\)</span> (the coefficient of PROD in the model with TEMP, INV and PROD as predictors.</p></li>
 <li><p>Residuals in AVP equal residuals from regression of STEAM on TEMP, INV and PROD.</p></li>
-<li><p><span class="math inline">\(R^2\)</span> in AVP for PROD is the partial <span class="math inline">\(R^2\)</span> for PROD, i.e. <span class="math inline">\(R^2\)</span>(PROD<span class="math inline">\(|\)</span>TEMP,INV).</p></li>
+<li><p><span class="math inline">\(R^2\)</span> in AVP for PROD is the partial <span class="math inline">\(R^2\)</span> for PROD, i.e. <span class="math inline">\(R^2\)</span>(PROD<span class="math inline">\(|\)</span>TEMP,INV).</p></li>
 <li><p><span class="math inline">\(\hat{\sigma}^2\)</span> from AVP for PROD <span class="math inline">\(\approx \hat{\sigma}^2\)</span> from full model.</p></li>
 </ul>
 <p><span class="math display">\[\hat{\sigma}^2_{AVP}(n-2) = \hat{\sigma}^2_{full}(n-p)\]</span></p>
 <p>The points in an AVP are clustered tightly around a line if and only if the variable is important.</p>
 <p>AV plots may also show outliers, or if the apparent adjusted association between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X_j\)</span> is due to an influence point.</p>
-</div>
-</div>
-<div id="visualising-models-in-hdim-added-variable-plots-for-the-bodyfat-data." class="section level2">
-<h2><span class="header-section-number">5.5</span> Visualising Models in Hdim: added variable plots for the bodyfat data.</h2>
-<p>Bodyfat data from assignment 3: <a href="http://rpubs.com/kdomijan/431176" class="uri">http://rpubs.com/kdomijan/431176</a></p>
 
 </div>
 </div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-draper66applied">
-<p>Draper, Norman Richard, and Harry Smith. 1966. <em>Applied Regression Analysis</em>. Wiley Series in Probability and Mathematical Statistics. Wiley.</p>
 </div>
-<div id="ref-ramsey2002statistical">
-<p>Ramsey, Fred, and Daniel Schafer. 2002. <em>The Statistical Sleuth: A Course in Methods of Data Analysis</em>. 2nd ed. Duxbury Press.</p>
-</div>
-</div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="multiple-regression.html"><span class="header-section-number">4</span> Multiple regression</a></div>
+<div class="next"><a href="diagnostic-methods-in-more-details.html"><span class="header-section-number">6</span> Diagnostic methods (in more details)</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#model-comparisons-and-testing-for-lack-of-fit"><span class="header-section-number">5</span> Model comparisons and testing for lack of fit</a></li>
+<li>
+<a class="nav-link" href="#f-tests-for-comparing-two-models"><span class="header-section-number">5.1</span> F-tests for comparing two models</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#example-1"><span class="header-section-number">5.1.1</span> Example:</a></li>
+<li><a class="nav-link" href="#f-test-to-compare-models"><span class="header-section-number">5.1.2</span> F-test to compare models:</a></li>
+<li><a class="nav-link" href="#example-steam-data"><span class="header-section-number">5.1.3</span> Example: Steam data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#sequential-sums-of-squares"><span class="header-section-number">5.2</span> Sequential sums of squares</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#example-3"><span class="header-section-number">5.2.1</span> Example:</a></li>
+<li><a class="nav-link" href="#example-steam-data-1"><span class="header-section-number">5.2.2</span> Example: Steam data</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#testing-for-lack-of-fit"><span class="header-section-number">5.3</span> Testing for lack of fit</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#example-voltage"><span class="header-section-number">5.3.1</span> Example: Voltage</a></li></ul>
+</li>
+<li>
+<a class="nav-link" href="#added-variable-plots"><span class="header-section-number">5.4</span> Added variable plots</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#example-steam-vs.-temp-inv-prod"><span class="header-section-number">5.4.1</span> Example: STEAM vs. TEMP, INV, PROD</a></li>
+<li><a class="nav-link" href="#example-added-variable-plot-for-prod."><span class="header-section-number">5.4.2</span> Example: Added variable plot for PROD.</a></li>
+<li><a class="nav-link" href="#example-steam-data-contd"><span class="header-section-number">5.4.3</span> Example: Steam data cont’d</a></li>
+<li><a class="nav-link" href="#properties-of-avps"><span class="header-section-number">5.4.4</span> Properties of AVPs:</a></li>
+</ul>
+</li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="multiple-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="diagnostic-methods-in-more-details.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Linear Models Lecture Notes</strong>" was written by Katarina Domijan. It was last built on 2025-12-16.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
-"linkedin": false,
-"weibo": false,
-"instapper": false,
-"vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"download": null,
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>
