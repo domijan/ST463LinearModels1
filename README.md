@@ -3,16 +3,15 @@
 [![DOI](https://zenodo.org/badge/157217006.svg)](https://doi.org/10.5281/zenodo.17945212)
 
 
-Notes for ST463/ST683 Linear Models 1 module at the [Mathematics and Statistics](https://www.maynoothuniversity.ie/mathematics-and-statistics) Department at [Maynooth University](https://www.maynoothuniversity.ie/).
-This module was offered as a part of of [MSc in Data Science and Data Analytics](https://www.maynoothuniversity.ie/study-maynooth/postgraduate-studies/courses/msc-data-science-and-analytics).
-The module is currently run under code ST303.
-
-## [Course notes](https://domijan.github.io/ST463LinearModels1/)
+[Lecture notes](https://domijan.github.io/ST463LinearModels1/) for Linear Models module at the [Mathematics and Statistics](https://www.maynoothuniversity.ie/mathematics-and-statistics) Department at [Maynooth University](https://www.maynoothuniversity.ie/).
+The module is currently run under code ST303. 
 
 
+The document is continually revised to teach the course, the content may change from year to year. A base link is https://bookdown.org/domijank/ST463/ 
+Note that the module code has changed since. 
 
 
-Please cite the following if you find  the materials useful:
+Please cite the following if you find the materials useful:
 
 Katarina Domijan, Catherine Hurley (2018). Notes for ST463/ST683 Linear Models 1. Department of Mathematics and Statistics, Maynooth University, Maynooth Ireland. Online textbook (version 1.0, November 12, 2018). Retrieved from 
 https://bookdown.org/domijank/ST463/, doi:10.5281/zenodo.17945213
